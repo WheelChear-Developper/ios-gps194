@@ -1,0 +1,6 @@
+platform :ios, '6.0'
+pod 'FMDB'
+pod 'SVProgressHUD'
+pod 'AFNetworking'
+pod 'Reachability'
+pod 'CZDateFormatterCache'
