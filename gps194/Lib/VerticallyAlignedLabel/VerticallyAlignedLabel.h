@@ -6,6 +6,7 @@
 //  Copyright (c) 2013年 SmartTecno. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
 typedef enum VerticalAlignment

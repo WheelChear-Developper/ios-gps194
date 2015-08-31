@@ -6,7 +6,10 @@
 //  Copyright (c) 2015年 Mobile Innovation, LLC. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import "ViewController.h"
+#import "CgSelect_Cell.h"
+#import "CgSelect_Model.h"
 
 @interface ViewController ()
 {
@@ -19,7 +22,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    //カスタムセル設定
+    UINib *nib = [UINib nibWithNibName:@"News_Cell" bundle:nil];
+    CgSelect_Cell *cell = [[nib instantiateWithOwner:nil options:nil] objectAtIndex:0];
+    Table_View.rowHeight = cell.frame.size.height;
+    
+    // Register CustomCell
+    [Table_View registerNib:nib forCellReuseIdentifier:@"CgSelect_Cell"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,48 +48,15 @@
     return [_TotalDataBox count];
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // セルごとの大きさ調整
-    if(_TotalDataBox.count > 0){
-        NSUInteger row = (NSUInteger)indexPath.row;
-        NewsView_ListDataModel *listDataModel = _TotalDataBox[row];
-        
-        // ラベルの高さ取得
-        CGFloat flt_height = [UILabel xx_estimatedHeight:[UIFont systemFontOfSize:13]
-                                                    text:listDataModel.service_body size:CGSizeMake(255, MAXFLOAT)];
-        flt_height += 15 * 2;
-        
-        // 行数によるポジションセット
-        CGFloat photo_potision = [listDataModel.service_body lengthOfBytesUsingEncoding:NSShiftJISStringEncoding]/19;
-        if(photo_potision > 6){
-            photo_potision = 6;
-        }
-        
-        if([listDataModel.service_imageUrl isEqual:@"<null>"]){
-            return 55 + flt_height + 15 + 33;
-        }else if([listDataModel.service_imageUrl isEqual:[NSNull null]]){
-            return 55 + flt_height + 15 + 33;
-        }else{
-            return 55 + flt_height + 200 + 15 + 33 + 5;
-        }
-    }
-    return 0;
-}
-
 // １行ごとのセル生成（表示時）
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Instantiate or reuse cell
-    News_Cell *cell = [tableView dequeueReusableCellWithIdentifier:@"News_Cell"];
+    CgSelect_Cell *cell = [tableView dequeueReusableCellWithIdentifier:@"CgSelect_Cell"];
     
-    // セル枠線削除
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    // 背景色
-    cell.backgroundColor = [SetColor setBackGroundColor];
     // Set contents
     NSUInteger row = (NSUInteger)indexPath.row;
-    NewsView_ListDataModel *listDataModel = _TotalDataBox[row];
+    CgSelect_Model *listDataModel = _TotalDataBox[row];
     cell.int_commentCount = listDataModel.service_id;
     cell.lbl_hyoudai.text = listDataModel.service_title;
     cell.lbl_date.text = listDataModel.service_retime;

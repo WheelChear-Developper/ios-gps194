@@ -6,6 +6,7 @@
 //  Copyright (c) 2014年 akafune, inc. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
 @interface AsyncImageView : UIImageView {
