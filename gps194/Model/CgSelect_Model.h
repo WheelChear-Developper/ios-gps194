@@ -6,15 +6,15 @@
 //  Copyright (c) 2015年 Mobile Innovation, LLC. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
 @interface CgSelect_Model : NSObject
 
 @property(nonatomic) long service_id;
-@property(nonatomic) long service_time;
-@property(nonatomic, copy) NSString *service_retime;
-@property(nonatomic, copy) NSString *service_imageUrl;
-@property(nonatomic, copy) UIImage *service_image;
-@property(nonatomic, copy) NSString *service_title;
-@property(nonatomic, copy) NSString *service_body;
+@property(nonatomic) long sort_id;
+@property(nonatomic, copy) NSMutableData *image;
+@property(nonatomic, copy) NSString *comment;
+@property(nonatomic) long delete_flg;
+
 @end

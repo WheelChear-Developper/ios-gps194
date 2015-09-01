@@ -24,7 +24,7 @@
     [super viewDidLoad];
     
     //カスタムセル設定
-    UINib *nib = [UINib nibWithNibName:@"News_Cell" bundle:nil];
+    UINib *nib = [UINib nibWithNibName:@"CgSelect_Cell" bundle:nil];
     CgSelect_Cell *cell = [[nib instantiateWithOwner:nil options:nil] objectAtIndex:0];
     Table_View.rowHeight = cell.frame.size.height;
     
@@ -45,7 +45,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_TotalDataBox count];
+    return 1;//[_TotalDataBox count];
 }
 
 // １行ごとのセル生成（表示時）
@@ -57,12 +57,12 @@
     // Set contents
     NSUInteger row = (NSUInteger)indexPath.row;
     CgSelect_Model *listDataModel = _TotalDataBox[row];
-    cell.int_commentCount = listDataModel.service_id;
-    cell.lbl_hyoudai.text = listDataModel.service_title;
-    cell.lbl_date.text = listDataModel.service_retime;
-    cell.str_comment = listDataModel.service_body;
-    cell.str_imageurl = listDataModel.service_imageUrl;
-    cell.lbl_comment.text = @"";
+    
+    cell.lng_serviceId = listDataModel.service_id;
+    cell.str_comment = listDataModel.comment;
+    cell.lng_sortId = listDataModel.sort_id;
+    cell.lng_deleteId = listDataModel.delete_flg;
+    cell.img_Photo = listDataModel.image;
     
     return cell;
 }
@@ -91,9 +91,8 @@
 //セルの選択時イベントメソッド
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NewsView_ListDataModel *listDataModel = _TotalDataBox[indexPath.row];
-    // 選択リスト設定
-    [Configuration setListID:listDataModel.service_id];
+//    CgSelect_Model *listDataModel = _TotalDataBox[indexPath.row];
+
     // 画面遷移
     UIViewController *initialViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"comments"];
     [self.navigationController pushViewController:initialViewController animated:YES];
@@ -102,22 +101,40 @@
 // テーブルのスクロール時のイベントメソッド
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    // テーブルビュー用
-    if(Table_View){
-        CGFloat table_positionY = [Table_View contentOffset].y;
-        if(table_positionY < -100){
-            bln_TableReLoad = YES;
-        }else if(table_positionY == 0){
-            if(bln_TableReLoad == YES){
-                // リストデータの読み込み
-                [SVProgressHUD showWithStatus:NSLocalizedString(@"Progress_ReReading",@"")];
-                [self readWebData];
-                
-                bln_TableReLoad = NO;
-            }
-        }
-    }
+
 }
 /////////////// ↑　テーブル用メソッド　↑ ////////////////////
+
+- (IBAction)btn_camera:(id)sender {
+}
+
+- (IBAction)btn_delete:(id)sender {
+}
+
+- (IBAction)btn_comment:(id)sender {
+}
+
+- (IBAction)btn_photoplus:(id)sender {
+
+    if([UIImagePickerController
+        isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]){
+        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+        imagePicker.delegate = self;
+        imagePicker.allowsEditing = YES;
+        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentViewController:imagePicker animated:YES completion:nil];
+    }
+
+}
+
+- (void)imagePickerController :(UIImagePickerController *)picker
+        didFinishPickingImage :(UIImage *)image editingInfo :(NSDictionary *)editingInfo {
+    NSLog(@"selected");
+//    [self.imageView setImage:image];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+
 
 @end

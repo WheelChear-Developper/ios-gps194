@@ -44,27 +44,13 @@
     }
     int_PosisonHeight = 55 + flt_height;
     
-    //画像の非同期セット
-    [ai removeFromSuperview];
-    if([_str_imageurl isEqual:@"<null>"]){
-    }else if([_str_imageurl isEqual:[NSNull null]]){
-    }else{
-        ai = [[AsyncImageView alloc] initWithFrame:CGRectMake(30, int_PosisonHeight, 260, 200)];
-        [ai loadImage:_str_imageurl];
-        [self addSubview:ai];
-        
-        int_PosisonHeight += 200;
-    }
+
     
-    // コメント取得
-    self.lbl_comment.text = @"コメント";
-    NSString *URL = [NSString stringWithFormat:@"%@%@%ld%@",NSLocalizedString(@"Service_DomainURL",@""), NSLocalizedString(@"Service_CommentGet1URL",@""), self.lng_newsId, NSLocalizedString(@"Service_CommentGet2URL",@"")];
-    
-    NSURL *URL_STRING = [NSURL URLWithString:URL];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL_STRING];
-    [NSURLConnection connectionWithRequest:request delegate:self];
+
 }
 
+- (IBAction)btn_select:(id)sender {
+}
 @end
 
 

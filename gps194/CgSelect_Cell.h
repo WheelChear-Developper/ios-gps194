@@ -11,13 +11,19 @@
 #import "AsyncImageView.h"
 
 @interface CgSelect_Cell : UITableViewCell
+{
+    __weak IBOutlet UIButton *btn_select;
+    __weak IBOutlet UIImageView *img_image;
+    __weak IBOutlet UILabel *txt_comment;
+    
+}
 
-@property (weak, nonatomic) IBOutlet UILabel *lbl_hyoudai;
-@property (weak, nonatomic) IBOutlet UILabel *lbl_date;
-@property (weak, nonatomic) IBOutlet UILabel *lbl_comment;
+@property (nonatomic) long lng_serviceId;
 @property (weak, nonatomic) NSString *str_comment;
-@property (weak, nonatomic) NSString *str_imageurl;
-@property (nonatomic) long lng_newsId;
+@property (nonatomic) long lng_sortId;
+@property (nonatomic,retain)NSMutableData *img_Photo;
+@property (nonatomic) long lng_deleteId;
 
-@property (nonatomic,retain)NSMutableData *mData;
+- (IBAction)btn_select:(id)sender;
+
 @end
