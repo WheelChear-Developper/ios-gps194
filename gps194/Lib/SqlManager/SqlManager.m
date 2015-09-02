@@ -57,9 +57,9 @@
     NSString* tbl1_sql1 = @"CREATE TABLE IF NOT EXISTS tbl_photo_record (";
     NSString* tbl1_sql2 = @" service_id  INTEGER,";
     NSString* tbl1_sql3 = @" sort_id     INTEGER,";
-    NSString* tbl1_sql4 = @" image       TEXT,";
+    NSString* tbl1_sql4 = @" image       BLOB,";
     NSString* tbl1_sql5 = @" comment     TEXT,";
-    NSString* tbl1_sql6 = @" delete_flg  TEXT);";
+    NSString* tbl1_sql6 = @" delete_flg  INTEGER);";
     NSString* tbl1_MakeSQL = [NSString stringWithFormat:@"%@%@%@%@%@%@", tbl1_sql1, tbl1_sql2, tbl1_sql3, tbl1_sql4, tbl1_sql5, tbl1_sql6];
     if (![DbAccess executeUpdate:tbl1_MakeSQL]) {
         NSLog(@"ERROR: %d: %@", [DbAccess lastErrorCode], [DbAccess lastErrorMessage]);
@@ -71,7 +71,7 @@
 }
 
 // サービスリストデータ取得処理
-+ (NSMutableArray*)Get_ServiceList
++ (NSMutableArray*)Get_List
 {
     //データベース接続
     FMDatabase* DbAccess = [self _getDB:DBFILE];
@@ -96,11 +96,12 @@
     while( [results next] )
     {
         CgSelect_Model *listDataModel = [[CgSelect_Model alloc] init];
-        listDataModel.service_id = [results longForColumn:@"list_id"];
-        listDataModel.sort_id = [results longForColumn:@"list_time"];
-        listDataModel.image = [results stringForColumn:@"list_retime"];
-        listDataModel.comment = [results stringForColumn:@"list_title"];
-        listDataModel.delete_flg = [results stringForColumn:@"list_imageUrl"];
+        listDataModel.service_id = [results longForColumn:@"service_id"];
+        listDataModel.sort_id = [results longForColumn:@"sort_id"];
+ //       listDataModel.image = [results   image"];
+ //       NSData *imagedata = [[NSData alloc] initWithBytes:sqlite3_column_blob(statement, 2) length:sqlite3_column_bytes(statement, 1)];
+        listDataModel.comment = [results stringForColumn:@"comment"];
+        listDataModel.delete_flg = [results longForColumn:@"delete_flg"];
         [dbBox addObject:listDataModel];
     }
     
@@ -111,26 +112,24 @@
 }
 
 // サービスリストデータ更新保存処理
-+ (void)Set_ServiceList_Insert_listid:(long)list_id
-                             listtime:(long)list_time
-                           listretime:(NSString*)list_retime
-                                title:(NSString*)list_title
-                             imageUrl:(NSString*)list_imageUrl
-                                 body:(NSString*)list_body
++ (void)Set_List:(long)service_id
+         sortid:(long)sort_id
+            img:(NSData*)image
+        comment:(NSString*)comment
+         delete:(long)delete_flg
 {
     //データベース接続
     FMDatabase* DbAccess = [self _getDB:DBFILE];
     
     //データ保存
-    NSString* sql1 = @"INSERT INTO tbl_list_record";
-    NSString* sql2 = @" (list_id, list_time, list_retime, list_title, list_imageUrl, list_body) VALUES ";
-    NSString* sql3 = [NSString stringWithFormat:@"(%lu, %lu, '%@', '%@', '%@', '%@');",
-                      list_id,
-                      list_time,
-                      list_retime,
-                      list_title,
-                      list_imageUrl,
-                      list_body];
+    NSString* sql1 = @"INSERT INTO tbl_photo_record";
+    NSString* sql2 = @" (service_id, sort_id, image, comment, delete_flg) VALUES ";
+    NSString* sql3 = [NSString stringWithFormat:@"(%lu, %lu, '%@', '%@', %lu);",
+                      service_id,
+                      sort_id,
+                      image,
+                      comment,
+                      delete_flg];
     NSString* MakeSQL = [NSString stringWithFormat:@"%@%@%@",sql1, sql2, sql3];
     if (![DbAccess executeUpdate:MakeSQL]) {
         NSLog(@"ERROR: %d: %@", [DbAccess lastErrorCode], [DbAccess lastErrorMessage]);

@@ -81,6 +81,7 @@
 		1BFCD6951B956AA6007FF00A /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BFCD6941B956AA6007FF00A /* plus.png */; };
 		1BFCD6991B956FA8007FF00A /* SqlManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFCD6981B956FA8007FF00A /* SqlManager.m */; };
 		1BFCD69B1B95701D007FF00A /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BFCD69A1B95701D007FF00A /* libsqlite3.0.dylib */; };
+		1BFDABB41B96DB740076CE5E /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B133FEF1B959AD30040FC16 /* AssetsLibrary.framework */; };
 		A461437CA87C0E619323D141 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B46A8015C1BC3ECE998BFFA6 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -184,6 +185,8 @@
 		1BFCD6971B956FA8007FF00A /* SqlManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SqlManager.h; sourceTree = "<group>"; };
 		1BFCD6981B956FA8007FF00A /* SqlManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SqlManager.m; sourceTree = "<group>"; };
 		1BFCD69A1B95701D007FF00A /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		1BFDABB51B96F3E90076CE5E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		1BFDABB61B96F3E90076CE5E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		1FB0D493783D6EE8AA3E28FF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		9A95EDFBC61D5909EAD3FB32 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B46A8015C1BC3ECE998BFFA6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -194,6 +197,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BFDABB41B96DB740076CE5E /* AssetsLibrary.framework in Frameworks */,
 				1B133FF21B959B0E0040FC16 /* Photos.framework in Frameworks */,
 				1BFCD69B1B95701D007FF00A /* libsqlite3.0.dylib in Frameworks */,
 				A461437CA87C0E619323D141 /* libPods.a in Frameworks */,
@@ -681,6 +685,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				1B447EE51B8EBC0C00689CDF /* Base */,
+				1BFDABB61B96F3E90076CE5E /* ja */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -689,6 +694,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				1B447EEA1B8EBC0C00689CDF /* Base */,
+				1BFDABB51B96F3E90076CE5E /* ja */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";

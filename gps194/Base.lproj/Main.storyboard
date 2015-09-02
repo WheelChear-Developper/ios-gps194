@@ -455,6 +455,7 @@
                         </variation>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="Table_View" destination="qQx-cK-tUL" id="bQ6-vY-Wp2"/>
                         <outlet property="txt_comment" destination="YRE-fF-rAG" id="mq9-Lc-ENl"/>

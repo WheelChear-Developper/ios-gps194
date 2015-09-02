@@ -1,0 +1,27 @@
+
+/* Class = "UILabel"; text = "ゴミ箱のイラスト"; ObjectID = "AFS-LF-aMd"; */
+"AFS-LF-aMd.text" = "ゴミ箱のイラスト";
+
+/* Class = "UILabel"; text = "カメラのイラスト"; ObjectID = "BR0-tp-yPL"; */
+"BR0-tp-yPL.text" = "カメラのイラスト";
+
+/* Class = "UILabel"; text = "Map"; ObjectID = "L0C-6E-AcU"; */
+"L0C-6E-AcU.text" = "Map";
+
+/* Class = "UITextView"; text = "緯度：　　経度："; ObjectID = "Ppj-bV-fAx"; */
+"Ppj-bV-fAx.text" = "緯度：　　経度：";
+
+/* Class = "UIButton"; normalTitle = "OK"; ObjectID = "YQH-3D-XRV"; */
+"YQH-3D-XRV.normalTitle" = "OK";
+
+/* Class = "UITextView"; text = "コメント"; ObjectID = "YRE-fF-rAG"; */
+"YRE-fF-rAG.text" = "コメント";
+
+/* Class = "UILabel"; text = "Google"; ObjectID = "nP0-B6-a3i"; */
+"nP0-B6-a3i.text" = "Google";
+
+/* Class = "UILabel"; text = "Photo"; ObjectID = "qDV-jh-vh7"; */
+"qDV-jh-vh7.text" = "Photo";
+
+/* Class = "UILabel"; text = "Delete"; ObjectID = "vX3-uz-fev"; */
+"vX3-uz-fev.text" = "Delete";

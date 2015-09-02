@@ -18,15 +18,14 @@
 ////////////////////////////////////　サービス登録データ関連　//////////////////////////////////////////
 
 //サービスリストデータ取得処理
-+ (NSMutableArray*)Get_ServiceList;
++ (NSMutableArray*)Get_List;
 
-//サービスリストデータ更新保存処理
-+ (void)Set_ServiceList_Insert_listid:(long)list_id
-                             listtime:(long)list_time
-                           listretime:(NSString*)list_retime
-                                title:(NSString*)list_title
-                             imageUrl:(NSString*)list_imageUrl
-                                 body:(NSString*)list_body;
+// サービスリストデータ更新保存処理
++ (void)Set_List:(long)service_id
+         sortid:(long)sort_id
+            img:(NSData*)image
+        comment:(NSString*)comment
+         delete:(long)delete_flg;
 
 //サービスリスト一括削除処理
 + (void)AllDel_ServiceList_listid;

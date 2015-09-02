@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <ImageIO/ImageIO.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 #import "ViewController.h"
 #import "CgSelect_Cell.h"
 #import "CgSelect_Model.h"
@@ -124,13 +126,81 @@
         imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         [self presentViewController:imagePicker animated:YES completion:nil];
     }
-
 }
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    //Latitude  緯度
+    //Longitude 経度
+    
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    // アルバムから
+    if (picker.sourceType == UIImagePickerControllerSourceTypePhotoLibrary) {
+        
+        // PhotoAlbumの場合
+        NSURL *assetURL = [info objectForKey:UIImagePickerControllerReferenceURL];
+        ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+        [library assetForURL:assetURL resultBlock:^(ALAsset *asset) {
+            ALAssetRepresentation *representation = [asset defaultRepresentation];
+            NSDictionary *metadataDict = [representation metadata]; // ←ここにExifとかGPSの情報が入ってる
+//            NSLog(@"%@", metadataDict);
+//            NSLog(@"%@", [metadataDict objectForKey:@"{GPS}"]);
+            NSDictionary *metadataDictGps = [metadataDict objectForKey:@"{GPS}"];
+            NSString* str_Latitude = [metadataDictGps objectForKey:@"Latitude"];
+            NSString* str_Longitude = [metadataDictGps objectForKey:@"Longitude"];
+            NSLog(@"緯度:%@", str_Latitude);
+            NSLog(@"経度:%@", str_Longitude);
+
+            if(str_Latitude == nil) {
+                txt_idokeido.text = [NSString stringWithFormat:@"位置情報が無いようです。"];
+            }else{
+                txt_idokeido.text = [NSString stringWithFormat:@"緯度:%@\n経度:%@", str_Latitude, str_Longitude];
+            }
+            
+        } failureBlock:^(NSError *error) {
+            NSLog(@"%@",error);
+        }];
+        
+        // 画像を書き直す
+        UIGraphicsBeginImageContext(image.size);
+        [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)];
+        image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+//        self.imageView.image = image;
+        
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 - (void)imagePickerController :(UIImagePickerController *)picker
         didFinishPickingImage :(UIImage *)image editingInfo :(NSDictionary *)editingInfo {
+    
+    
+    
+
+    
+    
+    
+    
+    
     NSLog(@"selected");
 //    [self.imageView setImage:image];
+    
+    NSURL* imageurl = [editingInfo objectForKey:UIImagePickerControllerReferenceURL];
+    
+    NSString *imgPath = editingInfo[@"UIImagePickerControllerReferenceURL"];
+    CGImageSourceRef source = CGImageSourceCreateWithURL((CFURLRef)CFBridgingRetain(imageurl), nil);
+    NSDictionary *metadata = (NSDictionary *) CFBridgingRelease(CGImageSourceCopyPropertiesAtIndex(source, 0, NULL));
+    NSDictionary *GPSDictionary = [metadata objectForKey:(NSString *)kCGImagePropertyGPSDictionary];
+    
+    NSData* pngData = [[NSData alloc] initWithData:UIImagePNGRepresentation( image )];
+    
+    [SqlManager Set_List:1 sortid:1 img:pngData comment:@"test" delete:0];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
