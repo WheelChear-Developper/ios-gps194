@@ -22,10 +22,12 @@
 
 // サービスリストデータ更新保存処理
 + (void)Set_List:(long)service_id
-         sortid:(long)sort_id
-            img:(NSData*)image
-        comment:(NSString*)comment
-         delete:(long)delete_flg;
+          sortid:(long)sort_id
+             img:(NSData*)image
+        Latitude:(NSString*)Latitude
+       Longitude:(NSString*)Longitude
+         comment:(NSString*)comment
+          delete:(long)delete_flg;
 
 //サービスリスト一括削除処理
 + (void)AllDel_ServiceList_listid;

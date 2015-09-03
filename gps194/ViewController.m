@@ -17,6 +17,12 @@
 {
     // リスト用データ格納用
     NSMutableArray *_TotalDataBox;
+    
+    // 選択行
+    long lng_selectRow;
+    
+    NSString* str_Latitude;
+    NSString* str_Longitude;
 }
 @end
 
@@ -34,10 +40,43 @@
     [Table_View registerNib:nib forCellReuseIdentifier:@"CgSelect_Cell"];
 }
 
+// 起動・再開の時に起動するメソッド
+- (void)viewWillAppear:(BOOL)animated
+{
+    // リストデータの読み込み
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Progress_Reading",@"")];
+    [self readListData];
+    
+    [super viewWillAppear:animated];
+    
+    //初期行設定
+    lng_selectRow = -1;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+/////////////// ↓　通信用メソッド　↓　////////////////////
+// Webからのリストデータ取得
+- (void)readListData
+{
+    // リストデータの初期化
+    _TotalDataBox = [[NSMutableArray alloc] init];
+    
+    //アプリ内のデータ取得
+    NSMutableArray *RecordDataBox = [SqlManager Get_List];
+
+    //アプリ内データのセット
+    _TotalDataBox = RecordDataBox;
+    //テーブルデータの再構築
+    [Table_View reloadData];
+    
+    // 読み込み中の表示削除
+    [SVProgressHUD dismiss];
+}
+/////////////// ↑　通信用メソッド　↑　////////////////////
 
 /////////////// ↓　テーブル用メソッド　↓ ////////////////////
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -47,7 +86,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;//[_TotalDataBox count];
+    return [_TotalDataBox count];
 }
 
 // １行ごとのセル生成（表示時）
@@ -64,7 +103,14 @@
     cell.str_comment = listDataModel.comment;
     cell.lng_sortId = listDataModel.sort_id;
     cell.lng_deleteId = listDataModel.delete_flg;
-    cell.img_Photo = listDataModel.image;
+    
+    cell.img_image.image = [[UIImage alloc] initWithData:listDataModel.image];
+    
+    if(indexPath.row == lng_selectRow){
+        cell.img_select.image = [UIImage imageNamed:@"select-yes.png"];
+    }else{
+        cell.img_select.image = [UIImage imageNamed:@"select-no.png"];
+    }
     
     return cell;
 }
@@ -93,11 +139,24 @@
 //セルの選択時イベントメソッド
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    CgSelect_Model *listDataModel = _TotalDataBox[indexPath.row];
+    lng_selectRow = indexPath.row;
 
-    // 画面遷移
-    UIViewController *initialViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"comments"];
-    [self.navigationController pushViewController:initialViewController animated:YES];
+    //テーブルデータの再構築
+    [Table_View reloadData];
+    
+    CgSelect_Model *listDataModel = _TotalDataBox[indexPath.row];
+    
+    if([listDataModel.Latitude isEqualToString:@"(null)"]) {
+        txt_idokeido.text = [NSString stringWithFormat:@"位置情報が無いようです。"];
+    }else{
+        txt_idokeido.text = [NSString stringWithFormat:@"緯度:%@\n経度:%@", listDataModel.Latitude, listDataModel.Longitude];
+    }
+    
+    txt_comment.text = listDataModel.comment;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
 }
 
 // テーブルのスクロール時のイベントメソッド
@@ -133,10 +192,13 @@
     //Latitude  緯度
     //Longitude 経度
     
-    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    [SVProgressHUD showWithStatus:@"Loading..."];
     
     // アルバムから
     if (picker.sourceType == UIImagePickerControllerSourceTypePhotoLibrary) {
+        
+        str_Latitude = @"";
+        str_Longitude = @"";
         
         // PhotoAlbumの場合
         NSURL *assetURL = [info objectForKey:UIImagePickerControllerReferenceURL];
@@ -147,8 +209,8 @@
 //            NSLog(@"%@", metadataDict);
 //            NSLog(@"%@", [metadataDict objectForKey:@"{GPS}"]);
             NSDictionary *metadataDictGps = [metadataDict objectForKey:@"{GPS}"];
-            NSString* str_Latitude = [metadataDictGps objectForKey:@"Latitude"];
-            NSString* str_Longitude = [metadataDictGps objectForKey:@"Longitude"];
+            str_Latitude = [metadataDictGps objectForKey:@"Latitude"];
+            str_Longitude = [metadataDictGps objectForKey:@"Longitude"];
             NSLog(@"緯度:%@", str_Latitude);
             NSLog(@"経度:%@", str_Longitude);
 
@@ -158,48 +220,29 @@
                 txt_idokeido.text = [NSString stringWithFormat:@"緯度:%@\n経度:%@", str_Latitude, str_Longitude];
             }
             
+            // 画像を書き直す
+            UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+            UIGraphicsBeginImageContext(image.size);
+            [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)];
+            image = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            
+            NSData* pngData = [[NSData alloc] initWithData:UIImagePNGRepresentation(image)];
+            [SqlManager Set_List:_TotalDataBox.count sortid:0 img:pngData Latitude:str_Latitude Longitude:str_Longitude comment:@"" delete:0];
+            
+            lng_selectRow = _TotalDataBox.count;
+            
+            [self readListData];
+            
         } failureBlock:^(NSError *error) {
             NSLog(@"%@",error);
+            
+            // 読み込み中の表示削除
+            [SVProgressHUD dismiss];
         }];
         
-        // 画像を書き直す
-        UIGraphicsBeginImageContext(image.size);
-        [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)];
-        image = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        
-//        self.imageView.image = image;
-        
+
     }
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-
-- (void)imagePickerController :(UIImagePickerController *)picker
-        didFinishPickingImage :(UIImage *)image editingInfo :(NSDictionary *)editingInfo {
-    
-    
-    
-
-    
-    
-    
-    
-    
-    NSLog(@"selected");
-//    [self.imageView setImage:image];
-    
-    NSURL* imageurl = [editingInfo objectForKey:UIImagePickerControllerReferenceURL];
-    
-    NSString *imgPath = editingInfo[@"UIImagePickerControllerReferenceURL"];
-    CGImageSourceRef source = CGImageSourceCreateWithURL((CFURLRef)CFBridgingRetain(imageurl), nil);
-    NSDictionary *metadata = (NSDictionary *) CFBridgingRelease(CGImageSourceCopyPropertiesAtIndex(source, 0, NULL));
-    NSDictionary *GPSDictionary = [metadata objectForKey:(NSString *)kCGImagePropertyGPSDictionary];
-    
-    NSData* pngData = [[NSData alloc] initWithData:UIImagePNGRepresentation( image )];
-    
-    [SqlManager Set_List:1 sortid:1 img:pngData comment:@"test" delete:0];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }

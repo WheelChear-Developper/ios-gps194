@@ -17,7 +17,7 @@
     IBOutlet UITableView *Table_View;
     
     __weak IBOutlet UITextView *txt_idokeido;
-    __weak IBOutlet UITextView *txt_comment;
+    __weak IBOutlet UITextView *txt_comment;    
 }
 
 - (IBAction)btn_camera:(id)sender;

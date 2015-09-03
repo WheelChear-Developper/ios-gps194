@@ -58,9 +58,11 @@
     NSString* tbl1_sql2 = @" service_id  INTEGER,";
     NSString* tbl1_sql3 = @" sort_id     INTEGER,";
     NSString* tbl1_sql4 = @" image       BLOB,";
-    NSString* tbl1_sql5 = @" comment     TEXT,";
-    NSString* tbl1_sql6 = @" delete_flg  INTEGER);";
-    NSString* tbl1_MakeSQL = [NSString stringWithFormat:@"%@%@%@%@%@%@", tbl1_sql1, tbl1_sql2, tbl1_sql3, tbl1_sql4, tbl1_sql5, tbl1_sql6];
+    NSString* tbl1_sql5 = @" Latitude    TEXT,";
+    NSString* tbl1_sql6 = @" Longitude   TEXT,";
+    NSString* tbl1_sql7 = @" comment     TEXT,";
+    NSString* tbl1_sql8 = @" delete_flg  INTEGER);";
+    NSString* tbl1_MakeSQL = [NSString stringWithFormat:@"%@%@%@%@%@%@%@%@", tbl1_sql1, tbl1_sql2, tbl1_sql3, tbl1_sql4, tbl1_sql5, tbl1_sql6, tbl1_sql7, tbl1_sql8];
     if (![DbAccess executeUpdate:tbl1_MakeSQL]) {
         NSLog(@"ERROR: %d: %@", [DbAccess lastErrorCode], [DbAccess lastErrorMessage]);
     }
@@ -81,11 +83,13 @@
     NSString* Sql2 = @" service_id,";
     NSString* Sql3 = @" sort_id,";
     NSString* Sql4 = @" image,";
-    NSString* Sql5 = @" comment,";
-    NSString* Sql6 = @" delete_flg";
-    NSString* Sql7 = @" FROM tbl_photo_record";
-    NSString* Sql8 = @" ORDER BY sort_id ASC;";
-    NSString* MakeSQL = [NSString stringWithFormat:@"%@%@%@%@%@%@%@%@",Sql1,Sql2,Sql3,Sql4,Sql5,Sql6,Sql7,Sql8];
+    NSString* Sql5 = @" Latitude,";
+    NSString* Sql6 = @" Longitude,";
+    NSString* Sql7 = @" comment,";
+    NSString* Sql8 = @" delete_flg";
+    NSString* Sql9 = @" FROM tbl_photo_record";
+    NSString* Sql10 = @" ORDER BY sort_id ASC;";
+    NSString* MakeSQL = [NSString stringWithFormat:@"%@%@%@%@%@%@%@%@%@%@",Sql1,Sql2,Sql3,Sql4,Sql5,Sql6,Sql7,Sql8,Sql9,Sql10];
     FMResultSet* results = [DbAccess executeQuery:MakeSQL];
     if (!results) {
         NSLog(@"ERROR: %d: %@", [DbAccess lastErrorCode], [DbAccess lastErrorMessage]);
@@ -98,10 +102,12 @@
         CgSelect_Model *listDataModel = [[CgSelect_Model alloc] init];
         listDataModel.service_id = [results longForColumn:@"service_id"];
         listDataModel.sort_id = [results longForColumn:@"sort_id"];
- //       listDataModel.image = [results   image"];
- //       NSData *imagedata = [[NSData alloc] initWithBytes:sqlite3_column_blob(statement, 2) length:sqlite3_column_bytes(statement, 1)];
         listDataModel.comment = [results stringForColumn:@"comment"];
         listDataModel.delete_flg = [results longForColumn:@"delete_flg"];
+        listDataModel.image = [[NSData alloc] initWithBase64EncodedString:[results stringForColumn:@"image"] options:NSDataBase64DecodingIgnoreUnknownCharacters];
+        listDataModel.Latitude = [results stringForColumn:@"Latitude"];
+        listDataModel.Longitude = [results stringForColumn:@"Longitude"];
+        
         [dbBox addObject:listDataModel];
     }
     
@@ -113,21 +119,27 @@
 
 // サービスリストデータ更新保存処理
 + (void)Set_List:(long)service_id
-         sortid:(long)sort_id
-            img:(NSData*)image
-        comment:(NSString*)comment
-         delete:(long)delete_flg
+          sortid:(long)sort_id
+             img:(NSData*)image
+        Latitude:(NSString*)Latitude
+       Longitude:(NSString*)Longitude
+         comment:(NSString*)comment
+          delete:(long)delete_flg
 {
     //データベース接続
     FMDatabase* DbAccess = [self _getDB:DBFILE];
     
+    NSString *imgString = [image base64EncodedStringWithOptions:NSDataBase64Encoding76CharacterLineLength];
+    
     //データ保存
     NSString* sql1 = @"INSERT INTO tbl_photo_record";
-    NSString* sql2 = @" (service_id, sort_id, image, comment, delete_flg) VALUES ";
-    NSString* sql3 = [NSString stringWithFormat:@"(%lu, %lu, '%@', '%@', %lu);",
+    NSString* sql2 = @" (service_id, sort_id, image, Latitude, Longitude, comment, delete_flg) VALUES ";
+    NSString* sql3 = [NSString stringWithFormat:@"(%lu, %lu, '%@', '%@', '%@', '%@', %lu);",
                       service_id,
                       sort_id,
-                      image,
+                      imgString,
+                      Latitude,
+                      Longitude,
                       comment,
                       delete_flg];
     NSString* MakeSQL = [NSString stringWithFormat:@"%@%@%@",sql1, sql2, sql3];

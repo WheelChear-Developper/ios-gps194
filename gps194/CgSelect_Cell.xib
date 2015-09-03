@@ -24,25 +24,11 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lRM-2Q-QGf">
                         <rect key="frame" x="0.0" y="0.0" width="83" height="80"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vKC-Vk-VjS">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="select-no.png" translatesAutoresizingMaskIntoConstraints="NO" id="Npb-Gn-FPx">
                                 <rect key="frame" x="24" y="23" width="35" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="9jA-hw-gCE"/>
-                                    <constraint firstAttribute="width" constant="35" id="JmO-oy-bxH"/>
-                                </constraints>
-                                <state key="normal" backgroundImage="select-no.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="btn_select:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="pnT-wq-XwL"/>
-                                </connections>
-                            </button>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="centerY" secondItem="vKC-Vk-VjS" secondAttribute="centerY" id="EZ8-EU-9UO"/>
-                            <constraint firstAttribute="centerX" secondItem="vKC-Vk-VjS" secondAttribute="centerX" id="GCT-Fl-uc4"/>
-                        </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qs9-ux-sHM">
                         <rect key="frame" x="83" y="0.0" width="167" height="80"/>
@@ -102,8 +88,8 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="btn_select" destination="vKC-Vk-VjS" id="K5J-GA-DdJ"/>
-                <outlet property="img_image" destination="dOA-AR-6cI" id="GaD-je-RdT"/>
+                <outlet property="img_image" destination="dOA-AR-6cI" id="Kng-Hr-DuT"/>
+                <outlet property="img_select" destination="Npb-Gn-FPx" id="Kl7-mf-J7b"/>
                 <outlet property="txt_comment" destination="TuA-xl-kll" id="yZd-jV-WEj"/>
             </connections>
             <point key="canvasLocation" x="225" y="506"/>
