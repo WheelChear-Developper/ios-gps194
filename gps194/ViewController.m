@@ -16,8 +16,8 @@
 @interface ViewController ()
 {
     // リスト用データ格納用
-    NSMutableArray *_TotalDataBox;
-    NSArray *sections;
+    NSMutableArray *_TotalSelectDataBox;
+    NSMutableArray *_TotalDeleteDataBox;
     
     // 選択行
     long lng_selectRow;
@@ -25,6 +25,7 @@
     NSString* str_Latitude;
     NSString* str_Longitude;
     
+    //ソートの状態
     BOOL bln_cellsort;
     
     //ボタン設定(0:Photo画面 1:Delte画面)
@@ -42,6 +43,10 @@
     img_deleteBack.hidden = YES;
     bln_tableButtonSetting = 0;
     
+    //表示テーブル設定
+    Table_SelectView.hidden = NO;
+    Table_DeleteView.hidden = YES;
+    
     //ソート初期フラグ設定
     bln_cellsort = false;
     
@@ -56,11 +61,11 @@
     //カスタムセル設定
     UINib *nib = [UINib nibWithNibName:@"CgSelect_Cell" bundle:nil];
     CgSelect_Cell *cell = [[nib instantiateWithOwner:nil options:nil] objectAtIndex:0];
-    Table_View.rowHeight = cell.frame.size.height;
+    Table_SelectView.rowHeight = cell.frame.size.height;
     
     
     // Register CustomCell
-    [Table_View registerNib:nib forCellReuseIdentifier:@"CgSelect_Cell"];
+    [Table_SelectView registerNib:nib forCellReuseIdentifier:@"CgSelect_Cell"];
 }
 
 #pragma mark 起動・再開の時に起動するメソッド
@@ -68,7 +73,7 @@
 {
     // リストデータの読み込み
     [SVProgressHUD showWithStatus:NSLocalizedString(@"Progress_Reading",@"")];
-    [self readListData];
+    [self readSelectData];
     
     [super viewWillAppear:animated];
     
@@ -104,12 +109,12 @@
 - (BOOL) textView: (UITextView*) textView shouldChangeTextInRange: (NSRange) range replacementText: (NSString*) text {
     if ([text isEqualToString:@"\n"]) {
         
-        CgSelect_Model *listDataModel = _TotalDataBox[lng_selectRow];
+        CgSelect_Model *listDataModel = _TotalSelectDataBox[lng_selectRow];
         [SqlManager Update_comment:listDataModel.service_id comment:txt_comment.text];
         
         [textView resignFirstResponder];
         
-        [self readListData];
+        [self readSelectData];
         
         return NO;
     }
@@ -118,21 +123,47 @@
 /////////////// ↑　入力系用メソッド　↑ ////////////////////
 
 #pragma mark SQLからリストデータ取得
-- (void)readListData
+- (void)readSelectData
 {
     // リストデータの初期化
-    _TotalDataBox = [[NSMutableArray alloc] init];
+    _TotalSelectDataBox = [[NSMutableArray alloc] init];
     
     //アプリ内のデータ取得
     NSMutableArray *RecordDataBox = [SqlManager Get_List];
 
     //アプリ内データのセット
-    _TotalDataBox = RecordDataBox;
+    _TotalSelectDataBox = RecordDataBox;
     //テーブルデータの再構築
-    [Table_View reloadData];
+    [Table_SelectView reloadData];
     
     // 読み込み中の表示削除
     [SVProgressHUD dismiss];
+    
+    //表示テーブル設定
+    Table_SelectView.hidden = NO;
+    Table_DeleteView.hidden = YES;
+}
+
+#pragma mark SQLからリストデータ取得
+- (void)readDeleteData
+{
+    // リストデータの初期化
+    _TotalDeleteDataBox = [[NSMutableArray alloc] init];
+    
+    //アプリ内のデータ取得
+    NSMutableArray *RecordDataBox = [SqlManager Get_List];
+    
+    //アプリ内データのセット
+    _TotalDeleteDataBox = RecordDataBox;
+    //テーブルデータの再構築
+    [Table_DeleteView reloadData];
+    
+    // 読み込み中の表示削除
+    [SVProgressHUD dismiss];
+    
+    //表示テーブル設定
+    Table_SelectView.hidden = YES;
+    Table_DeleteView.hidden = NO;
 }
 
 /////////////// ↓　テーブル用メソッド　↓ ////////////////////
@@ -143,7 +174,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_TotalDataBox count];
+    return [_TotalSelectDataBox count];
 }
 
 #pragma mark １行ごとのセル生成（表示時）
@@ -160,7 +191,7 @@
     
     // Set contents
     NSUInteger row = (NSUInteger)indexPath.row;
-    CgSelect_Model *listDataModel = _TotalDataBox[row];
+    CgSelect_Model *listDataModel = _TotalSelectDataBox[row];
     
     if(indexPath.row == lng_selectRow){
         cell.img_select.image = [UIImage imageNamed:@"select-yes.png"];
@@ -205,9 +236,9 @@
     lng_selectRow = indexPath.row;
 
     //テーブルデータの再構築
-    [Table_View reloadData];
+    [Table_SelectView reloadData];
     
-    CgSelect_Model *listDataModel = _TotalDataBox[indexPath.row];
+    CgSelect_Model *listDataModel = _TotalSelectDataBox[indexPath.row];
     
     if([listDataModel.Latitude isEqualToString:@"(null)"]) {
         txt_idokeido.text = [NSString stringWithFormat:@"位置情報が無いようです。"];
@@ -250,17 +281,17 @@
 -(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
     if(fromIndexPath.section == toIndexPath.section) { // 移動元と移動先は同じセクションです。
-        if(_TotalDataBox && toIndexPath.row < [_TotalDataBox count]) {
+        if(_TotalSelectDataBox && toIndexPath.row < [_TotalSelectDataBox count]) {
             
             NSLog(@"from %li", (long)fromIndexPath.row);
             NSLog(@"to %li", (long)toIndexPath.row);
             
-            id item = [_TotalDataBox objectAtIndex:fromIndexPath.row]; // 移動対象を保持します。
-            [_TotalDataBox removeObject:item]; // 配列から一度消します。
-            [_TotalDataBox insertObject:item atIndex:toIndexPath.row]; // 保持しておいた対象を挿入します。
+            id item = [_TotalSelectDataBox objectAtIndex:fromIndexPath.row]; // 移動対象を保持します。
+            [_TotalSelectDataBox removeObject:item]; // 配列から一度消します。
+            [_TotalSelectDataBox insertObject:item atIndex:toIndexPath.row]; // 保持しておいた対象を挿入します。
             
-            for(int row_count = 0;row_count < _TotalDataBox.count; row_count++){
-                CgSelect_Model *listDataModel = _TotalDataBox[row_count];
+            for(int row_count = 0;row_count < _TotalSelectDataBox.count; row_count++){
+                CgSelect_Model *listDataModel = _TotalSelectDataBox[row_count];
                 [SqlManager Update_List:listDataModel.service_id sortid:row_count];
             }
         }
@@ -281,14 +312,18 @@
     img_deleteBack.hidden = YES;
     bln_tableButtonSetting = 0;
     
+    view_idokeido.hidden = YES;
+    view_comment.hidden = YES;
+    view_commentButton.hidden = YES;
+    
     // セルの移動するためにsetEditingにNOを渡して編集終了
-    [Table_View setEditing:NO animated:YES];
+    [Table_SelectView setEditing:NO animated:YES];
     
     //選択行初期化
     lng_selectRow = -1;
     
     //リスト再読み込み
-    [Table_View reloadData];
+    [self readSelectData];
 }
 
 - (IBAction)btn_delete:(id)sender {
@@ -298,14 +333,21 @@
     img_deleteBack.hidden = NO;
     bln_tableButtonSetting = 1;
     
+    view_idokeido.hidden = YES;
+    view_comment.hidden = YES;
+    view_commentButton.hidden = YES;
+    
+    txt_idokeido.text = @"";
+    txt_comment.text = @"";
+    
     // セルの移動するためにsetEditingにNOを渡して編集終了
-    [Table_View setEditing:NO animated:YES];
+    [Table_SelectView setEditing:NO animated:YES];
     
     //選択行初期化
     lng_selectRow = -1;
     
     //リスト再読み込み
-    [Table_View reloadData];
+    [self readDeleteData];
 }
 
 - (IBAction)btn_googlemap:(id)sender {
@@ -315,7 +357,7 @@
     //prefs:root=General&path=ManagedConfigurationList
     
     if(lng_selectRow >= 0){
-        CgSelect_Model *listDataModel = _TotalDataBox[lng_selectRow];
+        CgSelect_Model *listDataModel = _TotalSelectDataBox[lng_selectRow];
         
         if(![listDataModel.Latitude isEqualToString:@"(null)"]) {
 //            NSString* url = [NSString stringWithFormat:@"http://maps.apple.com/?ll=%@,%@&q=loc:%@,%@", listDataModel.Latitude,listDataModel.Longitude, listDataModel.Latitude,listDataModel.Longitude];
@@ -334,9 +376,9 @@
     if(lng_selectRow >= 0){
         [SVProgressHUD showWithStatus:@"Loading..."];
         
-        CgSelect_Model *listDataModel = _TotalDataBox[lng_selectRow];
+        CgSelect_Model *listDataModel = _TotalSelectDataBox[lng_selectRow];
         [SqlManager Update_comment:listDataModel.service_id comment:txt_comment.text];
-        [self readListData];
+        [self readSelectData];
     }
 }
 
@@ -345,7 +387,7 @@
     
     //ソート初期フラグ設定
     bln_cellsort = NO;
-    [Table_View setEditing:NO animated:YES];
+    [Table_SelectView setEditing:NO animated:YES];
 
     if([UIImagePickerController
         isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]){
@@ -362,12 +404,12 @@
     
     if(bln_cellsort == NO){
         // セルの移動するためにsetEditingにYESを渡して編集状態にする
-        [Table_View setEditing:YES animated:YES];
+        [Table_SelectView setEditing:YES animated:YES];
         //ソート初期フラグ設定
         bln_cellsort = YES;
     }else{
         // セルの移動するためにsetEditingにNOを渡して編集終了
-        [Table_View setEditing:NO animated:YES];
+        [Table_SelectView setEditing:NO animated:YES];
         //ソート初期フラグ設定
         bln_cellsort = NO;
     }
@@ -417,11 +459,11 @@
             UIGraphicsEndImageContext();
             
             NSData* pngData = [[NSData alloc] initWithData:UIImagePNGRepresentation(image)];
-            [SqlManager Set_List:_TotalDataBox.count img:pngData Latitude:str_Latitude Longitude:str_Longitude comment:@"" delete:0];
+            [SqlManager Set_List:_TotalSelectDataBox.count img:pngData Latitude:str_Latitude Longitude:str_Longitude comment:@"" delete:0];
             
-            lng_selectRow = _TotalDataBox.count;
+            lng_selectRow = _TotalSelectDataBox.count;
             
-            [self readListData];
+            [self readSelectData];
             
             //情報ボックス表示
             view_idokeido.hidden = NO;

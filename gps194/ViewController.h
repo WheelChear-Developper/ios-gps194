@@ -18,7 +18,8 @@
     __weak IBOutlet UIImageView *img_photoBack;
     __weak IBOutlet UIImageView *img_deleteBack;
     
-    __weak IBOutlet UITableView *Table_View;
+    __weak IBOutlet UITableView *Table_SelectView;
+    __weak IBOutlet UITableView *Table_DeleteView;
     
     __weak IBOutlet UIView *view_idokeido;
     __weak IBOutlet UIView *view_comment;
