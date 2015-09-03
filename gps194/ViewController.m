@@ -206,6 +206,22 @@
 - (IBAction)btn_delete:(id)sender {
 }
 
+- (IBAction)btn_googlemap:(id)sender {
+    //http://maps.apple.com/?ll=35.664487,139.708028&q=loc:35.664487,139.708028
+    
+    if(lng_selectRow >= 0){
+        CgSelect_Model *listDataModel = _TotalDataBox[lng_selectRow];
+        
+        if(![listDataModel.Latitude isEqualToString:@"(null)"]) {
+            NSString* url = [NSString stringWithFormat:@"http://maps.apple.com/?ll=%@,%@&q=loc:%@,%@", listDataModel.Latitude,listDataModel.Longitude, listDataModel.Latitude,listDataModel.Longitude];
+            NSURL* skimeUrl = [NSURL URLWithString:url];
+            if ([[UIApplication sharedApplication] canOpenURL:skimeUrl]) {
+                [[UIApplication sharedApplication] openURL:skimeUrl];
+            }
+        }
+    }
+}
+
 - (IBAction)btn_comment:(id)sender {
 }
 

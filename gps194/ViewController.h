@@ -23,6 +23,8 @@
 - (IBAction)btn_camera:(id)sender;
 - (IBAction)btn_delete:(id)sender;
 
+- (IBAction)btn_googlemap:(id)sender;
+
 - (IBAction)btn_comment:(id)sender;
 - (IBAction)btn_photoplus:(id)sender;
 
