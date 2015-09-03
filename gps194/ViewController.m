@@ -281,8 +281,8 @@
     if(fromIndexPath.section == toIndexPath.section) { // 移動元と移動先は同じセクションです。
         if(_TotalDataBox && toIndexPath.row < [_TotalDataBox count]) {
             
-            NSLog(@"from %i", fromIndexPath.row);
-            NSLog(@"to %i", toIndexPath.row);
+            NSLog(@"from %li", (long)fromIndexPath.row);
+            NSLog(@"to %li", (long)toIndexPath.row);
             
             id item = [_TotalDataBox objectAtIndex:fromIndexPath.row]; // 移動対象を保持します。
             [_TotalDataBox removeObject:item]; // 配列から一度消します。
