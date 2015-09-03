@@ -14,14 +14,19 @@
 
 @interface ViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 {
-    IBOutlet UITableView *Table_View;
+    
+    __weak IBOutlet UIImageView *img_photoBack;
+    __weak IBOutlet UIImageView *img_deleteBack;
+    
+    __weak IBOutlet UITableView *Table_View;
     
     __weak IBOutlet UIView *view_idokeido;
     __weak IBOutlet UIView *view_comment;
     __weak IBOutlet UIView *view_commentButton;
     
     __weak IBOutlet UITextView *txt_idokeido;
-    __weak IBOutlet UITextView *txt_comment;    
+    __weak IBOutlet UITextView *txt_comment;
+    __weak IBOutlet UILabel *lbl_comment;
 }
 
 - (IBAction)btn_camera:(id)sender;
@@ -32,7 +37,8 @@
 - (IBAction)btn_comment:(id)sender;
 - (IBAction)btn_photoplus:(id)sender;
 
-- (IBAction)brn_sort:(id)sender;
+- (IBAction)brn_cellsort:(id)sender;
+- (IBAction)btn_celldelete:(id)sender;
 
 @end
 

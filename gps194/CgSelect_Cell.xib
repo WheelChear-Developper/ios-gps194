@@ -21,46 +21,55 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lRM-2Q-QGf">
-                        <rect key="frame" x="0.0" y="0.0" width="83" height="80"/>
+                        <rect key="frame" x="0.0" y="0.0" width="83" height="81"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="select-no.png" translatesAutoresizingMaskIntoConstraints="NO" id="Npb-Gn-FPx">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="select-no.png" translatesAutoresizingMaskIntoConstraints="NO" id="Npb-Gn-FPx">
                                 <rect key="frame" x="24" y="23" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="ALo-Qz-0GN"/>
+                                    <constraint firstAttribute="height" constant="35" id="s0d-bS-x4v"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="Npb-Gn-FPx" secondAttribute="centerX" id="OsZ-Mr-yT0"/>
+                            <constraint firstAttribute="centerY" secondItem="Npb-Gn-FPx" secondAttribute="centerY" id="g2T-DH-zu3"/>
+                        </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qs9-ux-sHM">
-                        <rect key="frame" x="83" y="0.0" width="167" height="80"/>
+                        <rect key="frame" x="83" y="0.0" width="167" height="81"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dOA-AR-6cI">
-                                <rect key="frame" x="3" y="3" width="161" height="60"/>
+                                <rect key="frame" x="2" y="2" width="163" height="59"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="comment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TuA-xl-kll">
-                                <rect key="frame" x="3" y="65" width="161" height="12"/>
-                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="2" y="63" width="163" height="16"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="12" id="i78-O2-EUM"/>
+                                    <constraint firstAttribute="height" constant="16" id="i78-O2-EUM"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="MotoyaLMaru-W3-90ms-RKSJ-H" family="MotoyaLMaru" pointSize="10"/>
+                                <fontDescription key="fontDescription" name="MotoyaLMaru-W3-90ms-RKSJ-H" family="MotoyaLMaru" pointSize="16"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="TuA-xl-kll" secondAttribute="bottom" constant="3" id="7lE-00-qLk"/>
-                            <constraint firstAttribute="trailing" secondItem="dOA-AR-6cI" secondAttribute="trailing" constant="3" id="BCH-FY-0v2"/>
-                            <constraint firstItem="dOA-AR-6cI" firstAttribute="top" secondItem="qs9-ux-sHM" secondAttribute="top" constant="3" id="BEr-AX-dlx"/>
-                            <constraint firstItem="dOA-AR-6cI" firstAttribute="leading" secondItem="qs9-ux-sHM" secondAttribute="leading" constant="3" id="GnM-vc-6Us"/>
-                            <constraint firstItem="TuA-xl-kll" firstAttribute="leading" secondItem="qs9-ux-sHM" secondAttribute="leading" constant="3" id="uHD-fL-WPX"/>
+                            <constraint firstAttribute="bottom" secondItem="TuA-xl-kll" secondAttribute="bottom" constant="2" id="7lE-00-qLk"/>
+                            <constraint firstAttribute="trailing" secondItem="dOA-AR-6cI" secondAttribute="trailing" constant="2" id="BCH-FY-0v2"/>
+                            <constraint firstItem="dOA-AR-6cI" firstAttribute="top" secondItem="qs9-ux-sHM" secondAttribute="top" constant="2" id="BEr-AX-dlx"/>
+                            <constraint firstItem="dOA-AR-6cI" firstAttribute="leading" secondItem="qs9-ux-sHM" secondAttribute="leading" constant="2" id="GnM-vc-6Us"/>
+                            <constraint firstItem="TuA-xl-kll" firstAttribute="leading" secondItem="qs9-ux-sHM" secondAttribute="leading" constant="2" id="uHD-fL-WPX"/>
                             <constraint firstItem="TuA-xl-kll" firstAttribute="top" secondItem="dOA-AR-6cI" secondAttribute="bottom" constant="2" id="v9T-MV-rsz"/>
-                            <constraint firstAttribute="trailing" secondItem="TuA-xl-kll" secondAttribute="trailing" constant="3" id="wC5-7c-iPq"/>
+                            <constraint firstAttribute="trailing" secondItem="TuA-xl-kll" secondAttribute="trailing" constant="2" id="wC5-7c-iPq"/>
                         </constraints>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line.png" translatesAutoresizingMaskIntoConstraints="NO" id="W2h-ea-ssV">
-                        <rect key="frame" x="0.0" y="80" width="250" height="3"/>
+                        <rect key="frame" x="0.0" y="81" width="250" height="2"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="3" id="d6K-W6-CkO"/>
+                            <constraint firstAttribute="height" constant="2" id="d6K-W6-CkO"/>
                         </constraints>
                     </imageView>
                 </subviews>

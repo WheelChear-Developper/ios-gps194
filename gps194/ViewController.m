@@ -25,7 +25,14 @@
     NSString* str_Latitude;
     NSString* str_Longitude;
     
-    BOOL bln_sort;
+    BOOL bln_cellsort;
+    BOOL bln_celldelete;
+    
+    //セルの編集方法設定（0:移動 1:削除）
+    long lng_Editmode;
+    
+    //ボタン設定(0:Photo画面 1:Delte画面)
+    long bln_tableButtonSetting;
 }
 @end
 
@@ -34,13 +41,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //ボタンバック
+    img_photoBack.hidden = NO;
+    img_deleteBack.hidden = YES;
+    bln_tableButtonSetting = 0;
+    
     //ソート初期フラグ設定
-    bln_sort = false;
+    bln_cellsort = false;
+    bln_celldelete = false;
+    
+    //コメントヒント表示
+    lbl_comment.hidden = NO;
+    
+    //セルの編集方法設定
+    lng_Editmode = 0;
     
     //情報ボックス非表示
-    view_idokeido.hidden = true;
-    view_comment.hidden = true;
-    view_commentButton.hidden = true;
+    view_idokeido.hidden = YES;
+    view_comment.hidden = YES;
+    view_commentButton.hidden = YES;
     
     //カスタムセル設定
     UINib *nib = [UINib nibWithNibName:@"CgSelect_Cell" bundle:nil];
@@ -70,22 +89,41 @@
     // Dispose of any resources that can be recreated.
 }
 
+/////////////// ↓　入力系用メソッド　↓ ////////////////////
+-(BOOL)textViewShouldBeginEditing:(UITextView*)textView
+{
+    // ホント表示を消す
+    lbl_comment.hidden = YES;
+    return YES;
+}
+
+-(BOOL)textViewShouldEndEditing:(UITextView*)textView
+{
+    if(txt_comment.text.length == 0){
+        // ヒント表示表示
+        lbl_comment.hidden = NO;
+    }
+    // キーボード隠す
+    [textView resignFirstResponder];
+    return YES;
+}
+
 #pragma mark Doneでキーボードを閉じる
 - (BOOL) textView: (UITextView*) textView shouldChangeTextInRange: (NSRange) range replacementText: (NSString*) text {
     if ([text isEqualToString:@"\n"]) {
         
         CgSelect_Model *listDataModel = _TotalDataBox[lng_selectRow];
         [SqlManager Update_comment:listDataModel.service_id comment:txt_comment.text];
-
-        //テーブルデータの再構築
-        [Table_View reloadData];
         
         [textView resignFirstResponder];
+        
+        [self readListData];
         
         return NO;
     }
     return YES;
 }
+/////////////// ↑　入力系用メソッド　↑ ////////////////////
 
 #pragma mark SQLからリストデータ取得
 - (void)readListData
@@ -168,9 +206,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //情報ボックス表示
-    view_idokeido.hidden = false;
-    view_comment.hidden = false;
-    view_commentButton.hidden = true;
+    view_idokeido.hidden = NO;
+    view_comment.hidden = NO;
+    view_commentButton.hidden = YES;
     
     lng_selectRow = indexPath.row;
 
@@ -186,12 +224,33 @@
     }
     
     txt_comment.text = listDataModel.comment;
+    
+    if(txt_comment.text.length == 0){
+        lbl_comment.hidden = NO;
+    }else{
+        lbl_comment.hidden = YES;
+    }
 }
 
 - (UITableViewCellEditingStyle) tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // セルが編集可能だと左側に削除アイコンが出るけど、それを表示させない
-    return UITableViewCellEditingStyleNone;
+    //削除用
+    //UITableViewCellEditingStyleDelete
+    //移動用
+    //UITableViewCellEditingStyleNone
+    
+    switch (lng_Editmode) {
+        case 0:
+            return UITableViewCellEditingStyleNone;
+            break;
+        case 1:
+            return UITableViewCellEditingStyleDelete;
+            break;
+        default:
+            return UITableViewCellEditingStyleNone;
+            break;
+    }
 }
 
 -(BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
@@ -203,7 +262,17 @@
 -(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // セルの移動を許可
-    return YES;
+    switch (lng_Editmode) {
+        case 0:
+            return YES;
+            break;
+        case 1:
+            return NO;
+            break;
+        default:
+            return YES;
+            break;
+    }
 }
 
 #pragma mark セル移動処理
@@ -215,18 +284,16 @@
             NSLog(@"from %i", fromIndexPath.row);
             NSLog(@"to %i", toIndexPath.row);
             
-            CgSelect_Model *listDataModel1 = _TotalDataBox[fromIndexPath.row];
-            CgSelect_Model *listDataModel2 = _TotalDataBox[toIndexPath.row];
-            [SqlManager Update_List:listDataModel1.sort_id sortid:listDataModel2.service_id];
-            [SqlManager Update_List:listDataModel2.sort_id sortid:listDataModel1.service_id];
-            
             id item = [_TotalDataBox objectAtIndex:fromIndexPath.row]; // 移動対象を保持します。
             [_TotalDataBox removeObject:item]; // 配列から一度消します。
             [_TotalDataBox insertObject:item atIndex:toIndexPath.row]; // 保持しておいた対象を挿入します。
+            
+            for(int row_count = 0;row_count < _TotalDataBox.count; row_count++){
+                CgSelect_Model *listDataModel = _TotalDataBox[row_count];
+                [SqlManager Update_List:listDataModel.service_id sortid:row_count];
+            }
         }
     }
-
-    
 }
 
 #pragma mark テーブルのスクロール時のイベントメソッド
@@ -237,9 +304,21 @@
 /////////////// ↑　テーブル用メソッド　↑ ////////////////////
 
 - (IBAction)btn_camera:(id)sender {
+    
+    //ボタンバック
+    img_photoBack.hidden = NO;
+    img_deleteBack.hidden = YES;
+    bln_tableButtonSetting = 0;
+    
 }
 
 - (IBAction)btn_delete:(id)sender {
+    
+    //ボタンバック
+    img_photoBack.hidden = YES;
+    img_deleteBack.hidden = NO;
+    bln_tableButtonSetting = 1;
+    
 }
 
 - (IBAction)btn_googlemap:(id)sender {
@@ -276,6 +355,11 @@
 
 #pragma mark　プラスボタン
 - (IBAction)btn_photoplus:(id)sender {
+    
+    //ソート初期フラグ設定
+    bln_celldelete = NO;
+    bln_cellsort = NO;
+    [Table_View setEditing:NO animated:YES];
 
     if([UIImagePickerController
         isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]){
@@ -288,18 +372,41 @@
 }
 
 #pragma mark　ソートボタン
-- (IBAction)brn_sort:(id)sender {
+- (IBAction)brn_cellsort:(id)sender {
     
-    if(bln_sort == false){
+    lng_Editmode = 0;
+    
+    if(bln_cellsort == NO){
         // セルの移動するためにsetEditingにYESを渡して編集状態にする
         [Table_View setEditing:YES animated:YES];
         //ソート初期フラグ設定
-        bln_sort = true;
+        bln_cellsort = YES;
+        bln_celldelete = NO;
     }else{
         // セルの移動するためにsetEditingにYESを渡して編集状態にする
         [Table_View setEditing:NO animated:YES];
         //ソート初期フラグ設定
-        bln_sort = false;
+        bln_cellsort = NO;
+        bln_celldelete = NO;
+    }
+}
+
+- (IBAction)btn_celldelete:(id)sender {
+    
+    lng_Editmode = 1;
+    
+    if(bln_celldelete == NO){
+        // セルの移動するためにsetEditingにYESを渡して編集状態にする
+        [Table_View setEditing:YES animated:YES];
+        //ソート初期フラグ設定
+        bln_celldelete = YES;
+        bln_cellsort = NO;
+    }else{
+        // セルの移動するためにsetEditingにYESを渡して編集状態にする
+        [Table_View setEditing:NO animated:YES];
+        //ソート初期フラグ設定
+        bln_celldelete = NO;
+        bln_cellsort = NO;
     }
 }
 
@@ -347,16 +454,16 @@
             UIGraphicsEndImageContext();
             
             NSData* pngData = [[NSData alloc] initWithData:UIImagePNGRepresentation(image)];
-            [SqlManager Set_List:_TotalDataBox.count + 1 sortid:_TotalDataBox.count + 1 img:pngData Latitude:str_Latitude Longitude:str_Longitude comment:@"" delete:0];
+            [SqlManager Set_List:_TotalDataBox.count img:pngData Latitude:str_Latitude Longitude:str_Longitude comment:@"" delete:0];
             
             lng_selectRow = _TotalDataBox.count;
             
             [self readListData];
             
             //情報ボックス表示
-            view_idokeido.hidden = false;
-            view_comment.hidden = false;
-            view_commentButton.hidden = true;
+            view_idokeido.hidden = NO;
+            view_comment.hidden = NO;
+            view_commentButton.hidden = YES;
             
         } failureBlock:^(NSError *error) {
             NSLog(@"%@",error);
@@ -370,8 +477,5 @@
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-
-
 
 @end

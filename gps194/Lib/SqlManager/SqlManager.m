@@ -55,7 +55,7 @@
     
     //ニューステーブル作成
     NSString* tbl1_sql1 = @"CREATE TABLE IF NOT EXISTS tbl_photo_record (";
-    NSString* tbl1_sql2 = @" service_id  INTEGER,";
+    NSString* tbl1_sql2 = @" service_id  INTEGER UNIQUE PRIMARY KEY,";
     NSString* tbl1_sql3 = @" sort_id     INTEGER,";
     NSString* tbl1_sql4 = @" image       BLOB,";
     NSString* tbl1_sql5 = @" Latitude    TEXT,";
@@ -108,6 +108,9 @@
         listDataModel.Latitude = [results stringForColumn:@"Latitude"];
         listDataModel.Longitude = [results stringForColumn:@"Longitude"];
         
+        NSLog(@"service_id %lu",listDataModel.service_id);
+        NSLog(@"sort_id %lu",listDataModel.sort_id);
+        
         [dbBox addObject:listDataModel];
     }
     
@@ -118,8 +121,7 @@
 }
 
 // サービスリストデータ更新保存処理
-+ (void)Set_List:(long)service_id
-          sortid:(long)sort_id
++ (void)Set_List:(long)sort_id
              img:(NSData*)image
         Latitude:(NSString*)Latitude
        Longitude:(NSString*)Longitude
@@ -133,9 +135,8 @@
     
     //データ保存
     NSString* sql1 = @"INSERT INTO tbl_photo_record";
-    NSString* sql2 = @" (service_id, sort_id, image, Latitude, Longitude, comment, delete_flg) VALUES ";
-    NSString* sql3 = [NSString stringWithFormat:@"(%lu, %lu, '%@', '%@', '%@', '%@', %lu);",
-                      service_id,
+    NSString* sql2 = @" (sort_id, image, Latitude, Longitude, comment, delete_flg) VALUES ";
+    NSString* sql3 = [NSString stringWithFormat:@"(%lu, '%@', '%@', '%@', '%@', %lu);",
                       sort_id,
                       imgString,
                       Latitude,

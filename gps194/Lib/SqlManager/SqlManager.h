@@ -21,8 +21,7 @@
 + (NSMutableArray*)Get_List;
 
 // サービスリストデータ更新保存処理
-+ (void)Set_List:(long)service_id
-          sortid:(long)sort_id
++ (void)Set_List:(long)sort_id
              img:(NSData*)image
         Latitude:(NSString*)Latitude
        Longitude:(NSString*)Longitude
