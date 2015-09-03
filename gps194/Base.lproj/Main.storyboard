@@ -19,7 +19,6 @@
             <string>MotoyaLMaru-W3-90ms-RKSJ-H</string>
             <string>MotoyaLMaru-W3-90ms-RKSJ-H</string>
             <string>MotoyaLMaru-W3-90ms-RKSJ-H</string>
-            <string>MotoyaLMaru-W3-90ms-RKSJ-H</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -453,27 +452,6 @@
                                             <action selector="btn_photoplus:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="1dI-NW-di4"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CeM-Cc-1ia">
-                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                        <color key="backgroundColor" red="0.89411764709999997" green="0.0" blue="0.4941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="3Lr-q3-2SN"/>
-                                            <constraint firstAttribute="width" constant="40" id="wNW-KR-yHF"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="MotoyaLMaru-W3-90ms-RKSJ-H" family="MotoyaLMaru" pointSize="12"/>
-                                        <state key="normal" title="Delete">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="btn_celldelete:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="o50-Pf-U6W"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xgt-a3-469">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -501,26 +479,20 @@
                                     <constraint firstAttribute="bottom" secondItem="Qbe-QR-S1P" secondAttribute="bottom" constant="1" id="2al-V0-Gq3"/>
                                     <constraint firstItem="8Xa-wr-4Rp" firstAttribute="top" secondItem="ksh-e7-mIa" secondAttribute="bottom" constant="1" id="2gI-J4-YqR"/>
                                     <constraint firstItem="xgt-a3-469" firstAttribute="leading" secondItem="rWm-yL-au6" secondAttribute="leading" constant="8" id="CIg-Nj-Mpn"/>
-                                    <constraint firstItem="CeM-Cc-1ia" firstAttribute="leading" secondItem="xgt-a3-469" secondAttribute="trailing" constant="8" id="DPL-kI-XfJ"/>
                                     <constraint firstItem="xgt-a3-469" firstAttribute="leading" secondItem="rWm-yL-au6" secondAttribute="leading" constant="8" id="GkW-5z-BkT"/>
                                     <constraint firstItem="Qbe-QR-S1P" firstAttribute="top" secondItem="rWm-yL-au6" secondAttribute="top" constant="1" id="KG3-aL-TQe"/>
-                                    <constraint firstItem="CeM-Cc-1ia" firstAttribute="leading" secondItem="xgt-a3-469" secondAttribute="trailing" constant="8" id="KbK-5C-5wp"/>
                                     <constraint firstAttribute="trailing" secondItem="8Xa-wr-4Rp" secondAttribute="trailing" constant="5" id="N0V-xN-IzI"/>
                                     <constraint firstItem="fe1-w2-f8s" firstAttribute="top" secondItem="xgt-a3-469" secondAttribute="bottom" constant="8" id="OGS-iz-qwm"/>
                                     <constraint firstAttribute="bottom" secondItem="fe1-w2-f8s" secondAttribute="bottom" constant="8" id="OPI-el-3hy"/>
                                     <constraint firstItem="ksh-e7-mIa" firstAttribute="leading" secondItem="rWm-yL-au6" secondAttribute="leading" constant="5" id="OYd-M3-J4S"/>
                                     <constraint firstAttribute="trailing" secondItem="xgt-a3-469" secondAttribute="trailing" constant="8" id="P1b-dT-DD4"/>
-                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="CeM-Cc-1ia" secondAttribute="bottom" constant="8" id="P7G-mh-cu1"/>
                                     <constraint firstItem="Qbe-QR-S1P" firstAttribute="leading" secondItem="rWm-yL-au6" secondAttribute="leading" constant="1" id="XST-8O-Aef"/>
-                                    <constraint firstItem="CeM-Cc-1ia" firstAttribute="leading" secondItem="xgt-a3-469" secondAttribute="trailing" constant="8" id="Z3o-Wb-xXy"/>
                                     <constraint firstItem="ksh-e7-mIa" firstAttribute="top" secondItem="Bcc-DB-o2R" secondAttribute="bottom" constant="3" id="axd-se-y0v"/>
                                     <constraint firstAttribute="bottom" secondItem="xgt-a3-469" secondAttribute="bottom" constant="8" id="g0t-Hl-cgp"/>
                                     <constraint firstItem="Qbe-QR-S1P" firstAttribute="top" secondItem="rWm-yL-au6" secondAttribute="top" constant="1" id="hTT-4u-CdR"/>
                                     <constraint firstItem="Bcc-DB-o2R" firstAttribute="top" secondItem="rWm-yL-au6" secondAttribute="top" constant="5" id="kRZ-lZ-PcY"/>
                                     <constraint firstAttribute="trailing" secondItem="ksh-e7-mIa" secondAttribute="trailing" constant="5" id="lbP-69-RuY"/>
                                     <constraint firstAttribute="trailing" secondItem="fe1-w2-f8s" secondAttribute="trailing" constant="8" id="nEg-Y3-azI"/>
-                                    <constraint firstAttribute="bottom" secondItem="CeM-Cc-1ia" secondAttribute="bottom" constant="8" id="nqJ-w0-aFR"/>
-                                    <constraint firstItem="CeM-Cc-1ia" firstAttribute="leading" secondItem="xgt-a3-469" secondAttribute="trailing" constant="8" id="o21-CX-0j9"/>
                                     <constraint firstAttribute="bottom" secondItem="Qbe-QR-S1P" secondAttribute="bottom" constant="1" id="oaH-MC-o9H"/>
                                     <constraint firstAttribute="trailing" secondItem="Qbe-QR-S1P" secondAttribute="trailing" constant="1" id="r5L-4S-vZ4"/>
                                     <constraint firstAttribute="height" constant="250" id="s4A-eB-s0Z"/>
@@ -546,9 +518,6 @@
                                         <exclude reference="w5o-Fm-1O2"/>
                                         <exclude reference="wqq-nx-nxz"/>
                                         <exclude reference="zND-U5-29O"/>
-                                        <exclude reference="KbK-5C-5wp"/>
-                                        <exclude reference="P7G-mh-cu1"/>
-                                        <exclude reference="o21-CX-0j9"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact">
@@ -562,10 +531,6 @@
                                         <exclude reference="g0t-Hl-cgp"/>
                                         <exclude reference="wqq-nx-nxz"/>
                                         <exclude reference="zND-U5-29O"/>
-                                        <exclude reference="DPL-kI-XfJ"/>
-                                        <exclude reference="KbK-5C-5wp"/>
-                                        <include reference="P7G-mh-cu1"/>
-                                        <exclude reference="o21-CX-0j9"/>
                                         <exclude reference="OGS-iz-qwm"/>
                                     </mask>
                                 </variation>
@@ -583,7 +548,6 @@
                                         <exclude reference="CIg-Nj-Mpn"/>
                                         <exclude reference="P1b-dT-DD4"/>
                                         <exclude reference="g0t-Hl-cgp"/>
-                                        <exclude reference="DPL-kI-XfJ"/>
                                         <exclude reference="OGS-iz-qwm"/>
                                     </mask>
                                 </variation>

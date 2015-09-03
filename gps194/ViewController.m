@@ -26,10 +26,6 @@
     NSString* str_Longitude;
     
     BOOL bln_cellsort;
-    BOOL bln_celldelete;
-    
-    //セルの編集方法設定（0:移動 1:削除）
-    long lng_Editmode;
     
     //ボタン設定(0:Photo画面 1:Delte画面)
     long bln_tableButtonSetting;
@@ -48,13 +44,9 @@
     
     //ソート初期フラグ設定
     bln_cellsort = false;
-    bln_celldelete = false;
     
     //コメントヒント表示
     lbl_comment.hidden = NO;
-    
-    //セルの編集方法設定
-    lng_Editmode = 0;
     
     //情報ボックス非表示
     view_idokeido.hidden = YES;
@@ -239,18 +231,8 @@
     //UITableViewCellEditingStyleDelete
     //移動用
     //UITableViewCellEditingStyleNone
-    
-    switch (lng_Editmode) {
-        case 0:
-            return UITableViewCellEditingStyleNone;
-            break;
-        case 1:
-            return UITableViewCellEditingStyleDelete;
-            break;
-        default:
-            return UITableViewCellEditingStyleNone;
-            break;
-    }
+
+    return UITableViewCellEditingStyleNone;
 }
 
 -(BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
@@ -261,18 +243,7 @@
 
 -(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // セルの移動を許可
-    switch (lng_Editmode) {
-        case 0:
-            return YES;
-            break;
-        case 1:
-            return NO;
-            break;
-        default:
-            return YES;
-            break;
-    }
+    return YES;
 }
 
 #pragma mark セル移動処理
@@ -373,7 +344,6 @@
 - (IBAction)btn_photoplus:(id)sender {
     
     //ソート初期フラグ設定
-    bln_celldelete = NO;
     bln_cellsort = NO;
     [Table_View setEditing:NO animated:YES];
 
@@ -390,38 +360,15 @@
 #pragma mark　ソートボタン
 - (IBAction)brn_cellsort:(id)sender {
     
-    lng_Editmode = 0;
-    
     if(bln_cellsort == NO){
         // セルの移動するためにsetEditingにYESを渡して編集状態にする
         [Table_View setEditing:YES animated:YES];
         //ソート初期フラグ設定
         bln_cellsort = YES;
-        bln_celldelete = NO;
     }else{
         // セルの移動するためにsetEditingにNOを渡して編集終了
         [Table_View setEditing:NO animated:YES];
         //ソート初期フラグ設定
-        bln_cellsort = NO;
-        bln_celldelete = NO;
-    }
-}
-
-- (IBAction)btn_celldelete:(id)sender {
-    
-    lng_Editmode = 1;
-    
-    if(bln_celldelete == NO){
-        // セルの移動するためにsetEditingにYESを渡して編集状態にする
-        [Table_View setEditing:YES animated:YES];
-        //ソート初期フラグ設定
-        bln_celldelete = YES;
-        bln_cellsort = NO;
-    }else{
-        // セルの移動するためにsetEditingにYESを渡して編集状態にする
-        [Table_View setEditing:NO animated:YES];
-        //ソート初期フラグ設定
-        bln_celldelete = NO;
         bln_cellsort = NO;
     }
 }

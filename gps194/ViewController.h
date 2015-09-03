@@ -27,6 +27,8 @@
     __weak IBOutlet UITextView *txt_idokeido;
     __weak IBOutlet UITextView *txt_comment;
     __weak IBOutlet UILabel *lbl_comment;
+    
+    
 }
 
 - (IBAction)btn_camera:(id)sender;
@@ -38,7 +40,6 @@
 - (IBAction)btn_photoplus:(id)sender;
 
 - (IBAction)brn_cellsort:(id)sender;
-- (IBAction)btn_celldelete:(id)sender;
 
 @end
 
