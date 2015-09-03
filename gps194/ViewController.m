@@ -30,6 +30,9 @@
     
     //ボタン設定(0:Photo画面 1:Delte画面)
     long bln_tableButtonSetting;
+    
+    //削除設定
+    NSMutableArray *DeleteSelectlist;
 }
 @end
 
@@ -59,13 +62,18 @@
     view_commentButton.hidden = YES;
     
     //カスタムセル設定
-    UINib *nib = [UINib nibWithNibName:@"CgSelect_Cell" bundle:nil];
-    CgSelect_Cell *cell = [[nib instantiateWithOwner:nil options:nil] objectAtIndex:0];
-    Table_SelectView.rowHeight = cell.frame.size.height;
-    
-    
+    UINib *select_nib = [UINib nibWithNibName:@"CgSelect_Cell" bundle:nil];
+    CgSelect_Cell *select_cell = [[select_nib instantiateWithOwner:nil options:nil] objectAtIndex:0];
+    Table_SelectView.rowHeight = select_cell.frame.size.height;
     // Register CustomCell
-    [Table_SelectView registerNib:nib forCellReuseIdentifier:@"CgSelect_Cell"];
+    [Table_SelectView registerNib:select_nib forCellReuseIdentifier:@"CgSelect_Cell"];
+    
+    //カスタムセル設定
+    UINib *delete_nib = [UINib nibWithNibName:@"CgSelect_Cell" bundle:nil];
+    CgSelect_Cell *delete_cell = [[delete_nib instantiateWithOwner:nil options:nil] objectAtIndex:0];
+    Table_DeleteView.rowHeight = delete_cell.frame.size.height;
+    // Register CustomCell
+    [Table_DeleteView registerNib:delete_nib forCellReuseIdentifier:@"CgSelect_Cell"];
 }
 
 #pragma mark 起動・再開の時に起動するメソッド
@@ -133,15 +141,16 @@
 
     //アプリ内データのセット
     _TotalSelectDataBox = RecordDataBox;
+    
     //テーブルデータの再構築
     [Table_SelectView reloadData];
-    
-    // 読み込み中の表示削除
-    [SVProgressHUD dismiss];
     
     //表示テーブル設定
     Table_SelectView.hidden = NO;
     Table_DeleteView.hidden = YES;
+    
+    // 読み込み中の表示削除
+    [SVProgressHUD dismiss];
 }
 
 #pragma mark SQLからリストデータ取得
@@ -155,15 +164,16 @@
     
     //アプリ内データのセット
     _TotalDeleteDataBox = RecordDataBox;
+    
     //テーブルデータの再構築
     [Table_DeleteView reloadData];
-    
-    // 読み込み中の表示削除
-    [SVProgressHUD dismiss];
     
     //表示テーブル設定
     Table_SelectView.hidden = YES;
     Table_DeleteView.hidden = NO;
+    
+    // 読み込み中の表示削除
+    [SVProgressHUD dismiss];
 }
 
 /////////////// ↓　テーブル用メソッド　↓ ////////////////////
@@ -193,11 +203,27 @@
     NSUInteger row = (NSUInteger)indexPath.row;
     CgSelect_Model *listDataModel = _TotalSelectDataBox[row];
     
-    if(indexPath.row == lng_selectRow){
-        cell.img_select.image = [UIImage imageNamed:@"select-yes.png"];
-    }else{
-        cell.img_select.image = [UIImage imageNamed:@"select-no.png"];
+    switch (bln_tableButtonSetting) {
+        case 0:
+            if(row == lng_selectRow){
+                cell.img_select.image = [UIImage imageNamed:@"select-yes.png"];
+            }else{
+                cell.img_select.image = [UIImage imageNamed:@"select-no.png"];
+            }
+            break;
+        case 1:
+            NSLog(@"%ld",row);
+            NSLog(@"%@",[DeleteSelectlist objectAtIndex:row]);
+            if([[DeleteSelectlist objectAtIndex:row] isEqualToString:@"YES"]){
+                cell.img_select.image = [UIImage imageNamed:@"select-yes.png"];
+            }else{
+                cell.img_select.image = [UIImage imageNamed:@"select-no.png"];
+            }
+            break;
+        default:
+            break;
     }
+
     cell.txt_comment.text = listDataModel.comment;
     cell.img_image.image = [[UIImage alloc] initWithData:listDataModel.image];
 
@@ -233,7 +259,16 @@
     view_comment.hidden = NO;
     view_commentButton.hidden = YES;
     
-    lng_selectRow = indexPath.row;
+    switch (bln_tableButtonSetting) {
+        case 0:
+            lng_selectRow = indexPath.row;
+            break;
+        case 1:
+            [DeleteSelectlist replaceObjectAtIndex:indexPath.row withObject:@"YES"];
+            break;
+        default:
+            break;
+    }
 
     //テーブルデータの再構築
     [Table_SelectView reloadData];
@@ -307,6 +342,9 @@
 
 - (IBAction)btn_camera:(id)sender {
     
+    // セルの移動するためにsetEditingにNOを渡して編集終了
+    [Table_SelectView setEditing:NO animated:YES];
+    
     //ボタンバック
     img_photoBack.hidden = NO;
     img_deleteBack.hidden = YES;
@@ -316,17 +354,17 @@
     view_comment.hidden = YES;
     view_commentButton.hidden = YES;
     
-    // セルの移動するためにsetEditingにNOを渡して編集終了
-    [Table_SelectView setEditing:NO animated:YES];
-    
     //選択行初期化
-    lng_selectRow = -1;
+//    lng_selectRow = -1;
     
     //リスト再読み込み
-    [self readSelectData];
+//    [self readSelectData];
 }
 
 - (IBAction)btn_delete:(id)sender {
+    
+    // セルの移動するためにsetEditingにNOを渡して編集終了
+    [Table_SelectView setEditing:NO animated:YES];
     
     //ボタンバック
     img_photoBack.hidden = YES;
@@ -340,14 +378,19 @@
     txt_idokeido.text = @"";
     txt_comment.text = @"";
     
-    // セルの移動するためにsetEditingにNOを渡して編集終了
-    [Table_SelectView setEditing:NO animated:YES];
-    
     //選択行初期化
-    lng_selectRow = -1;
+//    lng_selectRow = -1;
     
     //リスト再読み込み
-    [self readDeleteData];
+//    [self readDeleteData];
+    
+    //削除初期化
+    DeleteSelectlist = [NSMutableArray array];
+    for(int a=0;a<_TotalSelectDataBox.count;a++){
+        [DeleteSelectlist insertObject:@"NO" atIndex:a];
+        
+        NSLog(@"%@",[DeleteSelectlist objectAtIndex:a]);
+    }
 }
 
 - (IBAction)btn_googlemap:(id)sender {

@@ -82,6 +82,7 @@
 		1BFCD6991B956FA8007FF00A /* SqlManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFCD6981B956FA8007FF00A /* SqlManager.m */; };
 		1BFCD69B1B95701D007FF00A /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BFCD69A1B95701D007FF00A /* libsqlite3.0.dylib */; };
 		1BFDABB41B96DB740076CE5E /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B133FEF1B959AD30040FC16 /* AssetsLibrary.framework */; };
+		1BFF3AF41B98A3B500EA70DD /* DeleteSelect_Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFF3AF31B98A3B500EA70DD /* DeleteSelect_Model.m */; };
 		A461437CA87C0E619323D141 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B46A8015C1BC3ECE998BFFA6 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -187,6 +188,8 @@
 		1BFCD69A1B95701D007FF00A /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		1BFDABB51B96F3E90076CE5E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		1BFDABB61B96F3E90076CE5E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		1BFF3AF21B98A3B500EA70DD /* DeleteSelect_Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteSelect_Model.h; sourceTree = "<group>"; };
+		1BFF3AF31B98A3B500EA70DD /* DeleteSelect_Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeleteSelect_Model.m; sourceTree = "<group>"; };
 		1FB0D493783D6EE8AA3E28FF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		9A95EDFBC61D5909EAD3FB32 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B46A8015C1BC3ECE998BFFA6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -354,6 +357,8 @@
 			children = (
 				1B7C0C281B90565300221520 /* CgSelect_Model.h */,
 				1B7C0C291B90565300221520 /* CgSelect_Model.m */,
+				1BFF3AF21B98A3B500EA70DD /* DeleteSelect_Model.h */,
+				1BFF3AF31B98A3B500EA70DD /* DeleteSelect_Model.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -652,6 +657,7 @@
 				1B447F151B8F247800689CDF /* AsyncImageView.m in Sources */,
 				1B447F191B8F247800689CDF /* VerticallyAlignedLabel.m in Sources */,
 				1B7C0C2A1B90565300221520 /* CgSelect_Model.m in Sources */,
+				1BFF3AF41B98A3B500EA70DD /* DeleteSelect_Model.m in Sources */,
 				1B447EDA1B8EBC0C00689CDF /* main.m in Sources */,
 				1B447EE31B8EBC0C00689CDF /* ViewController.m in Sources */,
 				1BFCD6991B956FA8007FF00A /* SqlManager.m in Sources */,

@@ -11,6 +11,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "VerticallyAlignedLabel.h"
 #import "SqlManager.h"
+#import "DeleteSelect_Model.h"
 
 @interface ViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 {
