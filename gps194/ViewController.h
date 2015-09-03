@@ -26,5 +26,7 @@
 - (IBAction)btn_comment:(id)sender;
 - (IBAction)btn_photoplus:(id)sender;
 
+- (IBAction)brn_sort:(id)sender;
+
 @end
 

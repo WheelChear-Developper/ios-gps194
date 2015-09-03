@@ -17,12 +17,15 @@
 {
     // リスト用データ格納用
     NSMutableArray *_TotalDataBox;
+    NSArray *sections;
     
     // 選択行
     long lng_selectRow;
     
     NSString* str_Latitude;
     NSString* str_Longitude;
+    
+    BOOL bln_sort;
 }
 @end
 
@@ -31,10 +34,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //ソート初期フラグ設定
+    bln_sort = false;
+    
     //カスタムセル設定
     UINib *nib = [UINib nibWithNibName:@"CgSelect_Cell" bundle:nil];
     CgSelect_Cell *cell = [[nib instantiateWithOwner:nil options:nil] objectAtIndex:0];
     Table_View.rowHeight = cell.frame.size.height;
+    
     
     // Register CustomCell
     [Table_View registerNib:nib forCellReuseIdentifier:@"CgSelect_Cell"];
@@ -155,8 +162,35 @@
     txt_comment.text = listDataModel.comment;
 }
 
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCellEditingStyle) tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // セルが編集可能だと左側に削除アイコンが出るけど、それを表示させない
+    return UITableViewCellEditingStyleNone;
+}
+
+-(BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // editingStyleForRowAtIndexPath()でアイコン表示を無くしたけど、アイコン分の空白が残っているので左寄せする
+    return NO;
+}
+
+-(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // セルの移動を許可
     return YES;
+}
+
+-(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+{
+    if(fromIndexPath.section == toIndexPath.section) { // 移動元と移動先は同じセクションです。
+        if(_TotalDataBox && toIndexPath.row < [_TotalDataBox count]) {
+            id item = [_TotalDataBox objectAtIndex:fromIndexPath.row]; // 移動対象を保持します。
+            [_TotalDataBox removeObject:item]; // 配列から一度消します。
+            [_TotalDataBox insertObject:item atIndex:toIndexPath.row]; // 保持しておいた対象を挿入します。
+        }
+    }
+
+    
 }
 
 // テーブルのスクロール時のイベントメソッド
@@ -184,6 +218,21 @@
         imagePicker.allowsEditing = YES;
         imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         [self presentViewController:imagePicker animated:YES completion:nil];
+    }
+}
+
+- (IBAction)brn_sort:(id)sender {
+    
+    if(bln_sort == false){
+        // セルの移動するためにsetEditingにYESを渡して編集状態にする
+        [Table_View setEditing:YES animated:YES];
+        //ソート初期フラグ設定
+        bln_sort = true;
+    }else{
+        // セルの移動するためにsetEditingにYESを渡して編集状態にする
+        [Table_View setEditing:NO animated:YES];
+        //ソート初期フラグ設定
+        bln_sort = false;
     }
 }
 

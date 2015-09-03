@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Y3n-hQ-aZu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -9,6 +9,7 @@
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="MTLmr3m.ttf">
+            <string>MotoyaLMaru-W3-90ms-RKSJ-H</string>
             <string>MotoyaLMaru-W3-90ms-RKSJ-H</string>
             <string>MotoyaLMaru-W3-90ms-RKSJ-H</string>
             <string>MotoyaLMaru-W3-90ms-RKSJ-H</string>
@@ -207,9 +208,6 @@
                                         <variation key="heightClass=regular" ambiguous="YES">
                                             <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="36" width="400" height="514"/>
-                                        </variation>
                                         <connections>
                                             <outlet property="dataSource" destination="vXZ-lx-hvc" id="LIP-xp-HRf"/>
                                             <outlet property="delegate" destination="vXZ-lx-hvc" id="H8g-Zu-Vbv"/>
@@ -231,9 +229,6 @@
                                 </variation>
                                 <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="0.0" y="100" width="400" height="300"/>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="550"/>
                                 </variation>
                             </view>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rWm-yL-au6" userLabel="RightView">
@@ -418,13 +413,42 @@
                                             <action selector="btn_photoplus:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="1dI-NW-di4"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xgt-a3-469">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="jgq-Pv-3m7"/>
+                                            <constraint firstAttribute="height" constant="30" id="vqB-rd-cvQ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="MotoyaLMaru-W3-90ms-RKSJ-H" family="MotoyaLMaru" pointSize="18"/>
+                                        <state key="normal" title="Sort">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="jgq-Pv-3m7"/>
+                                                <exclude reference="vqB-rd-cvQ"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=compact">
+                                            <mask key="constraints">
+                                                <include reference="jgq-Pv-3m7"/>
+                                                <include reference="vqB-rd-cvQ"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <action selector="brn_sort:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="xRN-IO-TLJ"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="8Xa-wr-4Rp" firstAttribute="top" secondItem="ksh-e7-mIa" secondAttribute="bottom" constant="1" id="2gI-J4-YqR"/>
                                     <constraint firstAttribute="trailing" secondItem="8Xa-wr-4Rp" secondAttribute="trailing" constant="8" id="N0V-xN-IzI"/>
+                                    <constraint firstItem="fe1-w2-f8s" firstAttribute="top" secondItem="xgt-a3-469" secondAttribute="bottom" constant="8" id="OGS-iz-qwm"/>
                                     <constraint firstAttribute="bottom" secondItem="fe1-w2-f8s" secondAttribute="bottom" constant="8" id="OPI-el-3hy"/>
                                     <constraint firstItem="ksh-e7-mIa" firstAttribute="leading" secondItem="rWm-yL-au6" secondAttribute="leading" constant="8" id="OYd-M3-J4S"/>
+                                    <constraint firstAttribute="trailing" secondItem="xgt-a3-469" secondAttribute="trailing" constant="8" id="P1b-dT-DD4"/>
                                     <constraint firstItem="ksh-e7-mIa" firstAttribute="top" secondItem="Bcc-DB-o2R" secondAttribute="bottom" constant="5" id="axd-se-y0v"/>
                                     <constraint firstItem="Bcc-DB-o2R" firstAttribute="top" secondItem="rWm-yL-au6" secondAttribute="top" constant="8" id="kRZ-lZ-PcY"/>
                                     <constraint firstAttribute="trailing" secondItem="ksh-e7-mIa" secondAttribute="trailing" constant="8" id="lbP-69-RuY"/>
@@ -435,13 +459,23 @@
                                     <constraint firstItem="8Xa-wr-4Rp" firstAttribute="leading" secondItem="rWm-yL-au6" secondAttribute="leading" constant="8" id="zd7-Xi-3fH"/>
                                 </constraints>
                                 <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="xgt-a3-469"/>
+                                    </mask>
                                     <mask key="constraints">
                                         <exclude reference="s4A-eB-s0Z"/>
+                                        <exclude reference="P1b-dT-DD4"/>
+                                        <exclude reference="OGS-iz-qwm"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="subviews">
+                                        <include reference="xgt-a3-469"/>
+                                    </mask>
                                     <mask key="constraints">
                                         <include reference="s4A-eB-s0Z"/>
+                                        <include reference="P1b-dT-DD4"/>
+                                        <include reference="OGS-iz-qwm"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -517,24 +551,7 @@
                     </constraints>
                 </imageView>
             </objects>
-            <point key="canvasLocation" x="267" y="0.0"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="G6f-YN-yfW">
-            <objects>
-                <navigationController id="Y3n-hQ-aZu" sceneMemberID="viewController">
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VoH-c1-X18">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="9d3-l8-71W"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="v0S-fu-v3Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-535.5" y="0.0"/>
+            <point key="canvasLocation" x="-78" y="-51"/>
         </scene>
     </scenes>
     <resources>
