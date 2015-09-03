@@ -220,7 +220,7 @@
     if([listDataModel.Latitude isEqualToString:@"(null)"]) {
         txt_idokeido.text = [NSString stringWithFormat:@"位置情報が無いようです。"];
     }else{
-        txt_idokeido.text = [NSString stringWithFormat:@"緯度:%@\n経度:%@", listDataModel.Latitude, listDataModel.Longitude];
+        txt_idokeido.text = [NSString stringWithFormat:@"%@,%@", listDataModel.Latitude, listDataModel.Longitude];
     }
     
     txt_comment.text = listDataModel.comment;
@@ -310,6 +310,14 @@
     img_deleteBack.hidden = YES;
     bln_tableButtonSetting = 0;
     
+    // セルの移動するためにsetEditingにNOを渡して編集終了
+    [Table_View setEditing:NO animated:YES];
+    
+    //選択行初期化
+    lng_selectRow = -1;
+    
+    //リスト再読み込み
+    [Table_View reloadData];
 }
 
 - (IBAction)btn_delete:(id)sender {
@@ -319,6 +327,14 @@
     img_deleteBack.hidden = NO;
     bln_tableButtonSetting = 1;
     
+    // セルの移動するためにsetEditingにNOを渡して編集終了
+    [Table_View setEditing:NO animated:YES];
+    
+    //選択行初期化
+    lng_selectRow = -1;
+    
+    //リスト再読み込み
+    [Table_View reloadData];
 }
 
 - (IBAction)btn_googlemap:(id)sender {
@@ -383,7 +399,7 @@
         bln_cellsort = YES;
         bln_celldelete = NO;
     }else{
-        // セルの移動するためにsetEditingにYESを渡して編集状態にする
+        // セルの移動するためにsetEditingにNOを渡して編集終了
         [Table_View setEditing:NO animated:YES];
         //ソート初期フラグ設定
         bln_cellsort = NO;
@@ -441,7 +457,7 @@
             if(str_Latitude == nil) {
                 txt_idokeido.text = [NSString stringWithFormat:@"位置情報が無いようです。"];
             }else{
-                txt_idokeido.text = [NSString stringWithFormat:@"緯度:%@\n経度:%@", str_Latitude, str_Longitude];
+                txt_idokeido.text = [NSString stringWithFormat:@"%@,%@", str_Latitude, str_Longitude];
             }
 
             txt_comment.text = @"";
