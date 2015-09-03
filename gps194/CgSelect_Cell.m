@@ -17,8 +17,6 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-    
-    txt_comment.text = self.str_comment;
 
 }
 

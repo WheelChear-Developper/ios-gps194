@@ -37,6 +37,11 @@
     //ソート初期フラグ設定
     bln_sort = false;
     
+    //情報ボックス非表示
+    view_idokeido.hidden = true;
+    view_comment.hidden = true;
+    view_commentButton.hidden = true;
+    
     //カスタムセル設定
     UINib *nib = [UINib nibWithNibName:@"CgSelect_Cell" bundle:nil];
     CgSelect_Cell *cell = [[nib instantiateWithOwner:nil options:nil] objectAtIndex:0];
@@ -47,7 +52,7 @@
     [Table_View registerNib:nib forCellReuseIdentifier:@"CgSelect_Cell"];
 }
 
-// 起動・再開の時に起動するメソッド
+#pragma mark 起動・再開の時に起動するメソッド
 - (void)viewWillAppear:(BOOL)animated
 {
     // リストデータの読み込み
@@ -65,8 +70,24 @@
     // Dispose of any resources that can be recreated.
 }
 
-/////////////// ↓　通信用メソッド　↓　////////////////////
-// Webからのリストデータ取得
+#pragma mark Doneでキーボードを閉じる
+- (BOOL) textView: (UITextView*) textView shouldChangeTextInRange: (NSRange) range replacementText: (NSString*) text {
+    if ([text isEqualToString:@"\n"]) {
+        
+        CgSelect_Model *listDataModel = _TotalDataBox[lng_selectRow];
+        [SqlManager Update_comment:listDataModel.service_id comment:txt_comment.text];
+
+        //テーブルデータの再構築
+        [Table_View reloadData];
+        
+        [textView resignFirstResponder];
+        
+        return NO;
+    }
+    return YES;
+}
+
+#pragma mark SQLからリストデータ取得
 - (void)readListData
 {
     // リストデータの初期化
@@ -83,7 +104,6 @@
     // 読み込み中の表示削除
     [SVProgressHUD dismiss];
 }
-/////////////// ↑　通信用メソッド　↑　////////////////////
 
 /////////////// ↓　テーブル用メソッド　↓ ////////////////////
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -96,29 +116,30 @@
     return [_TotalDataBox count];
 }
 
-// １行ごとのセル生成（表示時）
+#pragma mark １行ごとのセル生成（表示時）
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Instantiate or reuse cell
-    CgSelect_Cell *cell = [tableView dequeueReusableCellWithIdentifier:@"CgSelect_Cell"];
+    NSString *cellIdentifier = @"CgSelect_Cell";
+    CgSelect_Cell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    // セルが作成されていないか?
+    if (!cell) { // yes
+        // セルを作成
+        cell = [[CgSelect_Cell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
     
     // Set contents
     NSUInteger row = (NSUInteger)indexPath.row;
     CgSelect_Model *listDataModel = _TotalDataBox[row];
-    
-    cell.lng_serviceId = listDataModel.service_id;
-    cell.str_comment = listDataModel.comment;
-    cell.lng_sortId = listDataModel.sort_id;
-    cell.lng_deleteId = listDataModel.delete_flg;
-    
-    cell.img_image.image = [[UIImage alloc] initWithData:listDataModel.image];
     
     if(indexPath.row == lng_selectRow){
         cell.img_select.image = [UIImage imageNamed:@"select-yes.png"];
     }else{
         cell.img_select.image = [UIImage imageNamed:@"select-no.png"];
     }
-    
+    cell.txt_comment.text = listDataModel.comment;
+    cell.img_image.image = [[UIImage alloc] initWithData:listDataModel.image];
+
     return cell;
 }
 
@@ -143,9 +164,14 @@
     
 }
 
-//セルの選択時イベントメソッド
+#pragma mark セルの選択時イベントメソッド
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    //情報ボックス表示
+    view_idokeido.hidden = false;
+    view_comment.hidden = false;
+    view_commentButton.hidden = true;
+    
     lng_selectRow = indexPath.row;
 
     //テーブルデータの再構築
@@ -180,10 +206,20 @@
     return YES;
 }
 
+#pragma mark セル移動処理
 -(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
     if(fromIndexPath.section == toIndexPath.section) { // 移動元と移動先は同じセクションです。
         if(_TotalDataBox && toIndexPath.row < [_TotalDataBox count]) {
+            
+            NSLog(@"from %i", fromIndexPath.row);
+            NSLog(@"to %i", toIndexPath.row);
+            
+            CgSelect_Model *listDataModel1 = _TotalDataBox[fromIndexPath.row];
+            CgSelect_Model *listDataModel2 = _TotalDataBox[toIndexPath.row];
+            [SqlManager Update_List:listDataModel1.sort_id sortid:listDataModel2.service_id];
+            [SqlManager Update_List:listDataModel2.sort_id sortid:listDataModel1.service_id];
+            
             id item = [_TotalDataBox objectAtIndex:fromIndexPath.row]; // 移動対象を保持します。
             [_TotalDataBox removeObject:item]; // 配列から一度消します。
             [_TotalDataBox insertObject:item atIndex:toIndexPath.row]; // 保持しておいた対象を挿入します。
@@ -193,7 +229,7 @@
     
 }
 
-// テーブルのスクロール時のイベントメソッド
+#pragma mark テーブルのスクロール時のイベントメソッド
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
 
@@ -209,11 +245,15 @@
 - (IBAction)btn_googlemap:(id)sender {
     //http://maps.apple.com/?ll=35.664487,139.708028&q=loc:35.664487,139.708028
     
+    //http://www18.atwiki.jp/iphone-urlscheme/pages/23.html
+    //prefs:root=General&path=ManagedConfigurationList
+    
     if(lng_selectRow >= 0){
         CgSelect_Model *listDataModel = _TotalDataBox[lng_selectRow];
         
         if(![listDataModel.Latitude isEqualToString:@"(null)"]) {
-            NSString* url = [NSString stringWithFormat:@"http://maps.apple.com/?ll=%@,%@&q=loc:%@,%@", listDataModel.Latitude,listDataModel.Longitude, listDataModel.Latitude,listDataModel.Longitude];
+//            NSString* url = [NSString stringWithFormat:@"http://maps.apple.com/?ll=%@,%@&q=loc:%@,%@", listDataModel.Latitude,listDataModel.Longitude, listDataModel.Latitude,listDataModel.Longitude];
+            NSString* url = [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@,%@&zoom=14", listDataModel.Latitude,listDataModel.Longitude];
             NSURL* skimeUrl = [NSURL URLWithString:url];
             if ([[UIApplication sharedApplication] canOpenURL:skimeUrl]) {
                 [[UIApplication sharedApplication] openURL:skimeUrl];
@@ -222,9 +262,19 @@
     }
 }
 
+#pragma mark　コメントボタン
 - (IBAction)btn_comment:(id)sender {
+    
+    if(lng_selectRow >= 0){
+        [SVProgressHUD showWithStatus:@"Loading..."];
+        
+        CgSelect_Model *listDataModel = _TotalDataBox[lng_selectRow];
+        [SqlManager Update_comment:listDataModel.service_id comment:txt_comment.text];
+        [self readListData];
+    }
 }
 
+#pragma mark　プラスボタン
 - (IBAction)btn_photoplus:(id)sender {
 
     if([UIImagePickerController
@@ -237,6 +287,7 @@
     }
 }
 
+#pragma mark　ソートボタン
 - (IBAction)brn_sort:(id)sender {
     
     if(bln_sort == false){
@@ -252,6 +303,7 @@
     }
 }
 
+#pragma mark 写真選択時の処理
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     //Latitude  緯度
@@ -284,6 +336,8 @@
             }else{
                 txt_idokeido.text = [NSString stringWithFormat:@"緯度:%@\n経度:%@", str_Latitude, str_Longitude];
             }
+
+            txt_comment.text = @"";
             
             // 画像を書き直す
             UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
@@ -293,11 +347,16 @@
             UIGraphicsEndImageContext();
             
             NSData* pngData = [[NSData alloc] initWithData:UIImagePNGRepresentation(image)];
-            [SqlManager Set_List:_TotalDataBox.count sortid:0 img:pngData Latitude:str_Latitude Longitude:str_Longitude comment:@"" delete:0];
+            [SqlManager Set_List:_TotalDataBox.count + 1 sortid:_TotalDataBox.count + 1 img:pngData Latitude:str_Latitude Longitude:str_Longitude comment:@"" delete:0];
             
             lng_selectRow = _TotalDataBox.count;
             
             [self readListData];
+            
+            //情報ボックス表示
+            view_idokeido.hidden = false;
+            view_comment.hidden = false;
+            view_commentButton.hidden = true;
             
         } failureBlock:^(NSError *error) {
             NSLog(@"%@",error);

@@ -9,15 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface CgSelect_Cell : UITableViewCell
-{
-    __weak IBOutlet UILabel *txt_comment;
-}
 
 @property (weak, nonatomic) IBOutlet UIImageView *img_select;
 @property (weak, nonatomic) IBOutlet UIImageView *img_image;
+@property (weak, nonatomic) IBOutlet UILabel *txt_comment;
 
 @property (nonatomic) long lng_serviceId;
-@property (weak, nonatomic) NSString *str_comment;
 @property (nonatomic) long lng_sortId;
 @property (nonatomic) long lng_deleteId;
 

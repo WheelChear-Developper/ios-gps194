@@ -29,6 +29,12 @@
          comment:(NSString*)comment
           delete:(long)delete_flg;
 
++ (void)Update_List:(long)service_id
+             sortid:(long)sort_id;
+
++ (void)Update_comment:(long)service_id
+               comment:(NSString*)comment;
+
 //サービスリスト一括削除処理
 + (void)AllDel_ServiceList_listid;
 

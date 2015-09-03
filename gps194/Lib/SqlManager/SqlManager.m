@@ -151,6 +151,44 @@
     [DbAccess close];
 }
 
+// サービスリストデータ更新保存処理
++ (void)Update_List:(long)service_id
+             sortid:(long)sort_id
+{
+    //データベース接続
+    FMDatabase* DbAccess = [self _getDB:DBFILE];
+    
+    //データ保存
+    NSString* sql1 = @"UPDATE tbl_photo_record SET";
+    NSString* sql2 = [NSString stringWithFormat:@" sort_id = %lu WHERE service_id = %lu;", sort_id, service_id];
+    NSString* MakeSQL = [NSString stringWithFormat:@"%@%@",sql1, sql2];
+    if (![DbAccess executeUpdate:MakeSQL]) {
+        NSLog(@"ERROR: %d: %@", [DbAccess lastErrorCode], [DbAccess lastErrorMessage]);
+    }
+    
+    //データベースクローズ
+    [DbAccess close];
+}
+
+// サービスリストデータ更新保存処理
++ (void)Update_comment:(long)service_id
+               comment:(NSString*)comment
+{
+    //データベース接続
+    FMDatabase* DbAccess = [self _getDB:DBFILE];
+    
+    //データ保存
+    NSString* sql1 = @"UPDATE tbl_photo_record SET";
+    NSString* sql2 = [NSString stringWithFormat:@" comment = '%@' WHERE service_id = %lu;", comment, service_id];
+    NSString* MakeSQL = [NSString stringWithFormat:@"%@%@",sql1, sql2];
+    if (![DbAccess executeUpdate:MakeSQL]) {
+        NSLog(@"ERROR: %d: %@", [DbAccess lastErrorCode], [DbAccess lastErrorMessage]);
+    }
+    
+    //データベースクローズ
+    [DbAccess close];
+}
+
 // サービスリスト一括削除処理
 + (void)AllDel_ServiceList_listid
 {

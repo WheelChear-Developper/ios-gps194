@@ -237,7 +237,7 @@
                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bcc-DB-o2R" userLabel="IdokeidoView">
                                         <rect key="frame" x="260" y="8" width="332" height="64"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ppj-bV-fAx">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ppj-bV-fAx">
                                                 <rect key="frame" x="3" y="3" width="265" height="58"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="MotoyaLMaru-W3-90ms-RKSJ-H" family="MotoyaLMaru" pointSize="12"/>
@@ -339,7 +339,7 @@
                                                 <rect key="frame" x="3" y="3" width="326" height="58"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="MotoyaLMaru-W3-90ms-RKSJ-H" family="MotoyaLMaru" pointSize="12"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                         <integer key="value" value="5"/>
@@ -348,6 +348,9 @@
                                                 <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
                                                     <rect key="frame" x="3" y="3" width="126" height="58"/>
                                                 </variation>
+                                                <connections>
+                                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="k9o-hB-TyJ"/>
+                                                </connections>
                                             </textView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -444,7 +447,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="0.98443673499999995" blue="0.86508641389999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="8Xa-wr-4Rp" firstAttribute="top" secondItem="ksh-e7-mIa" secondAttribute="bottom" constant="1" id="2gI-J4-YqR"/>
                                     <constraint firstAttribute="trailing" secondItem="8Xa-wr-4Rp" secondAttribute="trailing" constant="8" id="N0V-xN-IzI"/>
@@ -544,6 +547,9 @@
                         <outlet property="Table_View" destination="qQx-cK-tUL" id="bQ6-vY-Wp2"/>
                         <outlet property="txt_comment" destination="YRE-fF-rAG" id="mq9-Lc-ENl"/>
                         <outlet property="txt_idokeido" destination="Ppj-bV-fAx" id="h5J-GA-HYb"/>
+                        <outlet property="view_comment" destination="ksh-e7-mIa" id="RBh-Br-qxU"/>
+                        <outlet property="view_commentButton" destination="8Xa-wr-4Rp" id="WDO-vk-5VF"/>
+                        <outlet property="view_idokeido" destination="Bcc-DB-o2R" id="jaA-Fm-5s0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

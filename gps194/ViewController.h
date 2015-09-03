@@ -16,6 +16,10 @@
 {
     IBOutlet UITableView *Table_View;
     
+    __weak IBOutlet UIView *view_idokeido;
+    __weak IBOutlet UIView *view_comment;
+    __weak IBOutlet UIView *view_commentButton;
+    
     __weak IBOutlet UITextView *txt_idokeido;
     __weak IBOutlet UITextView *txt_comment;    
 }
