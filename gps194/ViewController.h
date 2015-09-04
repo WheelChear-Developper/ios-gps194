@@ -30,7 +30,8 @@
     __weak IBOutlet UITextView *txt_comment;
     __weak IBOutlet UILabel *lbl_comment;
     
-    
+    __weak IBOutlet UIButton *btn_cellsort;
+    __weak IBOutlet UIButton *btn_photoplus;
 }
 
 - (IBAction)btn_camera:(id)sender;
