@@ -59,6 +59,7 @@
     view_idokeido.hidden = YES;
     view_comment.hidden = YES;
     view_commentButton.hidden = YES;
+    view_dell.hidden = YES;
     
     //カスタムセル設定
     UINib *select_nib = [UINib nibWithNibName:@"CgSelect_Cell" bundle:nil];
@@ -357,6 +358,8 @@
     btn_cellsort.hidden = NO;
     btn_photoplus.hidden = NO;
     
+    view_dell.hidden = YES;
+    
     //選択行初期化
     lng_selectRow = -1;
     
@@ -384,6 +387,8 @@
     
     btn_cellsort.hidden = YES;
     btn_photoplus.hidden = YES;
+    
+    view_dell.hidden = NO;
     
     txt_idokeido.text = @"";
     txt_comment.text = @"";
@@ -466,6 +471,12 @@
         //ソート初期フラグ設定
         bln_cellsort = NO;
     }
+}
+
+- (IBAction)btn_cellAllSelect:(id)sender {
+}
+
+- (IBAction)btn_cellDell:(id)sender {
 }
 
 #pragma mark 写真選択時の処理

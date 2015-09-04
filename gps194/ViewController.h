@@ -32,6 +32,9 @@
     
     __weak IBOutlet UIButton *btn_cellsort;
     __weak IBOutlet UIButton *btn_photoplus;
+    
+    __weak IBOutlet UIView *view_dell;
+    
 }
 
 - (IBAction)btn_camera:(id)sender;
@@ -44,5 +47,7 @@
 
 - (IBAction)brn_cellsort:(id)sender;
 
+- (IBAction)btn_cellAllSelect:(id)sender;
+- (IBAction)btn_cellDell:(id)sender;
 @end
 
