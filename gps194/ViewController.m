@@ -144,10 +144,11 @@
     
     //テーブルデータの再構築
     [Table_SelectView reloadData];
+    [Table_DeleteView reloadData];
     
     //表示テーブル設定
-    Table_SelectView.hidden = NO;
-    Table_DeleteView.hidden = YES;
+//    Table_SelectView.hidden = NO;
+//    Table_DeleteView.hidden = YES;
     
     // 読み込み中の表示削除
     [SVProgressHUD dismiss];
@@ -400,12 +401,7 @@
     [Table_DeleteView reloadData];
     
     //削除初期化
-    DeleteSelectlist = [NSMutableArray array];
-    for(int a=0;a<_TotalSelectDataBox.count;a++){
-        [DeleteSelectlist insertObject:@"NO" atIndex:a];
-        
-        NSLog(@"%@",[DeleteSelectlist objectAtIndex:a]);
-    }
+    [self ResetDeleteSelect];
 }
 
 - (IBAction)btn_googlemap:(id)sender {
@@ -473,10 +469,37 @@
     }
 }
 
+#pragma mark　全削除選択ボタン
 - (IBAction)btn_cellAllSelect:(id)sender {
+    
+    //全削除設定
+    for(int a=0;a<_TotalSelectDataBox.count;a++){
+        [DeleteSelectlist replaceObjectAtIndex:a withObject:@"YES"];
+    }
+    
+    //テーブルデータの再構築
+    [Table_DeleteView reloadData];
 }
 
+#pragma mark　削除ボタン
 - (IBAction)btn_cellDell:(id)sender {
+    
+    [SVProgressHUD showWithStatus:@"Delete..."];
+    
+    //削除
+    for(int a=0;a<_TotalSelectDataBox.count;a++){
+        
+        NSString* str_moto = [DeleteSelectlist objectAtIndex:a];
+        if([str_moto isEqualToString:@"YES"]){
+            CgSelect_Model *listDataModel = _TotalSelectDataBox[a];
+            [SqlManager Delete_List:listDataModel.service_id];
+        }
+    }
+    
+    //削除初期化
+    [self ResetDeleteSelect];
+    
+    [self readSelectData];
 }
 
 #pragma mark 写真選択時の処理
@@ -534,6 +557,9 @@
             view_comment.hidden = NO;
             view_commentButton.hidden = YES;
             
+            //削除初期化
+            [self ResetDeleteSelect];
+            
         } failureBlock:^(NSError *error) {
             NSLog(@"%@",error);
             
@@ -543,6 +569,14 @@
         
     }
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)ResetDeleteSelect {
+    //削除初期化
+    DeleteSelectlist = [NSMutableArray array];
+    for(int a=0;a<_TotalSelectDataBox.count;a++){
+        [DeleteSelectlist insertObject:@"NO" atIndex:a];
+    }
 }
 
 @end

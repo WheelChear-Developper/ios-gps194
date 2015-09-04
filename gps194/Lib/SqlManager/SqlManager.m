@@ -72,7 +72,7 @@
     
 }
 
-// サービスリストデータ取得処理
+// リストデータ取得処理
 + (NSMutableArray*)Get_List
 {
     //データベース接続
@@ -88,8 +88,9 @@
     NSString* Sql7 = @" comment,";
     NSString* Sql8 = @" delete_flg";
     NSString* Sql9 = @" FROM tbl_photo_record";
-    NSString* Sql10 = @" ORDER BY sort_id ASC;";
-    NSString* MakeSQL = [NSString stringWithFormat:@"%@%@%@%@%@%@%@%@%@%@",Sql1,Sql2,Sql3,Sql4,Sql5,Sql6,Sql7,Sql8,Sql9,Sql10];
+    NSString* Sql10 = @" WHERE delete_flg = 0";
+    NSString* Sql11 = @" ORDER BY sort_id ASC;";
+    NSString* MakeSQL = [NSString stringWithFormat:@"%@%@%@%@%@%@%@%@%@%@%@",Sql1,Sql2,Sql3,Sql4,Sql5,Sql6,Sql7,Sql8,Sql9,Sql10,Sql11];
     FMResultSet* results = [DbAccess executeQuery:MakeSQL];
     if (!results) {
         NSLog(@"ERROR: %d: %@", [DbAccess lastErrorCode], [DbAccess lastErrorMessage]);
@@ -120,7 +121,7 @@
     return dbBox;
 }
 
-// サービスリストデータ更新保存処理
+// リストデータ更新処理
 + (void)Set_List:(long)sort_id
              img:(NSData*)image
         Latitude:(NSString*)Latitude
@@ -152,7 +153,7 @@
     [DbAccess close];
 }
 
-// サービスリストデータ更新保存処理
+// 順位更新処理
 + (void)Update_List:(long)service_id
              sortid:(long)sort_id
 {
@@ -171,7 +172,7 @@
     [DbAccess close];
 }
 
-// サービスリストデータ更新保存処理
+// コメント更新処理
 + (void)Update_comment:(long)service_id
                comment:(NSString*)comment
 {
@@ -181,6 +182,24 @@
     //データ保存
     NSString* sql1 = @"UPDATE tbl_photo_record SET";
     NSString* sql2 = [NSString stringWithFormat:@" comment = '%@' WHERE service_id = %lu;", comment, service_id];
+    NSString* MakeSQL = [NSString stringWithFormat:@"%@%@",sql1, sql2];
+    if (![DbAccess executeUpdate:MakeSQL]) {
+        NSLog(@"ERROR: %d: %@", [DbAccess lastErrorCode], [DbAccess lastErrorMessage]);
+    }
+    
+    //データベースクローズ
+    [DbAccess close];
+}
+
+// コメント更新処理
++ (void)Delete_List:(long)service_id
+{
+    //データベース接続
+    FMDatabase* DbAccess = [self _getDB:DBFILE];
+    
+    //データ保存
+    NSString* sql1 = @"UPDATE tbl_photo_record SET";
+    NSString* sql2 = [NSString stringWithFormat:@" delete_flg = 1 WHERE service_id = %lu;", service_id];
     NSString* MakeSQL = [NSString stringWithFormat:@"%@%@",sql1, sql2];
     if (![DbAccess executeUpdate:MakeSQL]) {
         NSLog(@"ERROR: %d: %@", [DbAccess lastErrorCode], [DbAccess lastErrorMessage]);

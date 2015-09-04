@@ -17,10 +17,10 @@
 
 ////////////////////////////////////　サービス登録データ関連　//////////////////////////////////////////
 
-//サービスリストデータ取得処理
+//リストデータ取得処理
 + (NSMutableArray*)Get_List;
 
-// サービスリストデータ更新保存処理
+// リストデータ更新処理
 + (void)Set_List:(long)sort_id
              img:(NSData*)image
         Latitude:(NSString*)Latitude
@@ -28,11 +28,16 @@
          comment:(NSString*)comment
           delete:(long)delete_flg;
 
+// 順位更新処理
 + (void)Update_List:(long)service_id
              sortid:(long)sort_id;
 
+// コメント更新処理
 + (void)Update_comment:(long)service_id
                comment:(NSString*)comment;
+
+// コメント更新処理
++ (void)Delete_List:(long)service_id;
 
 //サービスリスト一括削除処理
 + (void)AllDel_ServiceList_listid;
