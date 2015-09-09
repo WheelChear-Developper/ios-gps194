@@ -189,7 +189,7 @@
         }
         
         cell.txt_comment.text = listDataModel.comment;
-        cell.img_image.image = [[UIImage alloc] initWithData:listDataModel.image];
+        cell.img_image.image = [[UIImage alloc] initWithData:listDataModel.mini_image];
         
         if([listDataModel.Latitude isEqualToString:@"(null)"]){
             cell.img_pin.hidden = YES;
@@ -218,7 +218,7 @@
         }
         
         cell.txt_comment.text = listDataModel.comment;
-        cell.img_image.image = [[UIImage alloc] initWithData:listDataModel.image];
+        cell.img_image.image = [[UIImage alloc] initWithData:listDataModel.mini_image];
         
         if([listDataModel.Latitude isEqualToString:@""]){
             cell.img_pin.hidden = YES;
@@ -558,8 +558,31 @@
             image = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
             
+            //画像縮小
+            CGFloat cg_longSize = 0;
+            if(image.size.width > image.size.height){
+                cg_longSize = image.size.height;
+            }else{
+                cg_longSize = image.size.width;
+            }
+            
+            CGFloat scale = 0;
+            if(cg_longSize < 1000){
+                scale = 0.5f;
+            }else{
+                scale = 0.1f;
+            }
+            
+            UIImage *mini_image = [info objectForKey:UIImagePickerControllerOriginalImage];
+            CGSize resized_size = CGSizeMake(mini_image.size.width * scale, mini_image.size.height * scale);
+            UIGraphicsBeginImageContext(resized_size);
+            [mini_image drawInRect:CGRectMake(0, 0, mini_image.size.width * scale, mini_image.size.height * scale)];
+            mini_image = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            
             NSData* pngData = [[NSData alloc] initWithData:UIImagePNGRepresentation(image)];
-            [SqlManager Set_List:_TotalSelectDataBox.count img:pngData mini_img:pngData Latitude:str_Latitude Longitude:str_Longitude comment:@"" delete:0];
+            NSData* mini_pngData = [[NSData alloc] initWithData:UIImagePNGRepresentation(mini_image)];
+            [SqlManager Set_List:_TotalSelectDataBox.count img:pngData mini_img:mini_pngData Latitude:str_Latitude Longitude:str_Longitude comment:@"" delete:0];
             
             lng_selectRow = 0;
             

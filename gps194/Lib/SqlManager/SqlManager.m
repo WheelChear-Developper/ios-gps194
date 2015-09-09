@@ -83,16 +83,15 @@
     NSString* Sql1 = @"SELECT";
     NSString* Sql2 = @" service_id,";
     NSString* Sql3 = @" sort_id,";
-    NSString* Sql4 = @" image,";
-    NSString* Sql5 = @" mini_image,";
-    NSString* Sql6 = @" Latitude,";
-    NSString* Sql7 = @" Longitude,";
-    NSString* Sql8 = @" comment,";
-    NSString* Sql9 = @" delete_flg";
-    NSString* Sql10 = @" FROM tbl_photo_record";
-    NSString* Sql11 = @" WHERE delete_flg = 0";
-    NSString* Sql12 = @" ORDER BY sort_id DESC;";
-    NSString* MakeSQL = [NSString stringWithFormat:@"%@%@%@%@%@%@%@%@%@%@%@%@",Sql1,Sql2,Sql3,Sql4,Sql5,Sql6,Sql7,Sql8,Sql9,Sql10,Sql11,Sql12];
+    NSString* Sql4 = @" mini_image,";
+    NSString* Sql5 = @" Latitude,";
+    NSString* Sql6 = @" Longitude,";
+    NSString* Sql7 = @" comment,";
+    NSString* Sql8 = @" delete_flg";
+    NSString* Sql9 = @" FROM tbl_photo_record";
+    NSString* Sql10 = @" WHERE delete_flg = 0";
+    NSString* Sql11 = @" ORDER BY sort_id DESC;";
+    NSString* MakeSQL = [NSString stringWithFormat:@"%@%@%@%@%@%@%@%@%@%@%@",Sql1,Sql2,Sql3,Sql4,Sql5,Sql6,Sql7,Sql8,Sql9,Sql10,Sql11];
     FMResultSet* results = [DbAccess executeQuery:MakeSQL];
     if (!results) {
         NSLog(@"ERROR: %d: %@", [DbAccess lastErrorCode], [DbAccess lastErrorMessage]);
@@ -107,13 +106,45 @@
         listDataModel.sort_id = [results longForColumn:@"sort_id"];
         listDataModel.comment = [results stringForColumn:@"comment"];
         listDataModel.delete_flg = [results longForColumn:@"delete_flg"];
-        listDataModel.image = [[NSData alloc] initWithBase64EncodedString:[results stringForColumn:@"image"] options:NSDataBase64DecodingIgnoreUnknownCharacters];
         listDataModel.mini_image = [[NSData alloc] initWithBase64EncodedString:[results stringForColumn:@"mini_image"] options:NSDataBase64DecodingIgnoreUnknownCharacters];
         listDataModel.Latitude = [results stringForColumn:@"Latitude"];
         listDataModel.Longitude = [results stringForColumn:@"Longitude"];
         
         NSLog(@"service_id %lu",listDataModel.service_id);
         NSLog(@"sort_id %lu",listDataModel.sort_id);
+        
+        [dbBox addObject:listDataModel];
+    }
+    
+    //データベースクローズ
+    [DbAccess close];
+    
+    return dbBox;
+}
+
+// イメージデータ取得処理
++ (NSMutableArray*)Get_image:(long)service_id
+{
+    //データベース接続
+    FMDatabase* DbAccess = [self _getDB:DBFILE];
+    
+    //管理データ取得
+    NSString* Sql1 = @"SELECT";
+    NSString* Sql2 = @" image";
+    NSString* Sql3 = @" FROM tbl_photo_record";
+    NSString* Sql4 = [NSString stringWithFormat:@" WHERE service_id = %lu;", service_id];
+    NSString* MakeSQL = [NSString stringWithFormat:@"%@%@%@%@",Sql1,Sql2,Sql3,Sql4];
+    FMResultSet* results = [DbAccess executeQuery:MakeSQL];
+    if (!results) {
+        NSLog(@"ERROR: %d: %@", [DbAccess lastErrorCode], [DbAccess lastErrorMessage]);
+    }
+    
+    //データ格納
+    NSMutableArray *dbBox = [NSMutableArray array];
+    while( [results next] )
+    {
+        CgSelect_image_Model *listDataModel = [[CgSelect_image_Model alloc] init];
+        listDataModel.image = [[NSData alloc] initWithBase64EncodedString:[results stringForColumn:@"image"] options:NSDataBase64DecodingIgnoreUnknownCharacters];
         
         [dbBox addObject:listDataModel];
     }

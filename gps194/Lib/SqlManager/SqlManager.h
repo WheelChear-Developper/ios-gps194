@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
 #import "CgSelect_Model.h"
+#import "CgSelect_image_Model.h"
 
 @interface SqlManager : NSObject
 
@@ -28,6 +29,9 @@
        Longitude:(NSString*)Longitude
          comment:(NSString*)comment
           delete:(long)delete_flg;
+
+// イメージデータ取得処理
++ (NSMutableArray*)Get_image:(long)service_id;
 
 // 順位更新処理
 + (void)Update_List:(long)service_id
