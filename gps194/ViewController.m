@@ -220,7 +220,7 @@
         cell.txt_comment.text = listDataModel.comment;
         cell.img_image.image = [[UIImage alloc] initWithData:listDataModel.mini_image];
         
-        if([listDataModel.Latitude isEqualToString:@""]){
+        if([listDataModel.Latitude isEqualToString:@"(null)"]){
             cell.img_pin.hidden = YES;
         }else{
             cell.img_pin.hidden = NO;
@@ -586,10 +586,10 @@
             
             lng_selectRow = 0;
             
+            [self readSelectData];
+            
             NSIndexPath* indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
             [Table_SelectView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
-            
-            [self readSelectData];
             
             //情報ボックス表示
             view_idokeido.hidden = NO;
