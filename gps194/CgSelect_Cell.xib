@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -24,16 +25,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="83" height="127"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="select-no.png" translatesAutoresizingMaskIntoConstraints="NO" id="Npb-Gn-FPx">
-                                <rect key="frame" x="24" y="46" width="35" height="35"/>
+                                <rect key="frame" x="28" y="50" width="27" height="27"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="35" id="ALo-Qz-0GN"/>
-                                    <constraint firstAttribute="height" constant="35" id="s0d-bS-x4v"/>
+                                    <constraint firstAttribute="width" secondItem="Npb-Gn-FPx" secondAttribute="height" multiplier="1:1" id="5Jq-b9-EWm"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pin.png" translatesAutoresizingMaskIntoConstraints="NO" id="WJI-oU-0nD">
+                                <rect key="frame" x="48" y="92" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="VRt-tk-R1i"/>
+                                    <constraint firstAttribute="width" constant="30" id="yAc-4D-XOk"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="WJI-oU-0nD" secondAttribute="trailing" constant="5" id="5gH-AV-3RK"/>
                             <constraint firstAttribute="centerX" secondItem="Npb-Gn-FPx" secondAttribute="centerX" id="OsZ-Mr-yT0"/>
+                            <constraint firstAttribute="width" secondItem="Npb-Gn-FPx" secondAttribute="width" multiplier="3" id="bDx-xy-ueb"/>
+                            <constraint firstAttribute="bottom" secondItem="WJI-oU-0nD" secondAttribute="bottom" constant="5" id="cxT-Vb-DDR"/>
                             <constraint firstAttribute="centerY" secondItem="Npb-Gn-FPx" secondAttribute="centerY" id="g2T-DH-zu3"/>
                         </constraints>
                     </view>
@@ -89,6 +99,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="img_image" destination="dOA-AR-6cI" id="Kng-Hr-DuT"/>
+                <outlet property="img_pin" destination="WJI-oU-0nD" id="iUM-aE-Z7Z"/>
                 <outlet property="img_select" destination="Npb-Gn-FPx" id="Kl7-mf-J7b"/>
                 <outlet property="txt_comment" destination="TuA-xl-kll" id="yZd-jV-WEj"/>
             </connections>
@@ -97,6 +108,7 @@
     </objects>
     <resources>
         <image name="line.png" width="70" height="10"/>
+        <image name="pin.png" width="105" height="105"/>
         <image name="select-no.png" width="70" height="70"/>
     </resources>
 </document>

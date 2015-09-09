@@ -13,6 +13,7 @@
 @property(nonatomic) long service_id;
 @property(nonatomic) long sort_id;
 @property(nonatomic, copy) NSData *image;
+@property(nonatomic, copy) NSData *mini_image;
 @property(nonatomic, copy) NSString *Latitude;
 @property(nonatomic, copy) NSString *Longitude;
 @property(nonatomic, copy) NSString *comment;

@@ -24,6 +24,9 @@
 		1B7C0C251B900E8100221520 /* CgSelect_Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C0C231B900E8100221520 /* CgSelect_Cell.m */; };
 		1B7C0C261B900E8100221520 /* CgSelect_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B7C0C241B900E8100221520 /* CgSelect_Cell.xib */; };
 		1B7C0C2A1B90565300221520 /* CgSelect_Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C0C291B90565300221520 /* CgSelect_Model.m */; };
+		1BE383A51B9FDA3F009BDDA4 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BE383A31B9FDA3F009BDDA4 /* camera.png */; };
+		1BE383A61B9FDA3F009BDDA4 /* dastbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BE383A41B9FDA3F009BDDA4 /* dastbox.png */; };
+		1BE383A81B9FF4C4009BDDA4 /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BE383A71B9FF4C4009BDDA4 /* pin.png */; };
 		1BFCD6291B9481BE007FF00A /* select-no.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BFCD6271B9481BE007FF00A /* select-no.png */; };
 		1BFCD62A1B9481BE007FF00A /* select-yes.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BFCD6281B9481BE007FF00A /* select-yes.png */; };
 		1BFCD62C1B948492007FF00A /* cg-waku.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BFCD62B1B948492007FF00A /* cg-waku.png */; };
@@ -128,6 +131,9 @@
 		1B7C0C241B900E8100221520 /* CgSelect_Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CgSelect_Cell.xib; sourceTree = "<group>"; };
 		1B7C0C281B90565300221520 /* CgSelect_Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CgSelect_Model.h; sourceTree = "<group>"; };
 		1B7C0C291B90565300221520 /* CgSelect_Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CgSelect_Model.m; sourceTree = "<group>"; };
+		1BE383A31B9FDA3F009BDDA4 /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
+		1BE383A41B9FDA3F009BDDA4 /* dastbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dastbox.png; sourceTree = "<group>"; };
+		1BE383A71B9FF4C4009BDDA4 /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
 		1BFCD6271B9481BE007FF00A /* select-no.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "select-no.png"; sourceTree = "<group>"; };
 		1BFCD6281B9481BE007FF00A /* select-yes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "select-yes.png"; sourceTree = "<group>"; };
 		1BFCD62B1B948492007FF00A /* cg-waku.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cg-waku.png"; sourceTree = "<group>"; };
@@ -366,6 +372,9 @@
 		1BFCD6221B947C38007FF00A /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				1BE383A71B9FF4C4009BDDA4 /* pin.png */,
+				1BE383A31B9FDA3F009BDDA4 /* camera.png */,
+				1BE383A41B9FDA3F009BDDA4 /* dastbox.png */,
 				1BFCD6941B956AA6007FF00A /* plus.png */,
 				1BFCD62D1B94940E007FF00A /* line.png */,
 				1BFCD62B1B948492007FF00A /* cg-waku.png */,
@@ -551,6 +560,7 @@
 				1BFCD6901B955903007FF00A /* RobotoCondensed-Italic.ttf in Resources */,
 				1BFCD68B1B955903007FF00A /* Roboto-Regular.ttf in Resources */,
 				1BFCD6851B955903007FF00A /* README.txt in Resources */,
+				1BE383A61B9FDA3F009BDDA4 /* dastbox.png in Resources */,
 				1BFCD6711B955903007FF00A /* DroidSansEthiopic-Bold.ttf in Resources */,
 				1BFCD67B1B955903007FF00A /* DroidSerif-Bold.ttf in Resources */,
 				1BFCD62C1B948492007FF00A /* cg-waku.png in Resources */,
@@ -574,10 +584,12 @@
 				1BFCD6701B955903007FF00A /* DroidSansArmenian.ttf in Resources */,
 				1BFCD66C1B955903007FF00A /* DroidNaskhUI-Regular.ttf in Resources */,
 				1B447EE81B8EBC0C00689CDF /* Images.xcassets in Resources */,
+				1BE383A81B9FF4C4009BDDA4 /* pin.png in Resources */,
 				1BFCD6951B956AA6007FF00A /* plus.png in Resources */,
 				1BFCD6751B955903007FF00A /* DroidSansFallbackLegacy.ttf in Resources */,
 				1BFCD6911B955903007FF00A /* RobotoCondensed-Regular.ttf in Resources */,
 				1BFCD66D1B955903007FF00A /* DroidSans-Bold.ttf in Resources */,
+				1BE383A51B9FDA3F009BDDA4 /* camera.png in Resources */,
 				1BFCD67C1B955903007FF00A /* DroidSerif-BoldItalic.ttf in Resources */,
 				1BFCD6811B955903007FF00A /* MODULE_LICENSE_APACHE2 in Resources */,
 				1BFCD6681B955903007FF00A /* DroidKufi-Bold.ttf in Resources */,

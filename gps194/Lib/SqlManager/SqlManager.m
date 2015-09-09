@@ -58,11 +58,12 @@
     NSString* tbl1_sql2 = @" service_id  INTEGER UNIQUE PRIMARY KEY,";
     NSString* tbl1_sql3 = @" sort_id     INTEGER,";
     NSString* tbl1_sql4 = @" image       BLOB,";
-    NSString* tbl1_sql5 = @" Latitude    TEXT,";
-    NSString* tbl1_sql6 = @" Longitude   TEXT,";
-    NSString* tbl1_sql7 = @" comment     TEXT,";
-    NSString* tbl1_sql8 = @" delete_flg  INTEGER);";
-    NSString* tbl1_MakeSQL = [NSString stringWithFormat:@"%@%@%@%@%@%@%@%@", tbl1_sql1, tbl1_sql2, tbl1_sql3, tbl1_sql4, tbl1_sql5, tbl1_sql6, tbl1_sql7, tbl1_sql8];
+    NSString* tbl1_sql5 = @" mini_image  BLOB,";
+    NSString* tbl1_sql6 = @" Latitude    TEXT,";
+    NSString* tbl1_sql7 = @" Longitude   TEXT,";
+    NSString* tbl1_sql8 = @" comment     TEXT,";
+    NSString* tbl1_sql9 = @" delete_flg  INTEGER);";
+    NSString* tbl1_MakeSQL = [NSString stringWithFormat:@"%@%@%@%@%@%@%@%@%@", tbl1_sql1, tbl1_sql2, tbl1_sql3, tbl1_sql4, tbl1_sql5, tbl1_sql6, tbl1_sql7, tbl1_sql8, tbl1_sql9];
     if (![DbAccess executeUpdate:tbl1_MakeSQL]) {
         NSLog(@"ERROR: %d: %@", [DbAccess lastErrorCode], [DbAccess lastErrorMessage]);
     }
@@ -83,14 +84,15 @@
     NSString* Sql2 = @" service_id,";
     NSString* Sql3 = @" sort_id,";
     NSString* Sql4 = @" image,";
-    NSString* Sql5 = @" Latitude,";
-    NSString* Sql6 = @" Longitude,";
-    NSString* Sql7 = @" comment,";
-    NSString* Sql8 = @" delete_flg";
-    NSString* Sql9 = @" FROM tbl_photo_record";
-    NSString* Sql10 = @" WHERE delete_flg = 0";
-    NSString* Sql11 = @" ORDER BY sort_id ASC;";
-    NSString* MakeSQL = [NSString stringWithFormat:@"%@%@%@%@%@%@%@%@%@%@%@",Sql1,Sql2,Sql3,Sql4,Sql5,Sql6,Sql7,Sql8,Sql9,Sql10,Sql11];
+    NSString* Sql5 = @" mini_image,";
+    NSString* Sql6 = @" Latitude,";
+    NSString* Sql7 = @" Longitude,";
+    NSString* Sql8 = @" comment,";
+    NSString* Sql9 = @" delete_flg";
+    NSString* Sql10 = @" FROM tbl_photo_record";
+    NSString* Sql11 = @" WHERE delete_flg = 0";
+    NSString* Sql12 = @" ORDER BY sort_id DESC;";
+    NSString* MakeSQL = [NSString stringWithFormat:@"%@%@%@%@%@%@%@%@%@%@%@%@",Sql1,Sql2,Sql3,Sql4,Sql5,Sql6,Sql7,Sql8,Sql9,Sql10,Sql11,Sql12];
     FMResultSet* results = [DbAccess executeQuery:MakeSQL];
     if (!results) {
         NSLog(@"ERROR: %d: %@", [DbAccess lastErrorCode], [DbAccess lastErrorMessage]);
@@ -106,6 +108,7 @@
         listDataModel.comment = [results stringForColumn:@"comment"];
         listDataModel.delete_flg = [results longForColumn:@"delete_flg"];
         listDataModel.image = [[NSData alloc] initWithBase64EncodedString:[results stringForColumn:@"image"] options:NSDataBase64DecodingIgnoreUnknownCharacters];
+        listDataModel.mini_image = [[NSData alloc] initWithBase64EncodedString:[results stringForColumn:@"mini_image"] options:NSDataBase64DecodingIgnoreUnknownCharacters];
         listDataModel.Latitude = [results stringForColumn:@"Latitude"];
         listDataModel.Longitude = [results stringForColumn:@"Longitude"];
         
@@ -124,6 +127,7 @@
 // リストデータ更新処理
 + (void)Set_List:(long)sort_id
              img:(NSData*)image
+        mini_img:(NSData*)mini_image
         Latitude:(NSString*)Latitude
        Longitude:(NSString*)Longitude
          comment:(NSString*)comment
@@ -133,13 +137,15 @@
     FMDatabase* DbAccess = [self _getDB:DBFILE];
     
     NSString *imgString = [image base64EncodedStringWithOptions:NSDataBase64Encoding76CharacterLineLength];
+    NSString *mini_imgString = [mini_image base64EncodedStringWithOptions:NSDataBase64Encoding76CharacterLineLength];
     
     //データ保存
     NSString* sql1 = @"INSERT INTO tbl_photo_record";
-    NSString* sql2 = @" (sort_id, image, Latitude, Longitude, comment, delete_flg) VALUES ";
-    NSString* sql3 = [NSString stringWithFormat:@"(%lu, '%@', '%@', '%@', '%@', %lu);",
+    NSString* sql2 = @" (sort_id, image, mini_image, Latitude, Longitude, comment, delete_flg) VALUES ";
+    NSString* sql3 = [NSString stringWithFormat:@"(%lu, '%@', '%@', '%@', '%@', '%@', %lu);",
                       sort_id,
                       imgString,
+                      mini_imgString,
                       Latitude,
                       Longitude,
                       comment,
@@ -208,21 +214,5 @@
     //データベースクローズ
     [DbAccess close];
 }
-
-// サービスリスト一括削除処理
-+ (void)AllDel_ServiceList_listid
-{
-    //データベース接続
-    FMDatabase* DbAccess = [self _getDB:DBFILE];
-    
-    //データ保存前データ削除
-    NSString* MakeSQL = [NSString stringWithFormat:@"DELETE FROM tbl_list_record"];
-    [DbAccess executeUpdate:MakeSQL];
-    
-    //データベースクローズ
-    [DbAccess close];
-}
-
-
 
 @end

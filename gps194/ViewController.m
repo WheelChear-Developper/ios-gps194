@@ -190,6 +190,12 @@
         
         cell.txt_comment.text = listDataModel.comment;
         cell.img_image.image = [[UIImage alloc] initWithData:listDataModel.image];
+        
+        if([listDataModel.Latitude isEqualToString:@"(null)"]){
+            cell.img_pin.hidden = YES;
+        }else{
+            cell.img_pin.hidden = NO;
+        }
     }
     
     if(tableView == Table_DeleteView){
@@ -213,6 +219,12 @@
         
         cell.txt_comment.text = listDataModel.comment;
         cell.img_image.image = [[UIImage alloc] initWithData:listDataModel.image];
+        
+        if([listDataModel.Latitude isEqualToString:@""]){
+            cell.img_pin.hidden = YES;
+        }else{
+            cell.img_pin.hidden = NO;
+        }
     }
 
     return cell;
@@ -409,6 +421,7 @@
     
     //http://www18.atwiki.jp/iphone-urlscheme/pages/23.html
     //prefs:root=General&path=ManagedConfigurationList
+    //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=General&path=ManagedConfigurationList"]];
     
     if(lng_selectRow >= 0){
         CgSelect_Model *listDataModel = _TotalSelectDataBox[lng_selectRow];
@@ -546,9 +559,9 @@
             UIGraphicsEndImageContext();
             
             NSData* pngData = [[NSData alloc] initWithData:UIImagePNGRepresentation(image)];
-            [SqlManager Set_List:_TotalSelectDataBox.count img:pngData Latitude:str_Latitude Longitude:str_Longitude comment:@"" delete:0];
+            [SqlManager Set_List:_TotalSelectDataBox.count img:pngData mini_img:pngData Latitude:str_Latitude Longitude:str_Longitude comment:@"" delete:0];
             
-            lng_selectRow = _TotalSelectDataBox.count;
+            lng_selectRow = 0;
             
             [self readSelectData];
             

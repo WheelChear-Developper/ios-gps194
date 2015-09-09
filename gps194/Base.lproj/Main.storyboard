@@ -19,8 +19,6 @@
             <string>MotoyaLMaru-W3-90ms-RKSJ-H</string>
             <string>MotoyaLMaru-W3-90ms-RKSJ-H</string>
             <string>MotoyaLMaru-W3-90ms-RKSJ-H</string>
-            <string>MotoyaLMaru-W3-90ms-RKSJ-H</string>
-            <string>MotoyaLMaru-W3-90ms-RKSJ-H</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -42,7 +40,7 @@
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s85-mk-60o" userLabel="InfomationButtonView">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="36"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qnO-dJ-ULV" userLabel="LineImageView0">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qnO-dJ-ULV" userLabel="LineImageView0">
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="LAG-Jm-f9e"/>
@@ -50,24 +48,26 @@
                                             </imageView>
                                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BMo-4O-aeh" userLabel="PhotoButtonView">
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IY0-ja-G2E">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IY0-ja-G2E">
                                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                         <color key="backgroundColor" red="1" green="0.92319167099999999" blue="0.48577675599999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="カメラのイラスト" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="96" translatesAutoresizingMaskIntoConstraints="NO" id="BR0-tp-yPL">
-                                                        <rect key="frame" x="0.0" y="0.0" width="96" height="12"/>
-                                                        <fontDescription key="fontDescription" name="MotoyaLMaru-W3-90ms-RKSJ-H" family="MotoyaLMaru" pointSize="12"/>
-                                                        <nil key="highlightedColor"/>
-                                                        <variation key="widthClass=compact" fixedFrame="YES">
-                                                            <rect key="frame" x="-33" y="6" width="96" height="12"/>
-                                                        </variation>
-                                                    </label>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera.png" translatesAutoresizingMaskIntoConstraints="NO" id="cEL-cp-Phu">
+                                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="32" id="aHx-nt-MHM"/>
+                                                            <constraint firstAttribute="height" constant="28" id="mAj-tx-LnU"/>
+                                                        </constraints>
+                                                    </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Photo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="30" translatesAutoresizingMaskIntoConstraints="NO" id="qDV-jh-vh7">
                                                         <rect key="frame" x="0.0" y="0.0" width="30" height="12"/>
-                                                        <fontDescription key="fontDescription" name="MotoyaLMaru-W3-90ms-RKSJ-H" family="MotoyaLMaru" pointSize="12"/>
+                                                        <fontDescription key="fontDescription" name="MotoyaLMaru-W3-90ms-RKSJ-H" family="MotoyaLMaru" pointSize="18"/>
                                                         <nil key="highlightedColor"/>
                                                         <variation key="widthClass=compact" fixedFrame="YES">
                                                             <rect key="frame" x="0.0" y="20" width="30" height="12"/>
+                                                        </variation>
+                                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="105" y="11" width="40" height="16"/>
                                                         </variation>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yfh-Xn-D9s">
@@ -88,12 +88,12 @@
                                                     <constraint firstAttribute="trailing" secondItem="yfh-Xn-D9s" secondAttribute="trailing" id="VtK-Tw-iQ2"/>
                                                     <constraint firstAttribute="bottom" secondItem="IY0-ja-G2E" secondAttribute="bottom" constant="1" id="XTm-og-AGR"/>
                                                     <constraint firstItem="IY0-ja-G2E" firstAttribute="top" secondItem="BMo-4O-aeh" secondAttribute="top" constant="1" id="bJT-MP-hg8"/>
-                                                    <constraint firstAttribute="centerY" secondItem="BR0-tp-yPL" secondAttribute="centerY" multiplier="1.5" id="bbs-3v-5us"/>
                                                     <constraint firstItem="yfh-Xn-D9s" firstAttribute="leading" secondItem="BMo-4O-aeh" secondAttribute="leading" id="mdo-xe-RYs"/>
-                                                    <constraint firstAttribute="centerY" secondItem="qDV-jh-vh7" secondAttribute="centerY" multiplier="0.7" id="me6-Yu-HC6"/>
                                                     <constraint firstAttribute="trailing" secondItem="IY0-ja-G2E" secondAttribute="trailing" constant="1" id="oZE-bv-hkq"/>
-                                                    <constraint firstAttribute="centerX" secondItem="qDV-jh-vh7" secondAttribute="centerX" id="okg-pW-uZP"/>
-                                                    <constraint firstAttribute="centerX" secondItem="BR0-tp-yPL" secondAttribute="centerX" id="xfd-KT-89w"/>
+                                                    <constraint firstAttribute="centerY" secondItem="cEL-cp-Phu" secondAttribute="centerY" id="pY8-fM-c9I"/>
+                                                    <constraint firstAttribute="centerY" secondItem="qDV-jh-vh7" secondAttribute="centerY" id="pu9-yh-LZL"/>
+                                                    <constraint firstAttribute="centerX" secondItem="cEL-cp-Phu" secondAttribute="centerX" multiplier="1.5" id="spj-tE-AQX"/>
+                                                    <constraint firstAttribute="centerX" secondItem="qDV-jh-vh7" secondAttribute="centerX" multiplier="0.8" id="sxf-Jq-0cF"/>
                                                 </constraints>
                                                 <variation key="widthClass=compact" fixedFrame="YES">
                                                     <rect key="frame" x="0.0" y="0.0" width="30" height="36"/>
@@ -112,21 +112,20 @@
                                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SQc-B9-BzK" userLabel="DeleteButtonView">
                                                 <rect key="frame" x="125" y="0.0" width="125" height="36"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yEz-yb-ul5">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yEz-yb-ul5">
                                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                         <color key="backgroundColor" red="1" green="0.92319167099999999" blue="0.48577675599999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ゴミ箱のイラスト" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="96" translatesAutoresizingMaskIntoConstraints="NO" id="AFS-LF-aMd">
-                                                        <rect key="frame" x="14" y="6" width="96" height="12"/>
-                                                        <fontDescription key="fontDescription" name="MotoyaLMaru-W3-90ms-RKSJ-H" family="MotoyaLMaru" pointSize="12"/>
-                                                        <nil key="highlightedColor"/>
-                                                        <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
-                                                            <rect key="frame" x="-34" y="6" width="97" height="12"/>
-                                                        </variation>
-                                                    </label>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dastbox.png" translatesAutoresizingMaskIntoConstraints="NO" id="DLJ-1x-wWf">
+                                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="28" id="6Ji-7q-48Z"/>
+                                                            <constraint firstAttribute="width" constant="32" id="WFM-Vm-rz8"/>
+                                                        </constraints>
+                                                    </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Delete" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="36" translatesAutoresizingMaskIntoConstraints="NO" id="vX3-uz-fev">
                                                         <rect key="frame" x="44" y="21" width="36" height="12"/>
-                                                        <fontDescription key="fontDescription" name="MotoyaLMaru-W3-90ms-RKSJ-H" family="MotoyaLMaru" pointSize="12"/>
+                                                        <fontDescription key="fontDescription" name="MotoyaLMaru-W3-90ms-RKSJ-H" family="MotoyaLMaru" pointSize="18"/>
                                                         <nil key="highlightedColor"/>
                                                         <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
                                                             <rect key="frame" x="-3" y="21" width="36" height="12"/>
@@ -144,18 +143,18 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="centerY" secondItem="AFS-LF-aMd" secondAttribute="centerY" multiplier="1.5" id="0Vp-Xw-6EZ"/>
                                                     <constraint firstAttribute="trailing" secondItem="9h9-zu-zkz" secondAttribute="trailing" id="2e2-e8-o9f"/>
                                                     <constraint firstItem="yEz-yb-ul5" firstAttribute="leading" secondItem="SQc-B9-BzK" secondAttribute="leading" id="4ZT-fk-tHw"/>
-                                                    <constraint firstAttribute="centerX" secondItem="vX3-uz-fev" secondAttribute="centerX" id="595-UZ-Crf"/>
+                                                    <constraint firstAttribute="centerX" secondItem="DLJ-1x-wWf" secondAttribute="centerX" multiplier="1.5" id="Jie-nu-Olh"/>
                                                     <constraint firstAttribute="bottom" secondItem="yEz-yb-ul5" secondAttribute="bottom" constant="1" id="N0q-Po-WSe"/>
-                                                    <constraint firstAttribute="centerX" secondItem="AFS-LF-aMd" secondAttribute="centerX" id="VQ9-OP-Ejk"/>
-                                                    <constraint firstAttribute="centerY" secondItem="vX3-uz-fev" secondAttribute="centerY" multiplier="0.7" id="W12-AI-gQu"/>
+                                                    <constraint firstAttribute="centerY" secondItem="vX3-uz-fev" secondAttribute="centerY" id="W12-AI-gQu"/>
                                                     <constraint firstItem="9h9-zu-zkz" firstAttribute="leading" secondItem="SQc-B9-BzK" secondAttribute="leading" id="XMG-rc-912"/>
                                                     <constraint firstAttribute="bottom" secondItem="9h9-zu-zkz" secondAttribute="bottom" id="iGc-ad-p7o"/>
+                                                    <constraint firstAttribute="centerX" secondItem="vX3-uz-fev" secondAttribute="centerX" multiplier="0.8" id="ijS-ba-KJf"/>
                                                     <constraint firstItem="9h9-zu-zkz" firstAttribute="top" secondItem="SQc-B9-BzK" secondAttribute="top" id="kMs-xj-duG"/>
                                                     <constraint firstItem="yEz-yb-ul5" firstAttribute="top" secondItem="SQc-B9-BzK" secondAttribute="top" constant="1" id="mmK-wi-9CF"/>
                                                     <constraint firstAttribute="trailing" secondItem="yEz-yb-ul5" secondAttribute="trailing" constant="1" id="tnP-H6-1lm"/>
+                                                    <constraint firstAttribute="centerY" secondItem="DLJ-1x-wWf" secondAttribute="centerY" id="xKr-TZ-62Y"/>
                                                 </constraints>
                                                 <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
                                                     <rect key="frame" x="30" y="0.0" width="30" height="36"/>
@@ -340,7 +339,7 @@
                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ksh-e7-mIa" userLabel="CommentView">
                                         <rect key="frame" x="260" y="80" width="332" height="64"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YRE-fF-rAG">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="YRE-fF-rAG">
                                                 <rect key="frame" x="3" y="3" width="326" height="58"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="MotoyaLMaru-W3-90ms-RKSJ-H" family="MotoyaLMaru" pointSize="12"/>
@@ -370,13 +369,13 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstAttribute="centerX" secondItem="cgL-Zy-1JC" secondAttribute="centerX" id="2Y9-rD-S6s"/>
                                             <constraint firstItem="YRE-fF-rAG" firstAttribute="leading" secondItem="ksh-e7-mIa" secondAttribute="leading" constant="2" id="8M7-mv-n3K"/>
                                             <constraint firstItem="cgL-Zy-1JC" firstAttribute="top" secondItem="ksh-e7-mIa" secondAttribute="top" constant="8" id="HsD-3r-EDz"/>
                                             <constraint firstAttribute="bottom" secondItem="YRE-fF-rAG" secondAttribute="bottom" constant="2" id="NrW-W7-62D"/>
                                             <constraint firstAttribute="height" constant="64" id="ZoJ-uP-M3I"/>
                                             <constraint firstItem="YRE-fF-rAG" firstAttribute="top" secondItem="ksh-e7-mIa" secondAttribute="top" constant="2" id="n9g-LA-uyh"/>
                                             <constraint firstAttribute="trailing" secondItem="YRE-fF-rAG" secondAttribute="trailing" constant="2" id="tbt-cv-bmc"/>
-                                            <constraint firstItem="cgL-Zy-1JC" firstAttribute="leading" secondItem="ksh-e7-mIa" secondAttribute="leading" constant="8" id="xid-YM-3Iy"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -457,7 +456,7 @@
                                             <action selector="brn_cellsort:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="wJy-RI-ffS"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lXI-ti-7LJ">
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lXI-ti-7LJ">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWZ-Rf-xuk">
@@ -664,6 +663,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="camera.png" width="72" height="72"/>
+        <image name="dastbox.png" width="72" height="72"/>
         <image name="plus.png" width="70" height="70"/>
     </resources>
 </document>

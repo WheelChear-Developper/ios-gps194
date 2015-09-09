@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *img_select;
 @property (weak, nonatomic) IBOutlet UIImageView *img_image;
 @property (weak, nonatomic) IBOutlet UILabel *txt_comment;
+@property (weak, nonatomic) IBOutlet UIImageView *img_pin;
 
 @property (nonatomic) long lng_serviceId;
 @property (nonatomic) long lng_sortId;

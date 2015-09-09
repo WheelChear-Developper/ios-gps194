@@ -23,6 +23,7 @@
 // リストデータ更新処理
 + (void)Set_List:(long)sort_id
              img:(NSData*)image
+        mini_img:(NSData*)mini_image
         Latitude:(NSString*)Latitude
        Longitude:(NSString*)Longitude
          comment:(NSString*)comment
@@ -38,9 +39,5 @@
 
 // コメント更新処理
 + (void)Delete_List:(long)service_id;
-
-//サービスリスト一括削除処理
-+ (void)AllDel_ServiceList_listid;
-
 
 @end
