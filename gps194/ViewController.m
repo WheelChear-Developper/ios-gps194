@@ -460,7 +460,7 @@
         isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]){
         UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
         imagePicker.delegate = self;
-        imagePicker.allowsEditing = YES;
+        imagePicker.allowsEditing = NO;
         imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         [self presentViewController:imagePicker animated:YES completion:nil];
     }
@@ -585,6 +585,9 @@
             [SqlManager Set_List:_TotalSelectDataBox.count img:pngData mini_img:mini_pngData Latitude:str_Latitude Longitude:str_Longitude comment:@"" delete:0];
             
             lng_selectRow = 0;
+            
+            NSIndexPath* indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+            [Table_SelectView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
             
             [self readSelectData];
             
