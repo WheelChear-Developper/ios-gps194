@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		1B0158DA1BA0275100C8A884 /* CgSelect_image_Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0158D91BA0275100C8A884 /* CgSelect_image_Model.m */; };
 		1B028F1A1BA06458009C35BB /* SNS_Share.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B028F191BA06458009C35BB /* SNS_Share.m */; };
+		1B028F201BA288FF009C35BB /* LINEActivityIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B028F1B1BA288FF009C35BB /* LINEActivityIcon.png */; };
+		1B028F211BA288FF009C35BB /* LINEActivityIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B028F1C1BA288FF009C35BB /* LINEActivityIcon@2x.png */; };
+		1B028F221BA288FF009C35BB /* LINEActivityIcon@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B028F1D1BA288FF009C35BB /* LINEActivityIcon@2x~ipad.png */; };
+		1B028F231BA288FF009C35BB /* LINEActivityIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B028F1E1BA288FF009C35BB /* LINEActivityIcon@3x.png */; };
+		1B028F241BA288FF009C35BB /* LINEActivityIcon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B028F1F1BA288FF009C35BB /* LINEActivityIcon~ipad.png */; };
+		1B028F271BA29017009C35BB /* First-ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B028F261BA29017009C35BB /* First-ViewController.m */; };
 		1B133FF21B959B0E0040FC16 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B133FF11B959B0E0040FC16 /* Photos.framework */; };
 		1B447EDA1B8EBC0C00689CDF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B447ED91B8EBC0C00689CDF /* main.m */; };
 		1B447EDD1B8EBC0C00689CDF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B447EDC1B8EBC0C00689CDF /* AppDelegate.m */; };
@@ -106,6 +112,13 @@
 		1B0158D91BA0275100C8A884 /* CgSelect_image_Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CgSelect_image_Model.m; sourceTree = "<group>"; };
 		1B028F181BA06458009C35BB /* SNS_Share.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNS_Share.h; sourceTree = "<group>"; };
 		1B028F191BA06458009C35BB /* SNS_Share.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNS_Share.m; sourceTree = "<group>"; };
+		1B028F1B1BA288FF009C35BB /* LINEActivityIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LINEActivityIcon.png; sourceTree = "<group>"; };
+		1B028F1C1BA288FF009C35BB /* LINEActivityIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LINEActivityIcon@2x.png"; sourceTree = "<group>"; };
+		1B028F1D1BA288FF009C35BB /* LINEActivityIcon@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LINEActivityIcon@2x~ipad.png"; sourceTree = "<group>"; };
+		1B028F1E1BA288FF009C35BB /* LINEActivityIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LINEActivityIcon@3x.png"; sourceTree = "<group>"; };
+		1B028F1F1BA288FF009C35BB /* LINEActivityIcon~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LINEActivityIcon~ipad.png"; sourceTree = "<group>"; };
+		1B028F251BA29017009C35BB /* First-ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "First-ViewController.h"; sourceTree = "<group>"; };
+		1B028F261BA29017009C35BB /* First-ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "First-ViewController.m"; sourceTree = "<group>"; };
 		1B133FEF1B959AD30040FC16 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		1B133FF11B959B0E0040FC16 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		1B447ED41B8EBC0C00689CDF /* gps194.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gps194.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -278,6 +291,8 @@
 				1B447EDC1B8EBC0C00689CDF /* AppDelegate.m */,
 				1B447EE11B8EBC0C00689CDF /* ViewController.h */,
 				1B447EE21B8EBC0C00689CDF /* ViewController.m */,
+				1B028F251BA29017009C35BB /* First-ViewController.h */,
+				1B028F261BA29017009C35BB /* First-ViewController.m */,
 				1B7C0C241B900E8100221520 /* CgSelect_Cell.xib */,
 				1B7C0C221B900E8100221520 /* CgSelect_Cell.h */,
 				1B7C0C231B900E8100221520 /* CgSelect_Cell.m */,
@@ -390,6 +405,11 @@
 		1BFCD6221B947C38007FF00A /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				1B028F1B1BA288FF009C35BB /* LINEActivityIcon.png */,
+				1B028F1C1BA288FF009C35BB /* LINEActivityIcon@2x.png */,
+				1B028F1D1BA288FF009C35BB /* LINEActivityIcon@2x~ipad.png */,
+				1B028F1E1BA288FF009C35BB /* LINEActivityIcon@3x.png */,
+				1B028F1F1BA288FF009C35BB /* LINEActivityIcon~ipad.png */,
 				1BE383A71B9FF4C4009BDDA4 /* pin.png */,
 				1BE383A31B9FDA3F009BDDA4 /* camera.png */,
 				1BE383A41B9FDA3F009BDDA4 /* dastbox.png */,
@@ -581,12 +601,15 @@
 				1BE383A61B9FDA3F009BDDA4 /* dastbox.png in Resources */,
 				1BFCD6711B955903007FF00A /* DroidSansEthiopic-Bold.ttf in Resources */,
 				1BFCD67B1B955903007FF00A /* DroidSerif-Bold.ttf in Resources */,
+				1B028F201BA288FF009C35BB /* LINEActivityIcon.png in Resources */,
 				1BFCD62C1B948492007FF00A /* cg-waku.png in Resources */,
 				1BFCD6691B955903007FF00A /* DroidKufi-Regular.ttf in Resources */,
+				1B028F231BA288FF009C35BB /* LINEActivityIcon@3x.png in Resources */,
 				1BFCD66F1B955903007FF00A /* DroidSansArabic.ttf in Resources */,
 				1BFCD66B1B955903007FF00A /* DroidNaskh-Regular.ttf in Resources */,
 				1B7C0C261B900E8100221520 /* CgSelect_Cell.xib in Resources */,
 				1BFCD68D1B955903007FF00A /* Roboto-ThinItalic.ttf in Resources */,
+				1B028F221BA288FF009C35BB /* LINEActivityIcon@2x~ipad.png in Resources */,
 				1BFCD6621B955903007FF00A /* Android.mk in Resources */,
 				1BFCD62A1B9481BE007FF00A /* select-yes.png in Resources */,
 				1BFCD67A1B955903007FF00A /* DroidSansMono.ttf in Resources */,
@@ -620,10 +643,12 @@
 				1BFCD6831B955903007FF00A /* MTLmr3m.ttf in Resources */,
 				1BFCD6651B955903007FF00A /* AndroidClock_Solid.ttf in Resources */,
 				1BFCD6721B955903007FF00A /* DroidSansEthiopic-Regular.ttf in Resources */,
+				1B028F211BA288FF009C35BB /* LINEActivityIcon@2x.png in Resources */,
 				1BFCD6641B955903007FF00A /* AndroidClock_Highlight.ttf in Resources */,
 				1BFCD6891B955903007FF00A /* Roboto-Light.ttf in Resources */,
 				1BFCD6761B955903007FF00A /* DroidSansGeorgian.ttf in Resources */,
 				1BFCD6801B955903007FF00A /* fonts.mk in Resources */,
+				1B028F241BA288FF009C35BB /* LINEActivityIcon~ipad.png in Resources */,
 				1BFCD6841B955903007FF00A /* NOTICE in Resources */,
 				1BFCD6781B955903007FF00A /* DroidSansHebrew-Regular.ttf in Resources */,
 				1BFCD67E1B955903007FF00A /* DroidSerif-Regular.ttf in Resources */,
@@ -688,6 +713,7 @@
 				1B028F1A1BA06458009C35BB /* SNS_Share.m in Sources */,
 				1B447F191B8F247800689CDF /* VerticallyAlignedLabel.m in Sources */,
 				1B7C0C2A1B90565300221520 /* CgSelect_Model.m in Sources */,
+				1B028F271BA29017009C35BB /* First-ViewController.m in Sources */,
 				1BFF3AF41B98A3B500EA70DD /* DeleteSelect_Model.m in Sources */,
 				1B447EDA1B8EBC0C00689CDF /* main.m in Sources */,
 				1B447EE31B8EBC0C00689CDF /* ViewController.m in Sources */,

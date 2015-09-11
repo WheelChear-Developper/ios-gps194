@@ -20,7 +20,28 @@
     // データベース前処理
     [SqlManager InitialSql];
     
+    //起動方法振り分け
+    if([self getFirstStart]){
+        //初期起動の場合
+        UIViewController *mainViewController = (UIViewController *)self.window.rootViewController;
+        UIViewController *GaidViewController = [mainViewController.storyboard instantiateViewControllerWithIdentifier:@"FirstGaidView"];
+        self.window.rootViewController = GaidViewController;
+        [self.window makeKeyAndVisible];
+        return YES;
+    }else{
+        //起動View変更
+    }
+    
     return YES;
+}
+
+#pragma mark - Setting
+static NSString *CONFIGURATION_FIRST_START = @"Configuration.FirstStart";
+- (BOOL)getFirstStart
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults registerDefaults:@{CONFIGURATION_FIRST_START : @(YES)}];
+    return [userDefaults boolForKey:CONFIGURATION_FIRST_START];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

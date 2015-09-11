@@ -44,6 +44,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //初回フラグ設定
+    [self setFirstStart:NO];
+    
     //ボタンバック
     img_photoBack.hidden = NO;
     img_deleteBack.hidden = YES;
@@ -96,6 +99,15 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Setting
+static NSString *CONFIGURATION_FIRST_START = @"Configuration.FirstStart";
+- (void)setFirstStart:(BOOL)value
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setBool:value forKey:CONFIGURATION_FIRST_START];
+    [userDefaults synchronize];
 }
 
 /////////////// ↓　入力系用メソッド　↓ ////////////////////
