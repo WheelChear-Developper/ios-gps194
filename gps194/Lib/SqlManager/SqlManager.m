@@ -167,6 +167,27 @@
     //データベース接続
     FMDatabase* DbAccess = [self _getDB:DBFILE];
     
+    
+    //ソート最大値取得
+    NSString* serch_Sql1 = @"SELECT";
+    NSString* serch_Sql2 = @" max(sort_id) as max";
+    NSString* serch_Sql3 = @" FROM tbl_photo_record;";
+    NSString* serch_MakeSQL = [NSString stringWithFormat:@"%@%@%@",serch_Sql1,serch_Sql2,serch_Sql3];
+    FMResultSet* serch_results = [DbAccess executeQuery:serch_MakeSQL];
+    if (!serch_results) {
+        NSLog(@"ERROR: %d: %@", [DbAccess lastErrorCode], [DbAccess lastErrorMessage]);
+    }
+    
+    //データ格納
+    long lng_max_sort = 0;
+    while( [serch_results next] )
+    {
+        lng_max_sort= [serch_results longForColumn:@"max"];
+        NSLog(@"max sort_id %lu",lng_max_sort);
+    }
+    lng_max_sort +=1;
+    
+    
     NSString *imgString = [image base64EncodedStringWithOptions:NSDataBase64Encoding76CharacterLineLength];
     NSString *mini_imgString = [mini_image base64EncodedStringWithOptions:NSDataBase64Encoding76CharacterLineLength];
     
@@ -174,7 +195,7 @@
     NSString* sql1 = @"INSERT INTO tbl_photo_record";
     NSString* sql2 = @" (sort_id, image, mini_image, Latitude, Longitude, comment, delete_flg) VALUES ";
     NSString* sql3 = [NSString stringWithFormat:@"(%lu, '%@', '%@', '%@', '%@', '%@', %lu);",
-                      sort_id,
+                      lng_max_sort,
                       imgString,
                       mini_imgString,
                       Latitude,
