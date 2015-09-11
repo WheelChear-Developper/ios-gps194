@@ -34,7 +34,6 @@
     __weak IBOutlet UIButton *btn_photoplus;
     
     __weak IBOutlet UIView *view_dell;
-    
 }
 
 - (IBAction)btn_camera:(id)sender;
@@ -49,5 +48,8 @@
 
 - (IBAction)btn_cellAllSelect:(id)sender;
 - (IBAction)btn_cellDell:(id)sender;
+
+- (IBAction)btn_shaer:(id)sender;
+
 @end
 

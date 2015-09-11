@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1B0158DA1BA0275100C8A884 /* CgSelect_image_Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0158D91BA0275100C8A884 /* CgSelect_image_Model.m */; };
+		1B028F1A1BA06458009C35BB /* SNS_Share.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B028F191BA06458009C35BB /* SNS_Share.m */; };
 		1B133FF21B959B0E0040FC16 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B133FF11B959B0E0040FC16 /* Photos.framework */; };
 		1B447EDA1B8EBC0C00689CDF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B447ED91B8EBC0C00689CDF /* main.m */; };
 		1B447EDD1B8EBC0C00689CDF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B447EDC1B8EBC0C00689CDF /* AppDelegate.m */; };
@@ -103,6 +104,8 @@
 /* Begin PBXFileReference section */
 		1B0158D81BA0275100C8A884 /* CgSelect_image_Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CgSelect_image_Model.h; sourceTree = "<group>"; };
 		1B0158D91BA0275100C8A884 /* CgSelect_image_Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CgSelect_image_Model.m; sourceTree = "<group>"; };
+		1B028F181BA06458009C35BB /* SNS_Share.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNS_Share.h; sourceTree = "<group>"; };
+		1B028F191BA06458009C35BB /* SNS_Share.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNS_Share.m; sourceTree = "<group>"; };
 		1B133FEF1B959AD30040FC16 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		1B133FF11B959B0E0040FC16 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		1B447ED41B8EBC0C00689CDF /* gps194.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gps194.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -226,6 +229,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B028F171BA06435009C35BB /* SNS_Share */ = {
+			isa = PBXGroup;
+			children = (
+				1B028F181BA06458009C35BB /* SNS_Share.h */,
+				1B028F191BA06458009C35BB /* SNS_Share.m */,
+			);
+			path = SNS_Share;
+			sourceTree = "<group>";
+		};
 		1B02D61B1B9478AC00221871 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -306,6 +318,7 @@
 		1B447F051B8F247800689CDF /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				1B028F171BA06435009C35BB /* SNS_Share */,
 				1BFCD6961B956F84007FF00A /* SqlManager */,
 				1B447F061B8F247800689CDF /* AsyncImageView */,
 				1B447F091B8F247800689CDF /* MyAnnotation */,
@@ -672,6 +685,7 @@
 			files = (
 				1B447EDD1B8EBC0C00689CDF /* AppDelegate.m in Sources */,
 				1B447F151B8F247800689CDF /* AsyncImageView.m in Sources */,
+				1B028F1A1BA06458009C35BB /* SNS_Share.m in Sources */,
 				1B447F191B8F247800689CDF /* VerticallyAlignedLabel.m in Sources */,
 				1B7C0C2A1B90565300221520 /* CgSelect_Model.m in Sources */,
 				1BFF3AF41B98A3B500EA70DD /* DeleteSelect_Model.m in Sources */,

@@ -12,11 +12,13 @@
 #import "ViewController.h"
 #import "CgSelect_Cell.h"
 #import "CgSelect_Model.h"
+#import "SNS_Share.h"
 
 @interface ViewController ()
 {
     // リスト用データ格納用
     NSMutableArray *_TotalSelectDataBox;
+    NSMutableArray *_SelectImageDataBox;
     
     // 選択行
     long lng_selectRow;
@@ -513,6 +515,141 @@
     [self ResetDeleteSelect];
     
     [self readSelectData];
+}
+
+#pragma mark　SNS連携ボタン
+- (IBAction)btn_shaer:(id)sender {
+    
+    if(lng_selectRow >=0){
+        //データベースから画像取得
+        CgSelect_Model *ServiceList_Model = _TotalSelectDataBox[lng_selectRow];
+        
+        NSMutableArray *RecordDataBox = [SqlManager Get_image:ServiceList_Model.service_id];
+        _SelectImageDataBox = RecordDataBox;
+        CgSelect_Model *listDataModel = _SelectImageDataBox[0];
+        UIImage *image = [[UIImage alloc] initWithData:listDataModel.image];
+        
+        //http://d.hatena.ne.jp/nakamura001/20091024/1256371275
+        
+        
+        // 保存形式設定
+        //png
+        //NSData *data = UIImagePNGRepresentation(image);
+        //jpeg
+        NSData *data = UIImageJPEGRepresentation(image, 0.8f);
+        
+        
+        //////////////////////// Exifデータ生成 //////////////////////////////
+        CGImageSourceRef  source = CGImageSourceCreateWithData((__bridge CFDataRef)data, NULL);
+        
+        //既存のメタデータを取得
+        NSDictionary *metadata = (__bridge NSDictionary *) CGImageSourceCopyPropertiesAtIndex(source,0,NULL);
+        
+        //各メタデータ用変数
+        NSMutableDictionary *metadataAsMutable = [NSMutableDictionary dictionaryWithDictionary:metadata];
+        
+        NSMutableDictionary *EXIFDictionary = [[metadataAsMutable objectForKey:(NSString *)kCGImagePropertyExifDictionary]mutableCopy];
+        NSMutableDictionary *GPSDictionary = [[metadataAsMutable objectForKey:(NSString *)kCGImagePropertyGPSDictionary]mutableCopy];
+        if(!EXIFDictionary) EXIFDictionary = [NSMutableDictionary dictionary];
+        if(!GPSDictionary) GPSDictionary = [NSMutableDictionary dictionary];
+        
+        //撮影日時の更新
+        [EXIFDictionary setObject:[NSDate date] forKey:(NSString*)kCGImagePropertyExifDateTimeOriginal];
+        [EXIFDictionary setObject:[NSDate date] forKey:(NSString*)kCGImagePropertyExifDateTimeDigitized];
+        
+        //GPS情報追加(適宜追加したい位置情報を記載ください。)
+        double dbl_Latitude = ServiceList_Model.Latitude.doubleValue;
+        double dbl_Longitude = ServiceList_Model.Longitude.doubleValue;
+        [GPSDictionary setValue:[NSNumber numberWithDouble:dbl_Latitude] forKey:(NSString*)kCGImagePropertyGPSLatitude];
+        [GPSDictionary setValue:[NSNumber numberWithDouble:dbl_Longitude] forKey:(NSString*)kCGImagePropertyGPSLongitude];
+        
+        //日本の場合
+        [GPSDictionary setValue:@"N" forKey:(NSString*)kCGImagePropertyGPSLatitudeRef];
+        [GPSDictionary setValue:@"E" forKey:(NSString*)kCGImagePropertyGPSLongitudeRef];
+        
+        [metadataAsMutable setObject:EXIFDictionary forKey:(NSString *)kCGImagePropertyExifDictionary];
+        [metadataAsMutable setObject:GPSDictionary forKey:(NSString *)kCGImagePropertyGPSDictionary];
+        [metadataAsMutable setObject:[NSNumber numberWithInt:UIImageOrientationUp] forKey:(NSString *)kCGImagePropertyOrientation];
+        
+        
+        //////////////////////////// イメージデータにExifデータ追加 //////////////////////////////////
+        //http://blog.mudaimemo.com/2010/12/iosexif.html
+        // CGImageDestination を利用して画像とメタデータをひ関連付ける
+        NSMutableData *imageData = [[NSMutableData alloc] init];
+        CGImageDestinationRef dest;
+        dest = CGImageDestinationCreateWithData((CFMutableDataRef)imageData, kUTTypeJPEG, 1, nil);
+        
+        CGImageDestinationAddImage(dest, image.CGImage, (CFDictionaryRef)metadataAsMutable);
+        CGImageDestinationFinalize(dest);
+        CFRelease(dest);
+
+
+        //////////////////////////// 共有アクションへ ///////////////////////////////////
+        [self shareItem:imageData];
+        
+/*
+        //画像の保存
+        UIImage *imgPreOut = [UIImage imageWithData:data];
+        ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+        [library writeImageToSavedPhotosAlbum:imgPreOut.CGImage metadata:metadataAsMutable completionBlock:^(NSURL *assetURL, NSError *error) {
+            //保存後の処理を記載
+            NSLog(@"URL:%@", assetURL);
+            NSLog(@"error:%@", error);
+            
+            ALAuthorizationStatus status = [ALAssetsLibrary authorizationStatus];
+            
+            if (status == ALAuthorizationStatusDenied) {
+                UIAlertView *alertView = [[UIAlertView alloc]
+                                          initWithTitle:@"エラー"
+                                          message:@"写真へのアクセスが許可されていません。\n設定 > 一般 > 機能制限で許可してください。"
+                                          delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+                [alertView show];
+            } else {
+                
+                NSString *filePath= [assetURL path];
+                
+//                UIImage* image = [UIImage imageWithContentsOfFile:filePath];
+//                [self shareItem: [UIImage imageWithContentsOfFile:filePath]];
+                
+                [self shareItem:imageData];
+            }
+
+
+        }];
+*/
+    /*
+        
+        NSString *filePath = [NSString stringWithFormat:@"%@/194.png" , [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]];
+        NSLog(@"%@", filePath);
+        if ([data writeToFile:filePath atomically:YES]) {
+            NSLog(@"OK");
+        } else {
+            NSLog(@"Error");
+        }
+        
+        UIGraphicsBeginImageContext(image.size);
+        [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)];
+        image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        [self shareItem:image];
+*/
+     
+     }
+}
+
+
+
+#pragma mark シェアアイテムセット
+- (void)shareItem:(id)item
+{
+    NSArray *activityItems = @[item];
+    NSArray *applicationActivities = @[[[SNS_Share alloc] init]];
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:applicationActivities];
+    [self presentViewController:activityViewController animated:YES completion:NULL];
+    
 }
 
 #pragma mark 写真選択時の処理

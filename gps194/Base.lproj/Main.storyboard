@@ -19,6 +19,7 @@
             <string>MotoyaLMaru-W3-90ms-RKSJ-H</string>
             <string>MotoyaLMaru-W3-90ms-RKSJ-H</string>
             <string>MotoyaLMaru-W3-90ms-RKSJ-H</string>
+            <string>MotoyaLMaru-W3-90ms-RKSJ-H</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -509,9 +510,30 @@
                                             <constraint firstItem="KWZ-Rf-xuk" firstAttribute="width" secondItem="dgq-hy-dLZ" secondAttribute="width" id="kd5-1V-tbo"/>
                                         </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vmf-Gv-T2d">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <color key="backgroundColor" red="0.31234300777239826" green="0.68548768939393945" blue="0.287610906387952" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="70" id="FTI-tx-k2W"/>
+                                            <constraint firstAttribute="height" constant="40" id="vfl-3A-apv"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="MotoyaLMaru-W3-90ms-RKSJ-H" family="MotoyaLMaru" pointSize="12"/>
+                                        <state key="normal" title="シェア">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="btn_shaer:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="kzb-Ui-juY"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="vmf-Gv-T2d" firstAttribute="leading" secondItem="xgt-a3-469" secondAttribute="trailing" constant="5" id="2XR-uK-mwL"/>
                                     <constraint firstAttribute="bottom" secondItem="Qbe-QR-S1P" secondAttribute="bottom" constant="1" id="2al-V0-Gq3"/>
                                     <constraint firstItem="8Xa-wr-4Rp" firstAttribute="top" secondItem="ksh-e7-mIa" secondAttribute="bottom" constant="1" id="2gI-J4-YqR"/>
                                     <constraint firstAttribute="centerX" secondItem="lXI-ti-7LJ" secondAttribute="centerX" id="3tG-5C-mL5"/>
@@ -525,6 +547,7 @@
                                     <constraint firstAttribute="trailing" secondItem="xgt-a3-469" secondAttribute="trailing" constant="8" id="P1b-dT-DD4"/>
                                     <constraint firstAttribute="centerY" secondItem="lXI-ti-7LJ" secondAttribute="centerY" id="W2n-GM-0Bn"/>
                                     <constraint firstItem="Qbe-QR-S1P" firstAttribute="leading" secondItem="rWm-yL-au6" secondAttribute="leading" constant="1" id="XST-8O-Aef"/>
+                                    <constraint firstAttribute="bottom" secondItem="vmf-Gv-T2d" secondAttribute="bottom" constant="8" id="ZI1-LX-dcG"/>
                                     <constraint firstItem="ksh-e7-mIa" firstAttribute="top" secondItem="Bcc-DB-o2R" secondAttribute="bottom" constant="3" id="axd-se-y0v"/>
                                     <constraint firstAttribute="bottom" secondItem="xgt-a3-469" secondAttribute="bottom" constant="8" id="g0t-Hl-cgp"/>
                                     <constraint firstItem="Qbe-QR-S1P" firstAttribute="top" secondItem="rWm-yL-au6" secondAttribute="top" constant="1" id="hTT-4u-CdR"/>
