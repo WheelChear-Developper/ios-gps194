@@ -666,6 +666,7 @@
                         <outlet property="Table_SelectView" destination="qQx-cK-tUL" id="Vdw-Vx-zt8"/>
                         <outlet property="btn_cellsort" destination="xgt-a3-469" id="Hy3-So-RMz"/>
                         <outlet property="btn_photoplus" destination="fe1-w2-f8s" id="LbR-qw-sX7"/>
+                        <outlet property="btn_shaer" destination="vmf-Gv-T2d" id="xRu-sa-rpk"/>
                         <outlet property="img_deleteBack" destination="yEz-yb-ul5" id="D0D-k0-1iP"/>
                         <outlet property="img_photoBack" destination="IY0-ja-G2E" id="Fgr-t4-kc3"/>
                         <outlet property="lbl_comment" destination="cgL-Zy-1JC" id="20e-lY-rpG"/>

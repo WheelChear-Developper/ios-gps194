@@ -34,6 +34,8 @@
     
     //削除設定
     NSMutableArray *DeleteSelectlist;
+    
+    UIAlertView *NotExifImage_alertView;
 }
 @end
 
@@ -372,6 +374,7 @@
     
     btn_cellsort.hidden = NO;
     btn_photoplus.hidden = NO;
+    btn_shaer.hidden = NO;
     
     view_dell.hidden = YES;
     
@@ -402,6 +405,7 @@
     
     btn_cellsort.hidden = YES;
     btn_photoplus.hidden = YES;
+    btn_shaer.hidden = YES;
     
     view_dell.hidden = NO;
     
@@ -521,71 +525,106 @@
 - (IBAction)btn_shaer:(id)sender {
     
     if(lng_selectRow >=0){
-        //データベースから画像取得
-        CgSelect_Model *ServiceList_Model = _TotalSelectDataBox[lng_selectRow];
+        CgSelect_Model *listDataModel = _TotalSelectDataBox[lng_selectRow];
         
-        NSMutableArray *RecordDataBox = [SqlManager Get_image:ServiceList_Model.service_id];
-        _SelectImageDataBox = RecordDataBox;
-        CgSelect_Model *listDataModel = _SelectImageDataBox[0];
-        UIImage *image = [[UIImage alloc] initWithData:listDataModel.image];
+        if([listDataModel.Latitude isEqualToString:@"(null)"]) {
+            
+            NotExifImage_alertView = [[UIAlertView alloc]
+                                      initWithTitle:@"位置情報がありません"
+                                      message:@"写真の位置情報が無い状態でシェアします。"
+                                      delegate:self
+                                      cancelButtonTitle:@"いいえ"
+                                      otherButtonTitles:@"はい",nil];
+            [NotExifImage_alertView show];
+        }else{
+
+            [self image_share];
+        }
+    }
+}
+
+-(void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if(alertView == NotExifImage_alertView){
+        switch (buttonIndex) {
+            case 0:
+                break;
+            case 1:
+                [self image_share];
+                break;
+        }
+    }
+}
+
+#pragma mark シェアアイテムセット
+- (void)image_share {
         
-        //http://d.hatena.ne.jp/nakamura001/20091024/1256371275
+
+    //データベースから画像取得
+    CgSelect_Model *ServiceList_Model = _TotalSelectDataBox[lng_selectRow];
         
+    NSMutableArray *RecordDataBox = [SqlManager Get_image:ServiceList_Model.service_id];
+    _SelectImageDataBox = RecordDataBox;
+    CgSelect_Model *listDataModel = _SelectImageDataBox[0];
+    UIImage *image = [[UIImage alloc] initWithData:listDataModel.image];
         
-        // 保存形式設定
-        //png
-        //NSData *data = UIImagePNGRepresentation(image);
-        //jpeg
-        NSData *data = UIImageJPEGRepresentation(image, 0.8f);
-        
-        
-        //////////////////////// Exifデータ生成 //////////////////////////////
-        CGImageSourceRef  source = CGImageSourceCreateWithData((__bridge CFDataRef)data, NULL);
-        
-        //既存のメタデータを取得
-        NSDictionary *metadata = (__bridge NSDictionary *) CGImageSourceCopyPropertiesAtIndex(source,0,NULL);
-        
-        //各メタデータ用変数
-        NSMutableDictionary *metadataAsMutable = [NSMutableDictionary dictionaryWithDictionary:metadata];
-        
-        NSMutableDictionary *EXIFDictionary = [[metadataAsMutable objectForKey:(NSString *)kCGImagePropertyExifDictionary]mutableCopy];
-        NSMutableDictionary *GPSDictionary = [[metadataAsMutable objectForKey:(NSString *)kCGImagePropertyGPSDictionary]mutableCopy];
-        if(!EXIFDictionary) EXIFDictionary = [NSMutableDictionary dictionary];
-        if(!GPSDictionary) GPSDictionary = [NSMutableDictionary dictionary];
-        
-        //撮影日時の更新
-        [EXIFDictionary setObject:[NSDate date] forKey:(NSString*)kCGImagePropertyExifDateTimeOriginal];
-        [EXIFDictionary setObject:[NSDate date] forKey:(NSString*)kCGImagePropertyExifDateTimeDigitized];
-        
-        //GPS情報追加(適宜追加したい位置情報を記載ください。)
-        double dbl_Latitude = ServiceList_Model.Latitude.doubleValue;
-        double dbl_Longitude = ServiceList_Model.Longitude.doubleValue;
-        [GPSDictionary setValue:[NSNumber numberWithDouble:dbl_Latitude] forKey:(NSString*)kCGImagePropertyGPSLatitude];
-        [GPSDictionary setValue:[NSNumber numberWithDouble:dbl_Longitude] forKey:(NSString*)kCGImagePropertyGPSLongitude];
-        
-        //日本の場合
-        [GPSDictionary setValue:@"N" forKey:(NSString*)kCGImagePropertyGPSLatitudeRef];
-        [GPSDictionary setValue:@"E" forKey:(NSString*)kCGImagePropertyGPSLongitudeRef];
-        
-        [metadataAsMutable setObject:EXIFDictionary forKey:(NSString *)kCGImagePropertyExifDictionary];
-        [metadataAsMutable setObject:GPSDictionary forKey:(NSString *)kCGImagePropertyGPSDictionary];
-        [metadataAsMutable setObject:[NSNumber numberWithInt:UIImageOrientationUp] forKey:(NSString *)kCGImagePropertyOrientation];
+    //http://d.hatena.ne.jp/nakamura001/20091024/1256371275
         
         
-        //////////////////////////// イメージデータにExifデータ追加 //////////////////////////////////
-        //http://blog.mudaimemo.com/2010/12/iosexif.html
-        // CGImageDestination を利用して画像とメタデータをひ関連付ける
-        NSMutableData *imageData = [[NSMutableData alloc] init];
-        CGImageDestinationRef dest;
-        dest = CGImageDestinationCreateWithData((CFMutableDataRef)imageData, kUTTypeJPEG, 1, nil);
+    // 保存形式設定
+    //png
+    //NSData *data = UIImagePNGRepresentation(image);
+    //jpeg
+    NSData *data = UIImageJPEGRepresentation(image, 0.8f);
         
-        CGImageDestinationAddImage(dest, image.CGImage, (CFDictionaryRef)metadataAsMutable);
-        CGImageDestinationFinalize(dest);
-        CFRelease(dest);
+        
+    //////////////////////// Exifデータ生成 //////////////////////////////
+    CGImageSourceRef  source = CGImageSourceCreateWithData((__bridge CFDataRef)data, NULL);
+        
+    //既存のメタデータを取得
+    NSDictionary *metadata = (__bridge NSDictionary *) CGImageSourceCopyPropertiesAtIndex(source,0,NULL);
+        
+    //各メタデータ用変数
+    NSMutableDictionary *metadataAsMutable = [NSMutableDictionary dictionaryWithDictionary:metadata];
+        
+    NSMutableDictionary *EXIFDictionary = [[metadataAsMutable objectForKey:(NSString *)kCGImagePropertyExifDictionary]mutableCopy];
+    NSMutableDictionary *GPSDictionary = [[metadataAsMutable objectForKey:(NSString *)kCGImagePropertyGPSDictionary]mutableCopy];
+    if(!EXIFDictionary) EXIFDictionary = [NSMutableDictionary dictionary];
+    if(!GPSDictionary) GPSDictionary = [NSMutableDictionary dictionary];
+        
+    //撮影日時の更新
+    [EXIFDictionary setObject:[NSDate date] forKey:(NSString*)kCGImagePropertyExifDateTimeOriginal];
+    [EXIFDictionary setObject:[NSDate date] forKey:(NSString*)kCGImagePropertyExifDateTimeDigitized];
+        
+    //GPS情報追加(適宜追加したい位置情報を記載ください。)
+    double dbl_Latitude = ServiceList_Model.Latitude.doubleValue;
+    double dbl_Longitude = ServiceList_Model.Longitude.doubleValue;
+    [GPSDictionary setValue:[NSNumber numberWithDouble:dbl_Latitude] forKey:(NSString*)kCGImagePropertyGPSLatitude];
+    [GPSDictionary setValue:[NSNumber numberWithDouble:dbl_Longitude] forKey:(NSString*)kCGImagePropertyGPSLongitude];
+        
+    //日本の場合
+    [GPSDictionary setValue:@"N" forKey:(NSString*)kCGImagePropertyGPSLatitudeRef];
+    [GPSDictionary setValue:@"E" forKey:(NSString*)kCGImagePropertyGPSLongitudeRef];
+        
+    [metadataAsMutable setObject:EXIFDictionary forKey:(NSString *)kCGImagePropertyExifDictionary];
+    [metadataAsMutable setObject:GPSDictionary forKey:(NSString *)kCGImagePropertyGPSDictionary];
+    [metadataAsMutable setObject:[NSNumber numberWithInt:UIImageOrientationUp] forKey:(NSString *)kCGImagePropertyOrientation];
+        
+        
+    //////////////////////////// イメージデータにExifデータ追加 //////////////////////////////////
+    //http://blog.mudaimemo.com/2010/12/iosexif.html
+    // CGImageDestination を利用して画像とメタデータをひ関連付ける
+    NSMutableData *imageData = [[NSMutableData alloc] init];
+    CGImageDestinationRef dest;
+    dest = CGImageDestinationCreateWithData((CFMutableDataRef)imageData, kUTTypeJPEG, 1, nil);
+        
+    CGImageDestinationAddImage(dest, image.CGImage, (CFDictionaryRef)metadataAsMutable);
+    CGImageDestinationFinalize(dest);
+    CFRelease(dest);
 
 
-        //////////////////////////// 共有アクションへ ///////////////////////////////////
-        [self shareItem:imageData];
+    //////////////////////////// 共有アクションへ ///////////////////////////////////
+    [self shareItem:imageData];
         
 /*
         //画像の保存
@@ -636,10 +675,7 @@
         
         [self shareItem:image];
 */
-     
-     }
 }
-
 
 
 #pragma mark シェアアイテムセット

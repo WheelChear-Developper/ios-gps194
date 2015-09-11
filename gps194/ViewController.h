@@ -32,6 +32,7 @@
     
     __weak IBOutlet UIButton *btn_cellsort;
     __weak IBOutlet UIButton *btn_photoplus;
+    __weak IBOutlet UIButton *btn_shaer;
     
     __weak IBOutlet UIView *view_dell;
 }
