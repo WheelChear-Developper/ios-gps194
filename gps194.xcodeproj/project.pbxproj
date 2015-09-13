@@ -29,6 +29,7 @@
 		1B447F171B8F247800689CDF /* ReachabilityCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B447F0E1B8F247800689CDF /* ReachabilityCheck.m */; };
 		1B447F181B8F247800689CDF /* UILabel+EstimatedHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B447F111B8F247800689CDF /* UILabel+EstimatedHeight.m */; };
 		1B447F191B8F247800689CDF /* VerticallyAlignedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B447F141B8F247800689CDF /* VerticallyAlignedLabel.m */; };
+		1B50EA2D1BA586EF00CA6E6D /* Denger-ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B50EA2C1BA586EF00CA6E6D /* Denger-ViewController.m */; };
 		1B7C0C251B900E8100221520 /* CgSelect_Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C0C231B900E8100221520 /* CgSelect_Cell.m */; };
 		1B7C0C261B900E8100221520 /* CgSelect_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B7C0C241B900E8100221520 /* CgSelect_Cell.xib */; };
 		1B7C0C2A1B90565300221520 /* CgSelect_Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C0C291B90565300221520 /* CgSelect_Model.m */; };
@@ -145,6 +146,8 @@
 		1B447F111B8F247800689CDF /* UILabel+EstimatedHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+EstimatedHeight.m"; sourceTree = "<group>"; };
 		1B447F131B8F247800689CDF /* VerticallyAlignedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerticallyAlignedLabel.h; sourceTree = "<group>"; };
 		1B447F141B8F247800689CDF /* VerticallyAlignedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerticallyAlignedLabel.m; sourceTree = "<group>"; };
+		1B50EA2B1BA586EF00CA6E6D /* Denger-ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Denger-ViewController.h"; sourceTree = "<group>"; };
+		1B50EA2C1BA586EF00CA6E6D /* Denger-ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Denger-ViewController.m"; sourceTree = "<group>"; };
 		1B7C0C221B900E8100221520 /* CgSelect_Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CgSelect_Cell.h; sourceTree = "<group>"; };
 		1B7C0C231B900E8100221520 /* CgSelect_Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CgSelect_Cell.m; sourceTree = "<group>"; };
 		1B7C0C241B900E8100221520 /* CgSelect_Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CgSelect_Cell.xib; sourceTree = "<group>"; };
@@ -293,6 +296,8 @@
 				1B447EE21B8EBC0C00689CDF /* ViewController.m */,
 				1B028F251BA29017009C35BB /* First-ViewController.h */,
 				1B028F261BA29017009C35BB /* First-ViewController.m */,
+				1B50EA2B1BA586EF00CA6E6D /* Denger-ViewController.h */,
+				1B50EA2C1BA586EF00CA6E6D /* Denger-ViewController.m */,
 				1B7C0C241B900E8100221520 /* CgSelect_Cell.xib */,
 				1B7C0C221B900E8100221520 /* CgSelect_Cell.h */,
 				1B7C0C231B900E8100221520 /* CgSelect_Cell.m */,
@@ -717,6 +722,7 @@
 				1BFF3AF41B98A3B500EA70DD /* DeleteSelect_Model.m in Sources */,
 				1B447EDA1B8EBC0C00689CDF /* main.m in Sources */,
 				1B447EE31B8EBC0C00689CDF /* ViewController.m in Sources */,
+				1B50EA2D1BA586EF00CA6E6D /* Denger-ViewController.m in Sources */,
 				1BFCD6991B956FA8007FF00A /* SqlManager.m in Sources */,
 				1B447F161B8F247800689CDF /* MyAnnotation.m in Sources */,
 				1B447F171B8F247800689CDF /* ReachabilityCheck.m in Sources */,

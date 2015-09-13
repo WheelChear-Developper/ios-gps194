@@ -36,6 +36,7 @@
     NSMutableArray *DeleteSelectlist;
     
     UIAlertView *NotExifImage_alertView;
+    UIAlertView *CameraCheck_alertView;
 }
 @end
 
@@ -539,23 +540,35 @@ static NSString *CONFIGURATION_FIRST_START = @"Configuration.FirstStart";
     if(lng_selectRow >=0){
         CgSelect_Model *listDataModel = _TotalSelectDataBox[lng_selectRow];
         
-        if([listDataModel.Latitude isEqualToString:@"(null)"]) {
-            
-            NotExifImage_alertView = [[UIAlertView alloc]
-                                      initWithTitle:@"位置情報がありません"
-                                      message:@"写真の位置情報が無い状態でシェアします。"
+        if(![listDataModel.Latitude isEqualToString:@"(null)"]) {
+            CameraCheck_alertView = [[UIAlertView alloc]
+                                      initWithTitle:@"標準アプリのカメラを使う場合"
+                                      message:@"位置情報設定を許可していなければ緯度、経度情報が取得できません。\n設定→プライバシー→位置情報サービス→カメラ→許可設定をお願いします。\n※その他のカメラを使う場合で、位置情報を使う場合はそのアプリが位置情報を保存するアプリで、上記の方法で指定のアプリに許可とアプリ自身の位置情報設定がある場合は設定を行なって下さい。"
                                       delegate:self
-                                      cancelButtonTitle:@"いいえ"
-                                      otherButtonTitles:@"はい",nil];
-            [NotExifImage_alertView show];
-        }else{
-
-            [self image_share];
+                                      cancelButtonTitle:@"OK"
+                                      otherButtonTitles:nil];
+            [CameraCheck_alertView show];
         }
     }
 }
 
 -(void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if(alertView == CameraCheck_alertView){
+        switch (buttonIndex) {
+            case 0:
+                NotExifImage_alertView = [[UIAlertView alloc]
+                                          initWithTitle:@"位置情報がありません"
+                                          message:@"写真の位置情報が無い状態でシェアします。"
+                                          delegate:self
+                                          cancelButtonTitle:@"いいえ"
+                                          otherButtonTitles:@"はい",nil];
+                [NotExifImage_alertView show];
+                break;
+            case 1:
+                break;
+        }
+    }
     
     if(alertView == NotExifImage_alertView){
         switch (buttonIndex) {

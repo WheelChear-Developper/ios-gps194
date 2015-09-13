@@ -23,6 +23,9 @@
             <string>MotoyaLMaru-W3-90ms-RKSJ-H</string>
             <string>MotoyaLMaru-W3-90ms-RKSJ-H</string>
             <string>MotoyaLMaru-W3-90ms-RKSJ-H</string>
+            <string>MotoyaLMaru-W3-90ms-RKSJ-H</string>
+            <string>MotoyaLMaru-W3-90ms-RKSJ-H</string>
+            <string>MotoyaLMaru-W3-90ms-RKSJ-H</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -38,8 +41,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="並び替えボタン、＋ボタンの間に？マークからも下記の文章が書かれた画面に遷移できればベストですが。戻るでTOPページへ。" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaf-ke-uFp">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="30" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaf-ke-uFp">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <string key="text">＜標準アプリのカメラを使う場合＞
+位置情報設定を許可していなければ
+緯度、経度情報が取得できません。
+設定→プライバシー→位置情報サービス→カメラ→許可設定
+をお願いします。
+※その他のカメラを使う場合で、位置情報を使う場合はそのアプリが位置情報を保存するアプリで、上記の方法で指定のアプリに許可とアプリ自身の位置情報設定がある場合は設定を行なって下さい。</string>
                                 <fontDescription key="fontDescription" name="MotoyaLMaru-W3-90ms-RKSJ-H" family="MotoyaLMaru" pointSize="18"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -123,9 +132,6 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="30" height="12"/>
                                                         <fontDescription key="fontDescription" name="MotoyaLMaru-W3-90ms-RKSJ-H" family="MotoyaLMaru" pointSize="18"/>
                                                         <nil key="highlightedColor"/>
-                                                        <variation key="heightClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="70" y="8" width="49" height="21"/>
-                                                        </variation>
                                                         <variation key="widthClass=compact" fixedFrame="YES">
                                                             <rect key="frame" x="0.0" y="20" width="30" height="12"/>
                                                         </variation>
@@ -182,17 +188,11 @@
                                                             <constraint firstAttribute="height" constant="28" id="6Ji-7q-48Z"/>
                                                             <constraint firstAttribute="width" constant="32" id="WFM-Vm-rz8"/>
                                                         </constraints>
-                                                        <variation key="heightClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="33" y="4" width="32" height="28"/>
-                                                        </variation>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Delete" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="36" translatesAutoresizingMaskIntoConstraints="NO" id="vX3-uz-fev">
                                                         <rect key="frame" x="44" y="21" width="36" height="12"/>
                                                         <fontDescription key="fontDescription" name="MotoyaLMaru-W3-90ms-RKSJ-H" family="MotoyaLMaru" pointSize="18"/>
                                                         <nil key="highlightedColor"/>
-                                                        <variation key="heightClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="67" y="8" width="52" height="21"/>
-                                                        </variation>
                                                         <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
                                                             <rect key="frame" x="-3" y="21" width="36" height="12"/>
                                                         </variation>
@@ -329,9 +329,6 @@
                                                         <fontDescription key="fontDescription" name="MotoyaLMaru-W3-90ms-RKSJ-H" family="MotoyaLMaru" pointSize="10"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
-                                                        <variation key="heightClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="9" y="13" width="33" height="12"/>
-                                                        </variation>
                                                         <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
                                                             <rect key="frame" x="6" y="14" width="42" height="14"/>
                                                         </variation>
@@ -341,9 +338,6 @@
                                                         <fontDescription key="fontDescription" name="MotoyaLMaru-W3-90ms-RKSJ-H" family="MotoyaLMaru" pointSize="10"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
-                                                        <variation key="heightClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="15" y="26" width="21" height="12"/>
-                                                        </variation>
                                                         <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
                                                             <rect key="frame" x="17" y="27" width="21" height="14"/>
                                                         </variation>
@@ -604,6 +598,26 @@
                                             <action selector="btn_shaer:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="kzb-Ui-juY"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QKo-ad-Ajf">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <color key="backgroundColor" red="0.63953993056161618" green="0.22899707717861098" blue="0.21713681201792701" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="70" id="Drv-cg-gyM"/>
+                                            <constraint firstAttribute="height" constant="40" id="LHI-LF-Hga"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="MotoyaLMaru-W3-90ms-RKSJ-H" family="MotoyaLMaru" pointSize="12"/>
+                                        <state key="normal" title="注意事項">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <segue destination="RAV-g4-M4e" kind="show" id="HMG-3T-GsD"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -623,9 +637,11 @@
                                     <constraint firstItem="Qbe-QR-S1P" firstAttribute="leading" secondItem="rWm-yL-au6" secondAttribute="leading" constant="1" id="XST-8O-Aef"/>
                                     <constraint firstAttribute="bottom" secondItem="vmf-Gv-T2d" secondAttribute="bottom" constant="8" id="ZI1-LX-dcG"/>
                                     <constraint firstItem="ksh-e7-mIa" firstAttribute="top" secondItem="Bcc-DB-o2R" secondAttribute="bottom" constant="3" id="axd-se-y0v"/>
+                                    <constraint firstAttribute="bottom" secondItem="QKo-ad-Ajf" secondAttribute="bottom" constant="8" id="fIR-pS-wlT"/>
                                     <constraint firstAttribute="bottom" secondItem="xgt-a3-469" secondAttribute="bottom" constant="8" id="g0t-Hl-cgp"/>
                                     <constraint firstItem="Qbe-QR-S1P" firstAttribute="top" secondItem="rWm-yL-au6" secondAttribute="top" constant="1" id="hTT-4u-CdR"/>
                                     <constraint firstItem="Bcc-DB-o2R" firstAttribute="top" secondItem="rWm-yL-au6" secondAttribute="top" constant="5" id="kRZ-lZ-PcY"/>
+                                    <constraint firstItem="QKo-ad-Ajf" firstAttribute="leading" secondItem="vmf-Gv-T2d" secondAttribute="trailing" constant="5" id="kkA-ZL-oiJ"/>
                                     <constraint firstAttribute="trailing" secondItem="ksh-e7-mIa" secondAttribute="trailing" constant="5" id="lbP-69-RuY"/>
                                     <constraint firstAttribute="trailing" secondItem="fe1-w2-f8s" secondAttribute="trailing" constant="8" id="nEg-Y3-azI"/>
                                     <constraint firstAttribute="bottom" secondItem="Qbe-QR-S1P" secondAttribute="bottom" constant="1" id="oaH-MC-o9H"/>
@@ -754,6 +770,63 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="218" y="-234"/>
+        </scene>
+        <!--Denger View Controller-->
+        <scene sceneID="ADD-E9-x9A">
+            <objects>
+                <viewController id="RAV-g4-M4e" customClass="Denger_ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DdH-KY-lCh"/>
+                        <viewControllerLayoutGuide type="bottom" id="PMW-Bf-Yix"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="E1f-vN-Atg">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELj-GJ-YSe">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" red="0.094523585339999994" green="0.3556056272" blue="0.78087515780000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="RoK-0u-krA"/>
+                                    <constraint firstAttribute="width" constant="60" id="lO9-uz-Nb8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="MotoyaLMaru-W3-90ms-RKSJ-H" family="MotoyaLMaru" pointSize="16"/>
+                                <state key="normal" title="戻る">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="Nextscreen:" destination="nQM-v5-4de" eventType="touchUpInside" id="EQr-ce-LcA"/>
+                                    <action selector="btn_ok:" destination="RAV-g4-M4e" eventType="touchUpInside" id="z3Q-Xh-AAK"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ys-0g-YH6">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <string key="text">シェアする場合は、他の連絡ツールをご利用されますと緯度、経度情報が消えてしまいますので送受信共々メッセージかメールをご利用ください。</string>
+                                <fontDescription key="fontDescription" name="MotoyaLMaru-W3-90ms-RKSJ-H" family="MotoyaLMaru" pointSize="18"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="ELj-GJ-YSe" secondAttribute="centerX" id="E7t-SZ-MWf"/>
+                            <constraint firstItem="PMW-Bf-Yix" firstAttribute="top" secondItem="ELj-GJ-YSe" secondAttribute="bottom" constant="15" id="Otp-5C-Y7v"/>
+                            <constraint firstItem="ELj-GJ-YSe" firstAttribute="top" secondItem="3ys-0g-YH6" secondAttribute="bottom" constant="10" id="W0l-Mw-gai"/>
+                            <constraint firstItem="3ys-0g-YH6" firstAttribute="top" secondItem="DdH-KY-lCh" secondAttribute="bottom" constant="20" id="ZZn-4p-GSa"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3ys-0g-YH6" secondAttribute="trailing" constant="10" id="jIZ-md-Gkg"/>
+                            <constraint firstItem="3ys-0g-YH6" firstAttribute="leading" secondItem="E1f-vN-Atg" secondAttribute="leadingMargin" constant="10" id="oOY-vY-Rob"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="v8o-QB-Dkk"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rJT-cz-HsX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="218" y="636"/>
         </scene>
     </scenes>
     <resources>
