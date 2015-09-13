@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "DeployGateSDK/DeployGateSDK.h"
 
 @interface AppDelegate ()
 
@@ -16,6 +17,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    //DeploygateSDKインポート
+    [[DeployGateSDK sharedInstance] launchApplicationWithAuthor:@"shioe" key:@"5b3aaf978d70268d5083d436a0532c19008efdd0"];
     
     // データベース前処理
     [SqlManager InitialSql];
