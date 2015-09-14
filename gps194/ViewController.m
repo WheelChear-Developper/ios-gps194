@@ -542,12 +542,20 @@ static NSString *CONFIGURATION_FIRST_START = @"Configuration.FirstStart";
         
         if(![listDataModel.Latitude isEqualToString:@"(null)"]) {
             CameraCheck_alertView = [[UIAlertView alloc]
-                                      initWithTitle:@"標準アプリのカメラを使う場合"
-                                      message:@"位置情報設定を許可していなければ緯度、経度情報が取得できません。\n設定→プライバシー→位置情報サービス→カメラ→許可設定をお願いします。\n※その他のカメラを使う場合で、位置情報を使う場合はそのアプリが位置情報を保存するアプリで、上記の方法で指定のアプリに許可とアプリ自身の位置情報設定がある場合は設定を行なって下さい。"
+                                      initWithTitle:@"注意事項"
+                                     message:@"シェアする場合は、他の連絡ツールをご利用されますと\n緯度、経度情報が消えてしまいますので\n送受信共々メッセージかメールをご利用ください。"
                                       delegate:self
                                       cancelButtonTitle:@"OK"
                                       otherButtonTitles:nil];
             [CameraCheck_alertView show];
+        }else{
+            NotExifImage_alertView = [[UIAlertView alloc]
+                                      initWithTitle:@"位置情報がありません"
+                                      message:@"写真の位置情報が無い状態でシェアします。"
+                                      delegate:self
+                                      cancelButtonTitle:@"いいえ"
+                                      otherButtonTitles:@"はい",nil];
+            [NotExifImage_alertView show];
         }
     }
 }
@@ -557,13 +565,7 @@ static NSString *CONFIGURATION_FIRST_START = @"Configuration.FirstStart";
     if(alertView == CameraCheck_alertView){
         switch (buttonIndex) {
             case 0:
-                NotExifImage_alertView = [[UIAlertView alloc]
-                                          initWithTitle:@"位置情報がありません"
-                                          message:@"写真の位置情報が無い状態でシェアします。"
-                                          delegate:self
-                                          cancelButtonTitle:@"いいえ"
-                                          otherButtonTitles:@"はい",nil];
-                [NotExifImage_alertView show];
+                [self image_share];
                 break;
             case 1:
                 break;

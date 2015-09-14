@@ -780,6 +780,7 @@
                         <viewControllerLayoutGuide type="bottom" id="PMW-Bf-Yix"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="E1f-vN-Atg">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELj-GJ-YSe">
@@ -804,9 +805,14 @@
                                     <action selector="btn_ok:" destination="RAV-g4-M4e" eventType="touchUpInside" id="z3Q-Xh-AAK"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ys-0g-YH6">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="30" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ys-0g-YH6">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <string key="text">シェアする場合は、他の連絡ツールをご利用されますと緯度、経度情報が消えてしまいますので送受信共々メッセージかメールをご利用ください。</string>
+                                <string key="text">＜標準アプリのカメラを使う場合＞
+位置情報設定を許可していなければ
+緯度、経度情報が取得できません。
+設定→プライバシー→位置情報サービス→カメラ→許可設定
+をお願いします。
+※その他のカメラを使う場合で、位置情報を使う場合はそのアプリが位置情報を保存するアプリで、上記の方法で指定のアプリに許可とアプリ自身の位置情報設定がある場合は設定を行なって下さい。</string>
                                 <fontDescription key="fontDescription" name="MotoyaLMaru-W3-90ms-RKSJ-H" family="MotoyaLMaru" pointSize="18"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
