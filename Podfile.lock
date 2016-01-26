@@ -21,7 +21,6 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - CZDateFormatterCache (1.2)
-  - DeployGateSDK (1.0.6)
   - FMDB (2.5):
     - FMDB/standard (= 2.5)
   - FMDB/common (2.5)
@@ -33,7 +32,6 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - CZDateFormatterCache
-  - DeployGateSDK
   - FMDB
   - Reachability
   - SVProgressHUD
@@ -41,9 +39,8 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   CZDateFormatterCache: 3a75678534fd0b6153d1c6f839de59f0102e080a
-  DeployGateSDK: 17f1ec42755deb0af2c231c30555f811d19b090b
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SVProgressHUD: 54de4d9ab38aa3f688da401f5766a5738084e7fb
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0

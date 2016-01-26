@@ -1,1 +1,0 @@
-../../../../DeployGateSDK/DeployGateSDK1.0.6.embeddedframework/DeployGateSDK.framework/Headers/DeployGateSDK.h

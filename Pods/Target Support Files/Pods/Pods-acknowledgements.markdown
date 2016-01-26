@@ -84,10 +84,6 @@ END OF TERMS AND CONDITIONS
 
 
 
-## DeployGateSDK
-
-Copyright 2015 DeployGate Inc. All rights reserved.
-
 ## FMDB
 
 If you are using FMDB in your project, I'd love to hear about it.  Let Gus know

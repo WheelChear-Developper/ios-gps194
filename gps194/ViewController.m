@@ -226,7 +226,7 @@ static NSString *CONFIGURATION_FIRST_START = @"Configuration.FirstStart";
         NSUInteger row = (NSUInteger)indexPath.row;
         CgSelect_Model *listDataModel = _TotalSelectDataBox[row];
         
-        NSLog(@"%ld",row);
+        NSLog(@"%ld",(unsigned long)row);
         NSLog(@"%@",[DeleteSelectlist objectAtIndex:row]);
         if([[DeleteSelectlist objectAtIndex:row] isEqualToString:@"YES"]){
             cell.img_select.image = [UIImage imageNamed:@"select-yes.png"];

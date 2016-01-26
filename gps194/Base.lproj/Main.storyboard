@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -41,8 +41,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="30" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaf-ke-uFp">
-                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="30" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaf-ke-uFp">
+                                <rect key="frame" x="10" y="20" width="580" height="510"/>
                                 <string key="text">＜標準アプリのカメラを使う場合＞
 位置情報設定を許可していなければ
 緯度、経度情報が取得できません。
@@ -50,11 +50,11 @@
 をお願いします。
 ※その他のカメラを使う場合で、位置情報を使う場合はそのアプリが位置情報を保存するアプリで、上記の方法で指定のアプリに許可とアプリ自身の位置情報設定がある場合は設定を行なって下さい。</string>
                                 <fontDescription key="fontDescription" name="MotoyaLMaru-W3-90ms-RKSJ-H" family="MotoyaLMaru" pointSize="18"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="veU-Nm-244">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="veU-Nm-244">
+                                <rect key="frame" x="270" y="535" width="60" height="40"/>
                                 <color key="backgroundColor" red="0.094523585339999994" green="0.3556056272" blue="0.78087515780000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="BN6-dj-iqU"/>
@@ -132,9 +132,6 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="30" height="12"/>
                                                         <fontDescription key="fontDescription" name="MotoyaLMaru-W3-90ms-RKSJ-H" family="MotoyaLMaru" pointSize="18"/>
                                                         <nil key="highlightedColor"/>
-                                                        <variation key="widthClass=compact" fixedFrame="YES">
-                                                            <rect key="frame" x="0.0" y="20" width="30" height="12"/>
-                                                        </variation>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yfh-Xn-D9s">
                                                         <rect key="frame" x="0.0" y="0.0" width="30" height="36"/>
@@ -161,9 +158,6 @@
                                                     <constraint firstAttribute="centerX" secondItem="cEL-cp-Phu" secondAttribute="centerX" multiplier="1.5" id="spj-tE-AQX"/>
                                                     <constraint firstAttribute="centerX" secondItem="qDV-jh-vh7" secondAttribute="centerX" multiplier="0.8" id="sxf-Jq-0cF"/>
                                                 </constraints>
-                                                <variation key="widthClass=compact" fixedFrame="YES">
-                                                    <rect key="frame" x="0.0" y="0.0" width="30" height="36"/>
-                                                </variation>
                                             </view>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qrg-gU-bXW" userLabel="SenterLineImageView">
                                                 <rect key="frame" x="58" y="-64" width="23" height="22"/>
@@ -171,9 +165,6 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="1" id="kCa-0d-myF"/>
                                                 </constraints>
-                                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
-                                                    <rect key="frame" x="30" y="0.0" width="1" height="36"/>
-                                                </variation>
                                             </imageView>
                                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SQc-B9-BzK" userLabel="DeleteButtonView">
                                                 <rect key="frame" x="125" y="0.0" width="125" height="36"/>
@@ -193,7 +184,7 @@
                                                         <rect key="frame" x="44" y="21" width="36" height="12"/>
                                                         <fontDescription key="fontDescription" name="MotoyaLMaru-W3-90ms-RKSJ-H" family="MotoyaLMaru" pointSize="18"/>
                                                         <nil key="highlightedColor"/>
-                                                        <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                                        <variation key="widthClass=compact" misplaced="YES">
                                                             <rect key="frame" x="-3" y="21" width="36" height="12"/>
                                                         </variation>
                                                     </label>
@@ -222,7 +213,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="yEz-yb-ul5" secondAttribute="trailing" constant="1" id="tnP-H6-1lm"/>
                                                     <constraint firstAttribute="centerY" secondItem="DLJ-1x-wWf" secondAttribute="centerY" id="xKr-TZ-62Y"/>
                                                 </constraints>
-                                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                                <variation key="widthClass=compact" misplaced="YES">
                                                     <rect key="frame" x="30" y="0.0" width="30" height="36"/>
                                                 </variation>
                                             </view>
@@ -300,7 +291,7 @@
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rWm-yL-au6" userLabel="RightView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qbe-QR-S1P">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qbe-QR-S1P">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                         <color key="backgroundColor" red="1" green="0.9847222444" blue="0.94073278900000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </imageView>
@@ -488,19 +479,6 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fe1-w2-f8s">
-                                        <rect key="frame" x="542" y="542" width="50" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="XOX-yw-wsK"/>
-                                            <constraint firstAttribute="width" constant="40" id="gnC-nC-x87"/>
-                                        </constraints>
-                                        <state key="normal" image="plus.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="btn_photoplus:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="1dI-NW-di4"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xgt-a3-469">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <color key="backgroundColor" red="0.094523585339999994" green="0.3556056272" blue="0.78087515780000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -518,8 +496,76 @@
                                                 <integer key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=compact">
+                                            <mask key="constraints">
+                                                <exclude reference="jgq-Pv-3m7"/>
+                                            </mask>
+                                        </variation>
                                         <connections>
                                             <action selector="brn_cellsort:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="wJy-RI-ffS"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vmf-Gv-T2d">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <color key="backgroundColor" red="0.31234300777239826" green="0.68548768939393945" blue="0.287610906387952" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="70" id="FTI-tx-k2W"/>
+                                            <constraint firstAttribute="height" constant="40" id="vfl-3A-apv"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="MotoyaLMaru-W3-90ms-RKSJ-H" family="MotoyaLMaru" pointSize="12"/>
+                                        <state key="normal" title="シェア">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=compact">
+                                            <mask key="constraints">
+                                                <exclude reference="FTI-tx-k2W"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <action selector="btn_shaer:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="kzb-Ui-juY"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QKo-ad-Ajf">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <color key="backgroundColor" red="0.63953993056161618" green="0.22899707717861098" blue="0.21713681201792701" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="70" id="Drv-cg-gyM"/>
+                                            <constraint firstAttribute="height" constant="40" id="LHI-LF-Hga"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="MotoyaLMaru-W3-90ms-RKSJ-H" family="MotoyaLMaru" pointSize="12"/>
+                                        <state key="normal" title="注意事項">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=compact">
+                                            <mask key="constraints">
+                                                <exclude reference="Drv-cg-gyM"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <segue destination="RAV-g4-M4e" kind="show" id="HMG-3T-GsD"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fe1-w2-f8s">
+                                        <rect key="frame" x="542" y="542" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="XOX-yw-wsK"/>
+                                            <constraint firstAttribute="width" constant="40" id="gnC-nC-x87"/>
+                                        </constraints>
+                                        <state key="normal" image="plus.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="btn_photoplus:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="1dI-NW-di4"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lXI-ti-7LJ">
@@ -578,46 +624,6 @@
                                             <constraint firstItem="KWZ-Rf-xuk" firstAttribute="width" secondItem="dgq-hy-dLZ" secondAttribute="width" id="kd5-1V-tbo"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vmf-Gv-T2d">
-                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                        <color key="backgroundColor" red="0.31234300777239826" green="0.68548768939393945" blue="0.287610906387952" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="70" id="FTI-tx-k2W"/>
-                                            <constraint firstAttribute="height" constant="40" id="vfl-3A-apv"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="MotoyaLMaru-W3-90ms-RKSJ-H" family="MotoyaLMaru" pointSize="12"/>
-                                        <state key="normal" title="シェア">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="btn_shaer:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="kzb-Ui-juY"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QKo-ad-Ajf">
-                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                        <color key="backgroundColor" red="0.63953993056161618" green="0.22899707717861098" blue="0.21713681201792701" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="70" id="Drv-cg-gyM"/>
-                                            <constraint firstAttribute="height" constant="40" id="LHI-LF-Hga"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="MotoyaLMaru-W3-90ms-RKSJ-H" family="MotoyaLMaru" pointSize="12"/>
-                                        <state key="normal" title="注意事項">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <segue destination="RAV-g4-M4e" kind="show" id="HMG-3T-GsD"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -633,7 +639,10 @@
                                     <constraint firstAttribute="bottom" secondItem="fe1-w2-f8s" secondAttribute="bottom" constant="8" id="OPI-el-3hy"/>
                                     <constraint firstItem="ksh-e7-mIa" firstAttribute="leading" secondItem="rWm-yL-au6" secondAttribute="leading" constant="5" id="OYd-M3-J4S"/>
                                     <constraint firstAttribute="trailing" secondItem="xgt-a3-469" secondAttribute="trailing" constant="8" id="P1b-dT-DD4"/>
+                                    <constraint firstItem="xgt-a3-469" firstAttribute="width" secondItem="rWm-yL-au6" secondAttribute="width" multiplier="0.2" id="QEp-8R-OwV"/>
+                                    <constraint firstItem="vmf-Gv-T2d" firstAttribute="width" secondItem="rWm-yL-au6" secondAttribute="width" multiplier="0.2" id="Uz8-tl-2Z8"/>
                                     <constraint firstAttribute="centerY" secondItem="lXI-ti-7LJ" secondAttribute="centerY" id="W2n-GM-0Bn"/>
+                                    <constraint firstItem="QKo-ad-Ajf" firstAttribute="width" secondItem="rWm-yL-au6" secondAttribute="width" multiplier="0.2" id="Whd-Id-8z5"/>
                                     <constraint firstItem="Qbe-QR-S1P" firstAttribute="leading" secondItem="rWm-yL-au6" secondAttribute="leading" constant="1" id="XST-8O-Aef"/>
                                     <constraint firstAttribute="bottom" secondItem="vmf-Gv-T2d" secondAttribute="bottom" constant="8" id="ZI1-LX-dcG"/>
                                     <constraint firstItem="ksh-e7-mIa" firstAttribute="top" secondItem="Bcc-DB-o2R" secondAttribute="bottom" constant="3" id="axd-se-y0v"/>
@@ -650,9 +659,7 @@
                                     <constraint firstAttribute="trailing" secondItem="Qbe-QR-S1P" secondAttribute="trailing" constant="1" id="ubd-bZ-iV1"/>
                                     <constraint firstAttribute="trailing" secondItem="Bcc-DB-o2R" secondAttribute="trailing" constant="5" id="vdb-N7-QvA"/>
                                     <constraint firstItem="Qbe-QR-S1P" firstAttribute="leading" secondItem="rWm-yL-au6" secondAttribute="leading" constant="1" id="w5o-Fm-1O2"/>
-                                    <constraint firstAttribute="bottom" secondItem="xgt-a3-469" secondAttribute="bottom" constant="8" id="wqq-nx-nxz"/>
                                     <constraint firstAttribute="bottom" secondItem="xgt-a3-469" secondAttribute="bottom" constant="8" id="yZ5-8R-Dyz"/>
-                                    <constraint firstItem="xgt-a3-469" firstAttribute="leading" secondItem="rWm-yL-au6" secondAttribute="leading" constant="8" id="zND-U5-29O"/>
                                     <constraint firstItem="Bcc-DB-o2R" firstAttribute="leading" secondItem="rWm-yL-au6" secondAttribute="leading" constant="5" id="zTu-Bv-NWU"/>
                                     <constraint firstItem="8Xa-wr-4Rp" firstAttribute="leading" secondItem="rWm-yL-au6" secondAttribute="leading" constant="5" id="zd7-Xi-3fH"/>
                                 </constraints>
@@ -667,8 +674,9 @@
                                         <exclude reference="r5L-4S-vZ4"/>
                                         <exclude reference="ubd-bZ-iV1"/>
                                         <exclude reference="w5o-Fm-1O2"/>
-                                        <exclude reference="wqq-nx-nxz"/>
-                                        <exclude reference="zND-U5-29O"/>
+                                        <exclude reference="Whd-Id-8z5"/>
+                                        <exclude reference="Uz8-tl-2Z8"/>
+                                        <exclude reference="QEp-8R-OwV"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact">
@@ -677,11 +685,12 @@
                                         <include reference="XST-8O-Aef"/>
                                         <include reference="oaH-MC-o9H"/>
                                         <include reference="ubd-bZ-iV1"/>
+                                        <include reference="Whd-Id-8z5"/>
+                                        <include reference="Uz8-tl-2Z8"/>
                                         <exclude reference="CIg-Nj-Mpn"/>
                                         <exclude reference="P1b-dT-DD4"/>
+                                        <include reference="QEp-8R-OwV"/>
                                         <exclude reference="g0t-Hl-cgp"/>
-                                        <exclude reference="wqq-nx-nxz"/>
-                                        <exclude reference="zND-U5-29O"/>
                                         <exclude reference="OGS-iz-qwm"/>
                                     </mask>
                                 </variation>
@@ -783,8 +792,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELj-GJ-YSe">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="30" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ys-0g-YH6">
+                                <rect key="frame" x="30" y="20" width="540" height="515"/>
+                                <string key="text">＜標準アプリのカメラを使う場合＞
+位置情報設定を許可していなければ
+緯度、経度情報が取得できません。
+設定→プライバシー→位置情報サービス→カメラ→許可設定
+をお願いします。
+※その他のカメラを使う場合で、位置情報を使う場合はそのアプリが位置情報を保存するアプリで、上記の方法で指定のアプリに許可とアプリ自身の位置情報設定がある場合は設定を行なって下さい。</string>
+                                <fontDescription key="fontDescription" name="MotoyaLMaru-W3-90ms-RKSJ-H" family="MotoyaLMaru" pointSize="18"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELj-GJ-YSe">
+                                <rect key="frame" x="270" y="545" width="60" height="40"/>
                                 <color key="backgroundColor" red="0.094523585339999994" green="0.3556056272" blue="0.78087515780000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="RoK-0u-krA"/>
@@ -805,18 +826,6 @@
                                     <action selector="btn_ok:" destination="RAV-g4-M4e" eventType="touchUpInside" id="z3Q-Xh-AAK"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="30" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ys-0g-YH6">
-                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <string key="text">＜標準アプリのカメラを使う場合＞
-位置情報設定を許可していなければ
-緯度、経度情報が取得できません。
-設定→プライバシー→位置情報サービス→カメラ→許可設定
-をお願いします。
-※その他のカメラを使う場合で、位置情報を使う場合はそのアプリが位置情報を保存するアプリで、上記の方法で指定のアプリに許可とアプリ自身の位置情報設定がある場合は設定を行なって下さい。</string>
-                                <fontDescription key="fontDescription" name="MotoyaLMaru-W3-90ms-RKSJ-H" family="MotoyaLMaru" pointSize="18"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

@@ -105,14 +105,6 @@ END OF TERMS AND CONDITIONS
 		</dict>
 		<dict>
 			<key>FooterText</key>
-			<string>Copyright 2015 DeployGate Inc. All rights reserved.</string>
-			<key>Title</key>
-			<string>DeployGateSDK</string>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-		</dict>
-		<dict>
-			<key>FooterText</key>
 			<string>If you are using FMDB in your project, I'd love to hear about it.  Let Gus know
 by sending an email to gus@flyingmeat.com.
 
