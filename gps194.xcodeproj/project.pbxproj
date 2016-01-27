@@ -886,6 +886,7 @@
 				INFOPLIST_FILE = gps194/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "new-esperanza.gps194";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -895,10 +896,11 @@
 			baseConfigurationReference = 1FB0D493783D6EE8AA3E28FF /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Masaaki Matuda (UL4GSFBM9J)";
 				INFOPLIST_FILE = gps194/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "new-esperanza.gps194";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

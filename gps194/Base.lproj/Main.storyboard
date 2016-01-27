@@ -132,6 +132,9 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="30" height="12"/>
                                                         <fontDescription key="fontDescription" name="MotoyaLMaru-W3-90ms-RKSJ-H" family="MotoyaLMaru" pointSize="18"/>
                                                         <nil key="highlightedColor"/>
+                                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="101" y="8" width="49" height="21"/>
+                                                        </variation>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yfh-Xn-D9s">
                                                         <rect key="frame" x="0.0" y="0.0" width="30" height="36"/>
@@ -186,6 +189,9 @@
                                                         <nil key="highlightedColor"/>
                                                         <variation key="widthClass=compact" misplaced="YES">
                                                             <rect key="frame" x="-3" y="21" width="36" height="12"/>
+                                                        </variation>
+                                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="98" y="8" width="52" height="21"/>
                                                         </variation>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9h9-zu-zkz">
@@ -323,6 +329,9 @@
                                                         <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
                                                             <rect key="frame" x="6" y="14" width="42" height="14"/>
                                                         </variation>
+                                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="9" y="13" width="33" height="12"/>
+                                                        </variation>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Map" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="17" translatesAutoresizingMaskIntoConstraints="NO" id="L0C-6E-AcU">
                                                         <rect key="frame" x="10" y="27" width="21" height="14"/>
@@ -331,6 +340,9 @@
                                                         <nil key="highlightedColor"/>
                                                         <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
                                                             <rect key="frame" x="17" y="27" width="21" height="14"/>
+                                                        </variation>
+                                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="15" y="26" width="21" height="12"/>
                                                         </variation>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N38-t1-H77">
