@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "3D83EBFFA708468B988DA75FF9E94435D472820A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "3D83EBFFA708468B988DA75FF9E94435D472820A" : 0,
+    "4E06F47169DB12F6A9910625A63964A334E86C4E" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "E1C78A8A-E1CD-4433-830E-02D09B973AFB",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "3D83EBFFA708468B988DA75FF9E94435D472820A" : "gps194",
+    "4E06F47169DB12F6A9910625A63964A334E86C4E" : ".."
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "gps194",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "gps194.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "bitbucket.org:amatani\/gps194-ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3D83EBFFA708468B988DA75FF9E94435D472820A"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/plusr\/hospitalvisitnote.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4E06F47169DB12F6A9910625A63964A334E86C4E"
+    }
+  ]
+}
